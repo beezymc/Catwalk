@@ -1,0 +1,42 @@
+{
+  "name": "catwalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "jest -c jest.config.js --watch",
+    "react-dev": "webpack --config ./webpack.config.js  -w",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wistful-Willow/project_catwalk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wistful-Willow/project_catwalk/issues"
+  },
+  "homepage": "https://github.com/Wistful-Willow/project_catwalk#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.12.13",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "babel-jest": "^27.4.5",
+    "express": "^4.17.2",
+    "jest": "^27.4.5",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-test-renderer": "^17.0.2"
+  }
+}
