@@ -4,7 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "jest -c jest.config.js --watch",
+    "test": "jest -c jest.config.js --watch --env=jsdom",
+    "test-once": "jest -c jest.config.js --watch=all --env=jsdom",
     "react-dev": "webpack --config ./webpack.config.js  -w",
     "start": "nodemon server/index.js"
   },
@@ -22,15 +23,22 @@
     "@babel/core": "^7.16.5",
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.16.5",
-    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-react": "^7.16.5",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
+    "babel-jest": "^27.4.5",
     "babel-loader": "^8.2.3",
+    "eslint": "^8.5.0",
+    "eslint-plugin-react": "^7.28.0",
+    "jest": "^27.4.5",
+    "react-test-renderer": "^17.0.2",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "express": "^4.17.2",
+    "jest-environment-jsdom": "^27.4.4",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

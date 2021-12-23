@@ -1,20 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const title = 'Project Catwalk';
 
-  render() {
-    return (
-      <div>
-        Project Catwalk
-      </div>
-    );
-  }
+function App() {
+  return <div>{title}</div>;
 }
-
-ReactDOM.render(<App />, document.getElementById('app'));
 
 export default App;
