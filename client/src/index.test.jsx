@@ -18,11 +18,3 @@ describe('App', () => {
     expect(screen.getByText('Project Catwalk')).toBeInTheDocument();
   });
 });
-
-describe('App', () => {
-  test('renders App component', () => {
-    render(<App />);
-
-    expect(screen.getByText('Project Catwalk')).toBeInTheDocument();
-  });
-}); 
