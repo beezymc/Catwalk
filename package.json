@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest -c jest.config.js --watch --env=jsdom",
+    "test-once": "jest -c jest.config.js --watch=all --env=jsdom",
     "react-dev": "webpack --config ./webpack.config.js  -w",
     "start": "nodemon server/index.js"
   },
