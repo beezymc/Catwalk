@@ -23,6 +23,6 @@ describe('App', () => {
   test('renders App component', () => {
     render(<App />);
 
-    expect(screen.getByText('Projct Catwalk')).toBeInTheDocument();
+    expect(screen.getByText('Project Catwalk')).toBeInTheDocument();
   });
 }); 
