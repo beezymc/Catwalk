@@ -33,5 +33,10 @@ module.exports = {
         }
       }
     ],
+  },
+  externals: {
+    'react/addons': true, // important!!
+    'react/lib/ReactContext': true,
+    'react/lib/ExecutionEnvironment': true
   }
 };
