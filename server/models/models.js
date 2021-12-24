@@ -2,6 +2,7 @@ const axios = require('axios');
 const config = require('../../config.js');
 
 //'User-Agent': 'request', maybe use this header
+
 const headers = { Authorization: `${config.token}`};
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
 
@@ -9,11 +10,11 @@ module.exports = {
   // product requests
   // pass in params obj with product id you want
   getProducts: (product_id) => {
-    if (params === undefined) {
+    if (product_id === undefined) {
       // axios call to api with no specific id will return all products from one page (can increase page size)
       return axios.get(`${url}/products`, {headers})
     }
-    return axios.get(`${url}/products/?product_id=${params}`, {headers})
+    return axios.get(`${url}/products/?product_id=${product_id}`, {headers})
   },
 
   // cart requests
