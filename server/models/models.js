@@ -8,58 +8,61 @@ const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
 module.exports = {
   // product requests
   // pass in params obj with product id you want
-  getProducts: (params) => {
-    if (params.product_id === undefined) {
+  getProducts: (product_id) => {
+    if (params === undefined) {
       // axios call to api with no specific id will return all products from one page (can increase page size)
       return axios.get(`${url}/products`, {headers})
     }
-    return axios.get(`${url}/products/${params.product_id}`, {headers, params: params})
+    return axios.get(`${url}/products/?product_id=${params}`, {headers})
   },
 
   // cart requests
   getCart: () => {
     return axios.get(`${url}/cart`, {headers})
   },
-  addCart: () => {
-    return axios.post(`${url}/cart`, {headers})
+  // params sku_id
+  addCart: (sku_id) => {
+    return axios.post(`${url}/cart`, {product_id: sku_id}, {headers})
   },
   // interaction requests
-  addInteractions: () => {
-    return axios.post(`${url}/interactions`, {headers})
+  // params element, widget, time
+  addInteractions: (params) => {
+    return axios.post(`${url}/interactions?element=${params.element}&widget=${params.widget}&time=${params.time}`, {headers})
   },
 
   // Questions/Answer requests
-  // params product_id
-  getQA: (params) => {
-    return axios.get(`${url}/questions/${params.question_id}`, {headers, params: parmas})
+  // params question_id
+  getQuestion: (question_id) => {
+    return axios.get(`${url}/questions/?question_id=${question_id}`, {headers})
   },
-  getAnswer: (params) => {
-    return axios.get(`${url}/questions/${params.question_id}/answers`, {headers, params: parmas})
+  getAnswer: (question_id) => {
+    return axios.get(`${url}/questions/?question_id=${question_id}/answers`, {headers})
   },
-  updateQuestion: (params) => {
-    return axios.patch(`${url}/questions/${params.question_id}/helpful`, {headers, params: parmas})
+  updateQuestion: (question_id) => {
+    return axios.patch(`${url}/questions/?question_id=${question_id}/helpful`, {headers})
   },
-  reportQuestion: (params) => {
-    return axios.patch(`${url}/questions/${params.question_id}/report`, {headers, params: parmas})
+  reportQuestion: (question_id) => {
+    return axios.patch(`${url}/questions/?question_id=${question_id}/report`, {headers})
   },
 
   // review requests
   //params include page, product_id, sort (based on newest, helpful, relevant), count(display how many per page)
-  getReviews: (params) => {
-    return axios.get(`${url}/reviews/${params.product_id}`, {headers, params: params})
+  getReviews: (product_id) => {
+    return axios.get(`${url}/reviews/?product_id=${product_id}`, {headers})
   },
   //params product id
-  getMeta: (params) => {
-    return axios.get(`${url}/reviews/meta/${params.product_id}`, {headers, params: params})
+  getMeta: (product_id) => {
+    return axios.get(`${url}/reviews/meta/?product_id=${product_id}`, {headers})
   },
-  addReview: () => {
+  // params product_id, body(msg), rating, summary, name, reccommend
+  addReview: (params) => {
     return axios.post(`${url}/reviews`, {headers})
   },
   //params review id
-  updateReview: (params) => {
-    return axios.patch(`${url}/reviews/${params.review_id}/helpful`, {headers, params: params})
+  updateReview: (review_id) => {
+    return axios.patch(`${url}/reviews/?review_id=${review_id}/helpful`, {headers})
   },
-  reportReview: (params) => {
-    return axios.patch(`${url}/reviews/${params.review_id}/report`, {headers, params: params})
+  reportReview: (review_id) => {
+    return axios.patch(`${url}/reviews/?review_id=${review_id}/report`, {headers})
   }
 };

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const Port = 3000;
+const controllers = require('./controllers/controllers.js');
 
 const cart = require('./routes/carts/carts.js');
 const interactions = require('./routes/interactions/interactions.js');
@@ -18,7 +19,7 @@ app.listen(Port, () => {
 })
 
 
-
+app.get('/api/products', controllers.getProducts);
 
 
 
