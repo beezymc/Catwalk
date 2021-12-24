@@ -1,12 +1,8 @@
 const express = require('express');
 const app = express();
 const Port = 3000;
+const controllers = require('./controllers/controllers.js');
 
-const cart = require('./routes/carts/carts.js');
-const interactions = require('./routes/interactions/interactions.js');
-const products = require('./routes/products/products.js');
-const qa = require('./routes/qa/qa.js');
-const reviews = require('./routes/reviews/reviews.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(express.json());
@@ -16,11 +12,31 @@ app.listen(Port, () => {
   console.log(`listening on port ${Port}`)
 })
 
+// Product requests
+app.get('/api/products', controllers.getProducts);
+// Cart requests
+app.get('/api/cart', controllers.getCart);
+app.post('/api/cart', controllers.addCart);
+// Interaction request
+app.post('/api/interactions', controllers.addInteractions);
+// Question / Answer requests
+app.get('/api/questions', controllers.getQuestion);
+app.get('/api/answers', controllers.getAnswer);
+app.patch('/api/question/update', controllers.updateQuestion);
+app.patch('/api/question/report', controllers.reportQuestion);
+// Review requests
+app.get('/api/reviews', controllers.getReviews);
+app.get('/api/reviews/meta', controllers.getMeta);
+app.post('/api/reviews', controllers.addReview);
+app.patch('/api/reviews/update', controllers.updateReview);
+app.patch('/api/reviews/report', controllers.reportReview);
 
-app.use('/cart', cart);
-app.use('/interactions', interactions);
-app.use('/products', products);
-app.use('/qa', qa);
-app.use('/reviews', reviews);
+
+
+
+
+
+
+
 
 
