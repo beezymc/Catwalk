@@ -1,4 +1,4 @@
-const token = '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';
+const token = 'githubToken'
 
 
 
