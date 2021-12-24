@@ -27,7 +27,7 @@ module.exports = {
   // interaction requests
   // params element, widget, time
   addInteractions: (params) => {
-    return axios.post(`${url}/interactions?element=${params.element}&widget=${params.widget}&time=${params.time}`, {headers})
+    return axios.post(`${url}/interactions`, {element: params.element, widget: params.widget, time: params.time}, {headers})
   },
 
   // Questions/Answer requests
@@ -56,7 +56,7 @@ module.exports = {
   },
   // params product_id, body(msg), rating, summary, name, reccommend
   addReview: (params) => {
-    return axios.post(`${url}/reviews`, {headers})
+    return axios.post(`${url}/reviews`,{product_id: params.product_id, body: params.body, rating: params.rating, summary: params.summary, name: params.name, recommend: params.recommend}, {headers})
   },
   //params review id
   updateReview: (review_id) => {

@@ -119,4 +119,37 @@ module.exports = {
     })
   },
   // still need to do add review, update review, report review
+  addReview: (req, res) => {
+    const params = req.body;
+    models.addReview(params)
+    .then(() => {
+      return models.getReviews(req.body.product_id)
+    })
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((err) => {
+      res.status(404).send(err)
+    })
+  },
+  updateReview: (req, res) => {
+    const params = req.query.review_id;
+    models.updateReview(params)
+    .then(() => {
+      res.status(204).send('No Content')
+    })
+    .catch((err) => {
+      res.status(404).send(err)
+    })
+  },
+  reportReview: (req, res) => {
+    const params = req.query.review_id;
+    models.reportReview(params)
+    .then(() => {
+      res.status(204).send('No Content')
+    })
+    .catch((err) => {
+      res.status(404).send(err)
+    })
+  }
 }
