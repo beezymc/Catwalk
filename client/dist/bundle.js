@@ -2,6 +2,27 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/src/components/questions_answers/QAWrapper.jsx":
+/*!***************************************************************!*\
+  !*** ./client/src/components/questions_answers/QAWrapper.jsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var QAWrapper = function QAWrapper() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello from QA Wrapper");
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAWrapper);
+
+/***/ }),
+
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
   !*** ./node_modules/object-assign/index.js ***!
@@ -30075,6 +30096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _components_questions_answers_QAWrapper_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/questions_answers/QAWrapper.jsx */ "./client/src/components/questions_answers/QAWrapper.jsx");
 
 
 
@@ -30089,7 +30111,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  //import { Provider } from 'react-redux';
 //import store from './redux/store/store.js';
 // import RelatedItemsContainer from './redux/containers/RelatedItemsContainer.js';
-//******************************************************************** */
+
+ //******************************************************************** */
 //TODO: ANNA DONT FORGET TO UNCOMMENT BEFORE CREATING PULL REQUEST!!!!!!!!!!!
 //******************************************************************** */
 
@@ -30107,7 +30130,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", null);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_components_questions_answers_QAWrapper_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null));
     }
   }]);
 
