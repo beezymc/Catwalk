@@ -30086,7 +30086,12 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 
-
+ //import { Provider } from 'react-redux';
+//import store from './redux/store/store.js';
+// import RelatedItemsContainer from './redux/containers/RelatedItemsContainer.js';
+//******************************************************************** */
+//TODO: ANNA DONT FORGET TO UNCOMMENT BEFORE CREATING PULL REQUEST!!!!!!!!!!!
+//******************************************************************** */
 
 var App = /*#__PURE__*/function (_React$Component) {
   (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(App, _React$Component);
@@ -30102,14 +30107,18 @@ var App = /*#__PURE__*/function (_React$Component) {
   (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", null, "Project Catwalk");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", null);
     }
   }]);
 
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_5__.Component);
 
-react_dom__WEBPACK_IMPORTED_MODULE_6__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(App, null), document.getElementById('app'));
+react_dom__WEBPACK_IMPORTED_MODULE_6__.render(
+/*#__PURE__*/
+// <Provider store={store}>
+react__WEBPACK_IMPORTED_MODULE_5__.createElement(App, null) // </Provider>
+, document.getElementById('app'));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 })();
 
