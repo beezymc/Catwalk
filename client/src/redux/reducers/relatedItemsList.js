@@ -1,7 +1,4 @@
-import Redux from 'redux';
-
-var relatedItemsListReducer = (state = [], action) => {
-  //TODO: define a reducer for the videoList field of our state.
+const relatedItemsListReducer = (state = [], action) => {
   switch (action.type) {
   case 'CHANGE_RELATED_ITEMS_LIST':
     return state = action.relatedItemsList;

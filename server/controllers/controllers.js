@@ -3,9 +3,10 @@ const models = require('../models/models.js');
 module.exports = {
   // product requests
   getProducts: (req, res) => {
-    const params = req.query.product_id;
-    models.getProducts(params)
+    const { product_id, type } = req.query;
+    models.getProducts(product_id, type)
     .then((response) => {
+      console.log(response.data);
       res.send(response.data)
     })
     .catch((err) => {

@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import currentProduct from './currentProduct.js';
 import relatedItemsList from './relatedItemsList.js';
+import relatedItemsReviews from './relatedItemsReviews.js';
 
-var rootReducer = combineReducers({ currentProduct, relatedItemsList});
+var rootReducer = combineReducers({ currentProduct, relatedItemsList, relatedItemsReviews });
 
 //TODO: define the root reducer for this app
 
