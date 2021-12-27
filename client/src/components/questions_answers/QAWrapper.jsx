@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import QAList from './List.jsx'
 
 const QAWrapper = () => (
 
-    <div>Hello from QA Wrapper</div>
+    <QAList />
 )
 
 export default QAWrapper;

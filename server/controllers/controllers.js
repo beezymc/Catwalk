@@ -51,6 +51,17 @@ module.exports = {
     })
   },
   // questions/answers
+  getQuestionsByProductId: (req, res ) => {
+    const params = req.query.product_id;
+    models.getQuestionsByProductId(params)
+    .then((response) => {
+      res.status(200).send(response.data)
+    })
+    .catch((err) => {
+      res.status(404).send(err)
+    })
+  },
+
   getQuestion: (req,res) => {
     const params = req.query.question_id;
     models.getQuestion(params)
