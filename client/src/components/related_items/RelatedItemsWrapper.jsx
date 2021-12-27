@@ -1,30 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import RelatedItemCarousel from './RelatedItemCarousel.jsx';
+import OutfitCarousel from './OutfitCarousel.jsx';
 
-class RelatedItemsWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const RelatedItemsWrapper = (props) => {
 
-  componentDidMount () {
-    this.props.handleProductInit();
-  }
 
-  render() {
-    if(this.props.currentProduct === {} || this.props.relatedItemsList === []) {
-      return(
-        <div>
-          Loading.
-        </div>
-      )
-    }
-    return(
+  if (props.currentProduct === {} || props.relatedItemsList === []) {
+    return (
       <div>
-        {this.props.currentProduct.name}
-        {this.props.relatedItemsList[0]}
+        Loading.
       </div>
-    )
+    );
   }
-}
+  return (
+    <div>
+      <RelatedItemCarousel relatedItemsList={props.relatedItemsList} currentProduct={props.currentProduct} />
+    </div>
+  );
+};
 
 export default RelatedItemsWrapper;

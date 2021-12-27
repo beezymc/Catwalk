@@ -1,31 +1,33 @@
 import changeRelatedItemsList from './relatedItemsList.js';
+import changeRelatedItemsReviews from './relatedItemsReviews.js';
 import changeProduct from './currentProduct.js';
 import store from '../store/store.js';
 import axios from 'axios';
 
-var handleProductInit = () => {
+var handleProductInit = (productId) => {
   return (dispatch) => {
-    const config = {
-      headers: {
-        Authorization: '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'
-      }
-    }
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63615', config)
+    return axios.get(`/api/products/?product_id=${productId}`)
       .then((product) => {
         store.dispatch(changeProduct(product.data));
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63615/related', config)
+        axios.get(`/api/products/?product_id=${productId}&type=related`)
           .then((related) => {
-            console.log(related);
-            store.dispatch(changeRelatedItemsList(related.data));
-          })
-      })
-
-    // searchYouTube({
-    // key: YOUTUBE_API_KEY,
-    // }, function(videos) {
-    //   store.dispatch(changeVideoList(videos));
-    //   store.dispatch(changeVideo(videos[0]));
-    // });
+            let relatedItemsPromises = [];
+            let relatedReviewsPromises = [];
+            for (let i = 0; i < related.data.length; i++) {
+              relatedItemsPromises.push(axios.get(`/api/products/?product_id=${related.data[i]}`));
+              relatedReviewsPromises.push(axios.get(`/api/reviews/meta/?product_id=${related.data[i]}`));
+            }
+            Promise.all(relatedItemsPromises)
+              .then((relatedItems) => {
+                store.dispatch(changeRelatedItemsList(relatedItems));
+              });
+            Promise.all(relatedReviewsPromises)
+              .then((relatedReviews) => {
+                console.log(relatedReviews);
+                store.dispatch(changeRelatedItemsReviews(relatedReviews));
+              });
+          });
+      });
   };
 };
 

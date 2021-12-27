@@ -1,16 +1,18 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const Port = 3000;
 const controllers = require('./controllers/controllers.js');
 
 
 app.use(express.static(__dirname + '/../client/dist'));
+app.use('/product/:product_id', express.static(__dirname + '/../client/dist'));
 app.use(express.json());
 
 
 app.listen(Port, () => {
-  console.log(`listening on port ${Port}`)
-})
+  console.log(`listening on port ${Port}`);
+});
 
 // Product requests
 app.get('/api/products', controllers.getProducts);
