@@ -14,7 +14,12 @@ const RelatedItemsWrapper = (props) => {
   }
   return (
     <div>
-      <RelatedItemCarousel relatedItemsList={props.relatedItemsList} currentProduct={props.currentProduct} />
+      <RelatedItemCarousel
+        relatedItemsList={props.relatedItemsList}
+        currentProduct={props.currentProduct}
+        relatedItemsReviews={props.relatedItemsReviews}
+        relatedStyles={props.relatedStyles}
+      />
     </div>
   );
 };
