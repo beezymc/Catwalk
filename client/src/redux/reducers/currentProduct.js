@@ -1,6 +1,4 @@
-import Redux from 'redux';
-
-var currentProductReducer = (state = {}, action) => {
+const currentProductReducer = (state = {}, action) => {
   switch (action.type) {
   case 'CHANGE_PRODUCT':
     if (action.product) {

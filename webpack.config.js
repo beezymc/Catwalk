@@ -7,7 +7,8 @@ module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR
+    path: DIST_DIR,
+    publicPath: '/'
   },
   devtool: 'source-map',
   module: {
@@ -33,6 +34,9 @@ module.exports = {
         }
       }
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   externals: {
     'react/addons': true, // important!!

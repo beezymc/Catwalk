@@ -2,26 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store/store.js';
-import RelatedItemsContainer from './redux/containers/RelatedItemsContainer.js';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <RelatedItemsContainer />
-      </div>
-    );
-  }
-}
+import AppContainer from './redux/containers/AppContainer.js';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-, document.getElementById('app'));
-
-export default App;
+  <BrowserRouter>
+    <Routes>
+      <Route path={'/product/:productId'} element={
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
+      }>
+      </Route>
+    </Routes>
+  </BrowserRouter>
+  , document.getElementById('app'));

@@ -5,6 +5,7 @@ import rootReducer from './../reducers/main.js';
 const initialState = {
   currentProduct: {},
   relatedItemsList: [],
+  relatedItemsReviews: []
   // questionsList: [],
   // reviewsList: [],
 };

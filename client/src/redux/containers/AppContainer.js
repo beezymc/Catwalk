@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 // import the component the props that need updating/the event handler will be firing within.
-import RelatedItemsWrapper from '../../components/related_items/RelatedItemsWrapper.jsx';
+import App from '../../components/app.jsx';
 // import the event handler action from Actions
 import handleProductInit from '../actions/initializeProduct.js';
 
@@ -8,18 +8,19 @@ import handleProductInit from '../actions/initializeProduct.js';
 const mapStateToProps = (state) => {
   return {
     currentProduct: state.currentProduct,
-    relatedItemsList: state.relatedItemsList
+    relatedItemsList: state.relatedItemsList,
+    relatedItemsReviews: state.relatedItemsReviews
   };
 };
 
 //place any events that fire that alter the global state here (or remove if none).
 const mapDispatchToProps = (dispatch) =>{
   return {
-    handleProductInit: () => dispatch(handleProductInit())
+    handleProductInit: (q) => dispatch(handleProductInit(q))
   };
 };
 
 //use whichever connect syntax includes the functions created above.
-const RelatedItemsContainer = connect(mapStateToProps, mapDispatchToProps)(RelatedItemsWrapper);
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
-export default RelatedItemsContainer;
+export default AppContainer;
