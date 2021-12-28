@@ -16,6 +16,8 @@ const App = (props) => {
         relatedItemsList={props.relatedItemsList}
         currentProduct={props.currentProduct}
         relatedItemsReviews={props.relatedItemsReviews}
+        relatedStyles={props.relatedStyles}
+        handleProductInit={props.handleProductInit}
       />
     </div>
   );

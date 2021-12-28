@@ -1,6 +1,7 @@
 import React from 'react';
 import RelatedItemCarousel from './RelatedItemCarousel.jsx';
 import OutfitCarousel from './OutfitCarousel.jsx';
+import styles from './relateditems.module.css';
 
 const RelatedItemsWrapper = (props) => {
 
@@ -13,8 +14,14 @@ const RelatedItemsWrapper = (props) => {
     );
   }
   return (
-    <div>
-      <RelatedItemCarousel relatedItemsList={props.relatedItemsList} currentProduct={props.currentProduct} />
+    <div className={styles.wrapper}>
+      <RelatedItemCarousel
+        relatedItemsList={props.relatedItemsList}
+        currentProduct={props.currentProduct}
+        relatedItemsReviews={props.relatedItemsReviews}
+        relatedStyles={props.relatedStyles}
+        handleProductInit={props.handleProductInit}
+      />
     </div>
   );
 };

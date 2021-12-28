@@ -15,7 +15,10 @@ module.exports = {
       return axios.get(`${url}/products`, {headers})
     }
     if (type === 'related') {
-      return axios.get(`${url}/products/${product_id}/related`, {headers})
+      return axios.get(`${url}/products/${product_id}/related`, {headers});
+    }
+    if (type === 'styles') {
+      return axios.get(`${url}/products/${product_id}/styles`, {headers});
     }
     return axios.get(`${url}/products/${product_id}`, {headers})
   },
