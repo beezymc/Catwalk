@@ -1,5 +1,3 @@
-const token = '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'
-
-
+const token = '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';
 
 module.exports = token;
