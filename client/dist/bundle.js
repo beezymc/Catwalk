@@ -2295,6 +2295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _QAListEntry_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QAListEntry.jsx */ "./client/src/components/questions_answers/QAListEntry.jsx");
+/* harmony import */ var _SearchBar_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SearchBar.jsx */ "./client/src/components/questions_answers/SearchBar.jsx");
+
 
 
 
@@ -2306,6 +2308,16 @@ var QAList = function QAList() {
       questionsData = _useState2[0],
       setQuestionData = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
+      searchTerm = _useState4[0],
+      setSearchTerm = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState6 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState5, 2),
+      searchResults = _useState6[0],
+      setSearchResults = _useState6[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/questions', {
       params: {
@@ -2313,16 +2325,24 @@ var QAList = function QAList() {
       }
     }) //go to axios github docs -> section Request Config
     .then(function (data) {
-      setQuestionData(data.data.results);
+      setQuestionData(data.data.results); //TODO: refactor
+
+      setSearchResults(data.data.results);
     })["catch"](function (err) {
       return console.log(err);
     });
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("ul", null, questionsData.map(function (item) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_SearchBar_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    data: questionsData,
+    searchTerm: searchTerm,
+    setSearchTerm: setSearchTerm,
+    searchResults: searchResults,
+    setSearchResults: setSearchResults
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("ul", null, searchResults.map(function (item) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_QAListEntry_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
       item: item
     }));
-  }));
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAList);
@@ -2374,15 +2394,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _List_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.jsx */ "./client/src/components/questions_answers/List.jsx");
-/* harmony import */ var _SearchBar_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchBar.jsx */ "./client/src/components/questions_answers/SearchBar.jsx");
-/* harmony import */ var _FormBar_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormBar.jsx */ "./client/src/components/questions_answers/FormBar.jsx");
+/* harmony import */ var _FormBar_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormBar.jsx */ "./client/src/components/questions_answers/FormBar.jsx");
 
-
+ //import SearchBar from './SearchBar.jsx';
 
 
 
 var QAWrapper = function QAWrapper() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SearchBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_List_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_FormBar_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_List_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_FormBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAWrapper);
@@ -2465,10 +2484,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-var SearchBar = function SearchBar() {
+var SearchBar = function SearchBar(_ref) {
+  var data = _ref.data,
+      setSearchTerm = _ref.setSearchTerm,
+      searchTerm = _ref.searchTerm,
+      setSearchResults = _ref.setSearchResults,
+      searchResults = _ref.searchResults;
+
+  var handleChange = function handleChange(event) {
+    setSearchTerm(event.target.value);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var searchTermLowerCased = searchTerm.toString().toLowerCase();
+    var filtered = searchTermLowerCased.length >= 3 ? data.filter(function (item) {
+      return item.question_body.toLowerCase().includes(searchTermLowerCased);
+    }) : data;
+    setSearchResults(filtered);
+  }, [searchTerm]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
-    placeholder: "Have a question? search for answer..."
+    placeholder: "Have a question? search for answer...",
+    value: searchTerm,
+    onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Search")));
 };
 
