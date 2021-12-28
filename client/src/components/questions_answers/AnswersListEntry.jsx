@@ -14,18 +14,22 @@ const AnswersListEntry = ({ answer }) => {
         setReported(true);
     }
 
-return (
-    <div>
-       <p>A: {answer.body}</p> 
-       <div>
-           <span>by {answer.answerer_name}, {answer.date}</span>
-           <span> | </span>
-           <span> Helpful? {isUpvoted ? <span>Yes({answerHelpfullness})</span> : <button onClick={handleClick}>Yes({answerHelpfullness})</button>}</span>
-           <span> | </span>
-           <span>{isReported ? <span>Reported</span> : <button onClick={HandleReported}>Report</button>}</span>
-       </div>
-    </div>
-)
+    return (
+        <div>
+            <p>A: {answer.body}</p>
+            <div>
+                <span>by {answer.answerer_name},
+                    {new Date(answer.date).toLocaleDateString(undefined, {
+                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                    })}</span>
+                <span> | </span>
+                <span> Helpful? {isUpvoted ? <span>Yes({answerHelpfullness})</span> : <button onClick={handleClick}>Yes({answerHelpfullness})</button>}</span>
+                <span> | </span>
+                <span>{isReported ? <span>Reported</span> : <button onClick={HandleReported}>Report</button>}</span>
+            </div>
+        </div>
+    )
 }
 
 export default AnswersListEntry;
+

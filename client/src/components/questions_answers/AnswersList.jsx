@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnswersListEntry from './AnswersListEntry.jsx';
 
 
 const AnswersList = ({ answers }) => {
     var answersArr = Object.entries(answers).map(item => item[1]);
     var sorted = answersArr.sort((a, b) => b['helpfulness'] - a['helpfulness']);
-    const [answersCount, setAnswersCount] = useState(2);
     const [twoAnswers, setTwoAnswers] = useState(sorted.slice(0, 2));
-
+    var count  = 2;
+ 
     //refactor
+  
     const handleClick = () => {
-        setAnswersCount(answersCount += 2);
-        setTwoAnswers(sorted.slice(0, answersCount))
+        count += 1;
+        setTwoAnswers(sorted.slice(0, count))
     }
 
     return (

@@ -2158,10 +2158,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_readOnlyError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/readOnlyError */ "./node_modules/@babel/runtime/helpers/esm/readOnlyError.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _AnswersListEntry_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AnswersListEntry.jsx */ "./client/src/components/questions_answers/AnswersListEntry.jsx");
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AnswersListEntry_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AnswersListEntry.jsx */ "./client/src/components/questions_answers/AnswersListEntry.jsx");
 
 
 
@@ -2175,27 +2173,23 @@ var AnswersList = function AnswersList(_ref) {
     return b['helpfulness'] - a['helpfulness'];
   });
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(2),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(sorted.slice(0, 2)),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
-      answersCount = _useState2[0],
-      setAnswersCount = _useState2[1];
+      twoAnswers = _useState2[0],
+      setTwoAnswers = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(sorted.slice(0, 2)),
-      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
-      twoAnswers = _useState4[0],
-      setTwoAnswers = _useState4[1]; //refactor
-
+  var count = 2; //refactor
 
   var handleClick = function handleClick() {
-    setAnswersCount((answersCount + 2, (0,_babel_runtime_helpers_readOnlyError__WEBPACK_IMPORTED_MODULE_1__["default"])("answersCount")));
-    setTwoAnswers(sorted.slice(0, answersCount));
+    count += 1;
+    setTwoAnswers(sorted.slice(0, count));
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("ul", null, " ", twoAnswers.map(function (item) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_AnswersListEntry_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("ul", null, " ", twoAnswers.map(function (item) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_AnswersListEntry_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
       answer: item
     });
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("button", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: handleClick
   }, "Load More Answers"));
 };
@@ -2247,7 +2241,12 @@ var AnswersListEntry = function AnswersListEntry(_ref) {
     setReported(true);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "A: ", answer.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "by ", answer.answerer_name, ", ", answer.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " | "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", answerHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "A: ", answer.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "by ", answer.answerer_name, ",", new Date(answer.date).toLocaleDateString(undefined, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " | "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", answerHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: handleClick
   }, "Yes(", answerHelpfullness, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " | "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, isReported ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Reported") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: HandleReported
@@ -2403,6 +2402,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _modalAnswers_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalAnswers.jsx */ "./client/src/components/questions_answers/modalAnswers.jsx");
+
 
 
 
@@ -2419,14 +2420,31 @@ var QuestionItem = function QuestionItem(_ref) {
       isUpvoted = _useState4[0],
       setUpvoted = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState6 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState5, 2),
+      showModal = _useState6[0],
+      setShowModal = _useState6[1];
+
   var handleClick = function handleClick() {
     setquestionHelpfullness(questionHelpfullness + 1);
     setUpvoted(true);
   };
 
+  var openModal = function openModal() {
+    setShowModal(function (prev) {
+      return !prev;
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "Q: ", questionInfo.question_body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", questionHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: handleClick
-  }, "Yes(", questionHelpfullness, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " |  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", null, "Add Answer"))));
+  }, "Yes(", questionHelpfullness, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " |  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+    onClick: openModal
+  }, "Add Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_modalAnswers_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    showModal: showModal,
+    setShowModal: setShowModal,
+    question_id: questionInfo.question_id
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionItem);
@@ -2455,6 +2473,125 @@ var SearchBar = function SearchBar() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchBar);
+
+/***/ }),
+
+/***/ "./client/src/components/questions_answers/modalAnswers.jsx":
+/*!******************************************************************!*\
+  !*** ./client/src/components/questions_answers/modalAnswers.jsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+
+
+
+var ModalAnswers = function ModalAnswers(_ref) {
+  var showModal = _ref.showModal,
+      setShowModal = _ref.setShowModal,
+      question_id = _ref.question_id;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
+    answer: '',
+    nickname: '',
+    email: '',
+    file: ''
+  }),
+      _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
+
+  var handleAnswerChange = function handleAnswerChange(event) {
+    event.persist();
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, {
+        answer: event.target.value
+      });
+    });
+  };
+
+  var handleNicknameChange = function handleNicknameChange(event) {
+    event.persist();
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, {
+        nickname: event.target.value
+      });
+    });
+  };
+
+  var handleEmailChange = function handleEmailChange(event) {
+    event.persist();
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, {
+        email: event.target.value
+      });
+    });
+  };
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/questions/".concat(question_id, "/answers"), {
+      body: values.answer,
+      name: values.nickname,
+      email: values.email
+    }).then(function () {
+      return console.log("answer data sent");
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, showModal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", {
+    className: "modal-main"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("label", null, "Your Answer*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("textarea", {
+    maxLength: "1000",
+    name: "answer",
+    value: values.answer,
+    onChange: handleAnswerChange,
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("label", null, "Your Nickname*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("input", {
+    type: "text",
+    placeholder: "Example: jack543!",
+    maxLength: "60",
+    name: "nickname",
+    value: values.nickname,
+    onChange: handleNicknameChange,
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("label", null, "Your Email*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("input", {
+    type: "email",
+    placeholder: "Example: jack@email.com",
+    maxLength: "60",
+    name: "email",
+    value: values.email,
+    onChange: handleEmailChange,
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("label", {
+    name: "file",
+    value: values.file
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("input", {
+    type: "file"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("button", null, "Submit an Answer"))) : null);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalAnswers);
 
 /***/ }),
 
@@ -32390,6 +32527,34 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _defineProperty)
+/* harmony export */ });
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js ***!
@@ -32526,23 +32691,6 @@ function _possibleConstructorReturn(self, call) {
   }
 
   return (0,_assertThisInitialized_js__WEBPACK_IMPORTED_MODULE_1__["default"])(self);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/readOnlyError.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/readOnlyError.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _readOnlyError)
-/* harmony export */ });
-function _readOnlyError(name) {
-  throw new TypeError("\"" + name + "\" is read-only");
 }
 
 /***/ }),
