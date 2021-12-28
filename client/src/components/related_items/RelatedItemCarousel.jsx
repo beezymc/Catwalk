@@ -13,6 +13,7 @@ const RelatedItemCarousel = (props) => {
           currentProduct={props.currentProduct}
           relatedStyle={props.relatedStyles[index]}
           relatedItemReview={props.relatedItemsReviews[index]}
+          handleProductInit={props.handleProductInit}
         />
       );
     });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 const RelatedItem = (props) => {
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
@@ -22,14 +23,16 @@ const RelatedItem = (props) => {
     const name = relatedItem.name;
     const price = relatedStyle.sale_price ? relatedStyle.sale_price : relatedStyle.original_price;
     return (
-      <div>
-        <div>
-          <img src={photo}></img>
-        </div>
-        {category}
-        {name}
-        {price}
-        {rating ? rating : ''}
+      <div onClick={() => { props.handleProductInit(relatedItem.id); }}>
+        <Link to={`/product/${relatedItem.id}`}>
+          <div>
+            <img src={photo}></img>
+          </div>
+          {category}
+          {name}
+          {price}
+          {rating ? rating : ''}
+        </Link>
       </div>
     );
   } else {
@@ -39,7 +42,6 @@ const RelatedItem = (props) => {
       </div>
     );
   }
-
 };
 
 export default RelatedItem;
