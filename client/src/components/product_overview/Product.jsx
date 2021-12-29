@@ -58,18 +58,10 @@ const ProductOverview = (props) => {
 
   return (
     <div>
-      <GalleryWrap>
         <Gallery currentStyle={currentStyle} />
-      </GalleryWrap>
-      <DescriptionWrap>
         <Description product={product} />
-      </DescriptionWrap>
-      <StylesWrap>
         <Styles styles={styles} setStyle={setStyle} />
-      </StylesWrap>
-      <CartWrap>
         <Cart />
-      </CartWrap>
     </div>
   );
 

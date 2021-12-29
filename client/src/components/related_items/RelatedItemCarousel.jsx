@@ -4,9 +4,18 @@ import RelatedItem from './RelatedItem.jsx';
 
 const RelatedItemCarousel = (props) => {
   let relatedItemDivs;
-  if (props.relatedItemsList) {
+  if (props.relatedItemsList && props.relatedStyles && props.relatedItemsReviews) {
     relatedItemDivs = props.relatedItemsList.map((relatedItem, index) => {
-      return <RelatedItem key={index} relatedItem={relatedItem} currentProduct={props.currentProduct}/>;
+      return (
+        <RelatedItem
+          key={index}
+          relatedItem={relatedItem}
+          currentProduct={props.currentProduct}
+          relatedStyle={props.relatedStyles[index]}
+          relatedItemReview={props.relatedItemsReviews[index]}
+          handleProductInit={props.handleProductInit}
+        />
+      );
     });
   }
 

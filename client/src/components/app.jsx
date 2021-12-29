@@ -18,7 +18,13 @@ const App = (props) => {
         relatedItemsList={props.relatedItemsList}
         currentProduct={props.currentProduct}
         relatedItemsReviews={props.relatedItemsReviews}
+<<<<<<< HEAD
       /> */}
+=======
+        relatedStyles={props.relatedStyles}
+        handleProductInit={props.handleProductInit}
+      />
+>>>>>>> bda503217c6020740d93533c465627272ac9f36d
     </div>
   );
 };

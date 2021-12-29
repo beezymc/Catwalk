@@ -5,6 +5,7 @@ module.exports = {
   getProducts: (req, res) => {
     const { product_id, type } = req.query;
     models.getProducts(product_id, type)
+<<<<<<< HEAD
       .then((response) => {
         console.log(response.data);
         res.send(response.data)
@@ -22,6 +23,14 @@ module.exports = {
       .catch((err) => {
         res.status(404).send(err)
       })
+=======
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((err) => {
+      res.status(404).send(err)
+    })
+>>>>>>> bda503217c6020740d93533c465627272ac9f36d
   },
   // cart requests
   getCart: (req, res) => {

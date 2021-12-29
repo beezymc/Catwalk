@@ -16,23 +16,39 @@ module.exports = {
       {
         test: /\.(js|jsx)?/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react"
-            ],
-            plugins: [
-              ["@babel/plugin-transform-runtime",
-                {
-                  "regenerator": true
-                }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react'
+              ],
+              plugins: [
+                ['@babel/plugin-transform-runtime',
+                  {
+                    'regenerator': true
+                  }
+                ]
               ]
-            ]
-          }
-        }
-      }
+            }
+          },
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              }
+            }
+          },
+        ]
+      },
     ],
   },
   devServer: {

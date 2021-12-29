@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
   return {
     currentProduct: state.currentProduct,
     relatedItemsList: state.relatedItemsList,
-    relatedItemsReviews: state.relatedItemsReviews
+    relatedItemsReviews: state.relatedItemsReviews,
+    relatedStyles: state.relatedStyles
   };
 };
 
