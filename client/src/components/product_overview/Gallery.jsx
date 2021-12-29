@@ -5,8 +5,8 @@ const Gallery = (props) => {
   console.log('in gallery', props.currentStyle)
   return (
     <div>
-    {props.currentStyle.photos.map(photo =>
-      <Images photo={photo}/>
+      {props.currentStyle.photos.map(photo =>
+        <Images photo={photo} />
       )}
     </div>
   );

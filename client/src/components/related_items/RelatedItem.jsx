@@ -2,15 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 const RelatedItem = (props) => {
-<<<<<<< HEAD
-  // console.log(props.relatedItem);
-  // console.log(props.currentProduct);
-  return (
-    <div>
-      InnerDiv
-    </div>
-  );
-=======
+
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
     const relatedItem = props.relatedItem.data;
     const relatedStyle = props.relatedStyle.data.results[0];
@@ -45,13 +37,13 @@ const RelatedItem = (props) => {
       </div>
     );
   } else {
-    return (
+    return ( 
       <div>
         Loading.
       </div>
     );
   }
->>>>>>> bda503217c6020740d93533c465627272ac9f36d
+
 };
 
 export default RelatedItem;

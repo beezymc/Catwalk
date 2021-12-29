@@ -4,8 +4,9 @@ import Cart from './Cart.jsx';
 import Styles from './Styles.jsx';
 import Gallery from './Gallery.jsx';
 import Description from './Description.jsx';
-import { StylesWrap, GalleryWrap, DescriptionWrap, CartWrap } from '../Styled-Components';
+import styles from './styles.module.css';
 import { getProducts } from '../../shared/api.js';
+
 
 
 const ProductOverview = (props) => {
@@ -58,10 +59,12 @@ const ProductOverview = (props) => {
 
   return (
     <div>
-        <Gallery currentStyle={currentStyle} />
-        <Description product={product} />
+      <Gallery currentStyle={currentStyle} />
+      <Description product={product} />
+      <div className={styles.stylesWrapper}>
         <Styles styles={styles} setStyle={setStyle} />
-        <Cart />
+      </div>
+      <Cart />
     </div>
   );
 
