@@ -3,6 +3,7 @@ import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
 import {
   useParams,
 } from 'react-router-dom';
+import styles from './app.module.css';
 
 const App = (props) => {
   let { productId } = useParams();
@@ -11,7 +12,7 @@ const App = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.app}>
       <RelatedItemsWrapper
         relatedItemsList={props.relatedItemsList}
         currentProduct={props.currentProduct}

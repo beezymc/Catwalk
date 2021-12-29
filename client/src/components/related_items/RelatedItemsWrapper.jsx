@@ -4,8 +4,6 @@ import OutfitCarousel from './OutfitCarousel.jsx';
 import styles from './relateditems.module.css';
 
 const RelatedItemsWrapper = (props) => {
-
-
   if (props.currentProduct === {} || props.relatedItemsList === []) {
     return (
       <div>
