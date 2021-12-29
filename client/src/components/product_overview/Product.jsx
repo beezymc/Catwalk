@@ -11,6 +11,7 @@ import { getProducts } from '../../shared/api.js';
 const ProductOverview = (props) => {
 
   const [styles, setStyles] = useState([]);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     axios.get('/api/styles', {
@@ -24,7 +25,20 @@ const ProductOverview = (props) => {
       })
   }, []);
 
+  useEffect(() => {
+    axios.get('/api/products', {
+      params: { "product_id": "63613" }
+    })
+      .then((response) => {
+        setProduct(response.data)
+      })
+      .catch((err) => {
+        console.log('err occurred', err)
+      })
+  }, []);
+
   console.log(styles);
+  console.log(product);
 
 
 
@@ -34,7 +48,7 @@ const ProductOverview = (props) => {
         <Gallery />
       </GalleryWrap>
       <DescriptionWrap>
-        <Description />
+        <Description product={product}/>
       </DescriptionWrap>
       <StylesWrap>
         <Styles styles={styles}/>

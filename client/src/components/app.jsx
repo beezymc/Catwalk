@@ -14,11 +14,11 @@ const App = (props) => {
   return (
     <div>
       <ProductOverview />
-      <RelatedItemsWrapper
+      {/* <RelatedItemsWrapper
         relatedItemsList={props.relatedItemsList}
         currentProduct={props.currentProduct}
         relatedItemsReviews={props.relatedItemsReviews}
-      />
+      /> */}
     </div>
   );
 };
