@@ -35,8 +35,22 @@ top: 150px;
   top: 325px;
 }
 
+.mainImageWrapper {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  width: 400px;
+  position: absolute;
+  left: 112px;
+  top: 8px;
+}
+
 .imgSize {
   max-width: 100px;
   max-height: 100px;
+}
+.imgSize2 {
+  max-width: 400px;
+  max-height: 400px;
 }
 

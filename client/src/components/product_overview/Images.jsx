@@ -4,7 +4,7 @@ import css from './styles.module.css';
 const Images = (props) => {
   return (
     <div>
-      <img src={props.photo.thumbnail_url} className={css.imgSize}></img>
+      <img onClick={() => props.setMainUrl(props.photo.url)} src={props.photo.thumbnail_url} className={css.imgSize}></img>
     </div>
   );
 };

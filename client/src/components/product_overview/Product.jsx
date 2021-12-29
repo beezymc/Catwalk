@@ -16,11 +16,12 @@ const ProductOverview = (props) => {
   const [currentStyle, setStyle] = useState({
     photos: [
       {
-        url: 'https://www.vecteezy.com/vector-art/1826248-progress-loading-bar-buffering-download-upload-and-loading-icon',
-        thumbnail_url: 'https://www.vecteezy.com/vector-art/1826248-progress-loading-bar-buffering-download-upload-and-loading-icon'
+        url: 'https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg',
+        thumbnail_url: 'https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg'
       }
     ]
   });
+  const [mainUrl, setMainUrl] = useState(currentStyle.photos[0].url);
 
 
   useEffect(() => {
@@ -28,8 +29,10 @@ const ProductOverview = (props) => {
       params: { "product_id": "63613" }
     })
       .then((response) => {
+        console.log(response.data.results)
         setStyles(response.data.results)
         setStyle(response.data.results[0])
+        setMainUrl(response.data.results[0].photos[0].url)
       })
       .catch((err) => {
         console.log('err occurred', err)
@@ -49,9 +52,9 @@ const ProductOverview = (props) => {
   }, []);
 
 
-  console.log(styles);
+  //console.log(styles);
   // console.log(product);
-  console.log('main image url', currentStyle.photos[0].url)
+  //console.log('main image url', mainUrl)
 
 
 
@@ -60,14 +63,17 @@ const ProductOverview = (props) => {
 
   return (
     <div>
+      <div className={css.mainImageWrapper}>
+        <img src={mainUrl} className={css.imgSize2}></img>
+      </div>
       <div className={css.galleryWrapper}>
-        <Gallery currentStyle={currentStyle}/>
+        <Gallery currentStyle={currentStyle} setMainUrl={setMainUrl}/>
       </div>
       <div className={css.descriptionWrapper}>
         <Description product={product} />
       </div>
       <div className={css.stylesWrapper}>
-        <Styles styles={styles} setStyle={setStyle} />
+        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl}/>
       </div>
       <div className={css.cartWrapper}>
         <Cart />
