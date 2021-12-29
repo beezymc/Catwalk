@@ -12,6 +12,7 @@ const ProductOverview = (props) => {
 
   const [styles, setStyles] = useState([]);
   const [product, setProduct] = useState({});
+  const [currentStyle, setStyle] = useState({});
 
   useEffect(() => {
     axios.get('/api/styles', {
@@ -19,6 +20,7 @@ const ProductOverview = (props) => {
     })
       .then((response) => {
         setStyles(response.data.results)
+        setStyle(response.data.results[0])
       })
       .catch((err) => {
         console.log('err occurred', err)
@@ -38,7 +40,10 @@ const ProductOverview = (props) => {
   }, []);
 
   console.log(styles);
-  console.log(product);
+  // console.log(product);
+  console.log(currentStyle);
+
+
 
 
 
@@ -51,7 +56,7 @@ const ProductOverview = (props) => {
         <Description product={product}/>
       </DescriptionWrap>
       <StylesWrap>
-        <Styles styles={styles}/>
+        <Styles styles={styles} setStyle={setStyle}/>
       </StylesWrap>
       <CartWrap>
         <Cart />

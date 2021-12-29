@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Style = (props) => {
-  
   return (
     <div>
-      <button> {props.style.name} </button>
+      <button onClick={() => props.setStyle(props.style)}> {props.style.name} </button>
     </div>
   );
 };
