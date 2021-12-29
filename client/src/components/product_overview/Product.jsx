@@ -4,7 +4,7 @@ import Cart from './Cart.jsx';
 import Styles from './Styles.jsx';
 import Gallery from './Gallery.jsx';
 import Description from './Description.jsx';
-import styles from './styles.module.css';
+import css from './styles.module.css';
 import { getProducts } from '../../shared/api.js';
 
 
@@ -21,6 +21,7 @@ const ProductOverview = (props) => {
       }
     ]
   });
+
 
   useEffect(() => {
     axios.get('/api/styles', {
@@ -50,7 +51,7 @@ const ProductOverview = (props) => {
 
   console.log(styles);
   // console.log(product);
-  console.log(currentStyle)
+  console.log('main image url', currentStyle.photos[0].url)
 
 
 
@@ -59,12 +60,18 @@ const ProductOverview = (props) => {
 
   return (
     <div>
-      <Gallery currentStyle={currentStyle} />
-      <Description product={product} />
-      <div className={styles.stylesWrapper}>
+      <div className={css.galleryWrapper}>
+        <Gallery currentStyle={currentStyle}/>
+      </div>
+      <div className={css.descriptionWrapper}>
+        <Description product={product} />
+      </div>
+      <div className={css.stylesWrapper}>
         <Styles styles={styles} setStyle={setStyle} />
       </div>
-      <Cart />
+      <div className={css.cartWrapper}>
+        <Cart />
+      </div>
     </div>
   );
 
