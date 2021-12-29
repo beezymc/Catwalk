@@ -44,10 +44,6 @@ module.exports = {
     return axios.get(`${url}/qa/questions?product_id=${product_id}`, { headers })
   },
 
-
-
-
-
   createAnswer: (answerData, question_id) => {
     const options = {
       method: 'post',
@@ -55,16 +51,8 @@ module.exports = {
       data: answerData,
       headers: headers
       };
-    console.log("answerData:", answerData, " question_id:", question_id);
     return axios(options)
   },
-
-
-
-
-
-
-
 
   getQuestion: (question_id) => {
     return axios.get(`${url}/questions/?question_id=${question_id}`, { headers })
