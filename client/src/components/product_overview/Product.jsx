@@ -37,7 +37,7 @@ const ProductOverview = (props) => {
         <Description />
       </DescriptionWrap>
       <StylesWrap>
-        <Styles />
+        <Styles styles={styles}/>
       </StylesWrap>
       <CartWrap>
         <Cart />
