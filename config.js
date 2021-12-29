@@ -1,4 +1,4 @@
-const token = 'githubToken'
+const token = 'githubToken';
 
 
 
