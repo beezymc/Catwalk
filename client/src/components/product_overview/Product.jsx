@@ -7,6 +7,13 @@ import { StylesWrap, GalleryWrap, DescriptionWrap, CartWrap } from '../Styled-Co
 
 
 const ProductOverview = (props) => {
+
+  useEffect(() => {
+    
+  })
+
+
+
   return (
     <div>
       <GalleryWrap>
