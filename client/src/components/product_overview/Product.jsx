@@ -12,7 +12,14 @@ const ProductOverview = (props) => {
 
   const [styles, setStyles] = useState([]);
   const [product, setProduct] = useState({});
-  const [currentStyle, setStyle] = useState({});
+  const [currentStyle, setStyle] = useState({
+    photos: [
+      {
+        url: 'https://www.vecteezy.com/vector-art/1826248-progress-loading-bar-buffering-download-upload-and-loading-icon',
+        thumbnail_url: 'https://www.vecteezy.com/vector-art/1826248-progress-loading-bar-buffering-download-upload-and-loading-icon'
+      }
+    ]
+  });
 
   useEffect(() => {
     axios.get('/api/styles', {
@@ -39,9 +46,11 @@ const ProductOverview = (props) => {
       })
   }, []);
 
+
   console.log(styles);
   // console.log(product);
-  console.log(currentStyle);
+  console.log(currentStyle)
+
 
 
 
@@ -50,13 +59,13 @@ const ProductOverview = (props) => {
   return (
     <div>
       <GalleryWrap>
-        <Gallery />
+        <Gallery currentStyle={currentStyle} />
       </GalleryWrap>
       <DescriptionWrap>
-        <Description product={product}/>
+        <Description product={product} />
       </DescriptionWrap>
       <StylesWrap>
-        <Styles styles={styles} setStyle={setStyle}/>
+        <Styles styles={styles} setStyle={setStyle} />
       </StylesWrap>
       <CartWrap>
         <Cart />

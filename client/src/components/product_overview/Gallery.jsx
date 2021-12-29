@@ -1,11 +1,13 @@
 import React from 'react';
-import Style from './Style.jsx';
+import Images from './Images.jsx';
 
 const Gallery = (props) => {
+  console.log('in gallery', props.currentStyle)
   return (
     <div>
-      
-      Gallery
+    {props.currentStyle.photos.map(photo =>
+      <Images photo={photo}/>
+      )}
     </div>
   );
 };
