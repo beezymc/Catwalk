@@ -1,4 +1,4 @@
-  
+
   .modalmain {
   width: 100vw;
   height: 100vh;
@@ -23,12 +23,10 @@
     max-width: 40%;
     border-radius: 10px;
   }
-  
+
   .wrapper {
-    display: flex;
-    text-align: left;
-    justify-content: center;
-    max-width: 1000px;
+    display: grid;
+    max-width: 1000px; 
   }
 
   .list {
@@ -38,7 +36,7 @@
   .listEntry {
     border: 1px solid gray;
     /* display: grid; */
-    width: 900px;    
+    width: 900px;
     justify-content: left;
   }
 

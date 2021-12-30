@@ -2216,12 +2216,10 @@ var AnswersList = function AnswersList(_ref) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(sorted.slice(0, 2)),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
       twoAnswers = _useState2[0],
-      setTwoAnswers = _useState2[1];
+      setTwoAnswers = _useState2[1]; //refactor
 
-  var count = 2; //refactor
 
   var handleClick = function handleClick() {
-    count += 1;
     setTwoAnswers(sorted.slice(0, count));
   };
 
@@ -2252,6 +2250,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _qa_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./qa.module.css */ "./client/src/components/questions_answers/qa.module.css");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -2277,6 +2278,14 @@ var AnswersListEntry = function AnswersListEntry(_ref) {
   var handleClick = function handleClick() {
     setanswerHelpfullness(answerHelpfullness + 1);
     setUpvoted(true);
+    axios__WEBPACK_IMPORTED_MODULE_3___default().put("/api/answers/".concat(answer.id, "/helpful"), {
+      helpfulness: answerHelpfullness
+    }).then(function (response) {
+      console.log('answer.id: ', answer.id);
+      console.log('answerHelpfullness ', answerHelpfullness.id);
+    })["catch"](function (err) {
+      console.log(err);
+    });
   };
 
   var HandleReported = function HandleReported() {
@@ -3509,7 +3518,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "  \n  .qa-module__modalmain___vAGwS {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .qa-module__modalContent___AVmv9 {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n  \n  .qa-module__wrapper___VAakt {\n    display: flex;\n    text-align: left;\n    justify-content: center;\n    max-width: 1000px;\n  }\n\n  .qa-module__list___XHEFr {\n    display: flex;\n  }\n\n  .qa-module__listEntry___m2ObR {\n    border: 1px solid gray;\n    /* display: grid; */\n    width: 900px;    \n    justify-content: left;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n\n    display: block;\n    font-weight: bold;\n  }\n", "",{"version":3,"sources":["webpack://./client/src/components/questions_answers/qa.module.css"],"names":[],"mappings":";EACE;EACA,YAAY;EACZ,aAAa;EACb,aAAa;EACb,eAAe;EACf,MAAM;EACN,OAAO;EACP,gCAAgC;EAChC,eAAe;EACf;;EAEA;IACE,aAAa;IACb,sBAAsB;IACtB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;IACvB,eAAe;IACf,cAAc;IACd,mBAAmB;EACrB;;EAEA;IACE,aAAa;IACb,gBAAgB;IAChB,uBAAuB;IACvB,iBAAiB;EACnB;;EAEA;IACE,aAAa;EACf;;EAEA;IACE,sBAAsB;IACtB,mBAAmB;IACnB,YAAY;IACZ,qBAAqB;EACvB;;EAEA;IACE,qBAAqB;IACrB,SAAS;IACT,UAAU;EACZ;;EAEA;;IAEE,cAAc;IACd,iBAAiB;EACnB","sourcesContent":["  \n  .modalmain {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .modalContent {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n  \n  .wrapper {\n    display: flex;\n    text-align: left;\n    justify-content: center;\n    max-width: 1000px;\n  }\n\n  .list {\n    display: flex;\n  }\n\n  .listEntry {\n    border: 1px solid gray;\n    /* display: grid; */\n    width: 900px;    \n    justify-content: left;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n\n    display: block;\n    font-weight: bold;\n  }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n  .qa-module__modalmain___vAGwS {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .qa-module__modalContent___AVmv9 {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n\n  .qa-module__wrapper___VAakt {\n    display: grid;\n    max-width: 1000px; \n  }\n\n  .qa-module__list___XHEFr {\n    display: flex;\n  }\n\n  .qa-module__listEntry___m2ObR {\n    border: 1px solid gray;\n    /* display: grid; */\n    width: 900px;\n    justify-content: left;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n\n    display: block;\n    font-weight: bold;\n  }\n", "",{"version":3,"sources":["webpack://./client/src/components/questions_answers/qa.module.css"],"names":[],"mappings":";EACE;EACA,YAAY;EACZ,aAAa;EACb,aAAa;EACb,eAAe;EACf,MAAM;EACN,OAAO;EACP,gCAAgC;EAChC,eAAe;EACf;;EAEA;IACE,aAAa;IACb,sBAAsB;IACtB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;IACvB,eAAe;IACf,cAAc;IACd,mBAAmB;EACrB;;EAEA;IACE,aAAa;IACb,iBAAiB;EACnB;;EAEA;IACE,aAAa;EACf;;EAEA;IACE,sBAAsB;IACtB,mBAAmB;IACnB,YAAY;IACZ,qBAAqB;EACvB;;EAEA;IACE,qBAAqB;IACrB,SAAS;IACT,UAAU;EACZ;;EAEA;;IAEE,cAAc;IACd,iBAAiB;EACnB","sourcesContent":["\n  .modalmain {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .modalContent {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n\n  .wrapper {\n    display: grid;\n    max-width: 1000px; \n  }\n\n  .list {\n    display: flex;\n  }\n\n  .listEntry {\n    border: 1px solid gray;\n    /* display: grid; */\n    width: 900px;\n    justify-content: left;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n\n    display: block;\n    font-weight: bold;\n  }\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"modalmain": "qa-module__modalmain___vAGwS",

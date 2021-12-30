@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './qa.module.css';
+import axios from 'axios';
 
 const AnswersListEntry = ({ answer }) => {
   const [answerHelpfullness, setanswerHelpfullness] = useState(answer.helpfulness);
@@ -9,6 +10,14 @@ const AnswersListEntry = ({ answer }) => {
   const handleClick = () => {
     setanswerHelpfullness(answerHelpfullness + 1);
     setUpvoted(true);
+    axios.put(`/api/answers/${answer.id}/helpful`, {helpfulness: answerHelpfullness})
+      .then((response) => {
+        console.log('answer.id: ', answer.id);
+        console.log('answerHelpfullness ', answerHelpfullness.id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const HandleReported = () => {

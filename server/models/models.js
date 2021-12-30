@@ -41,7 +41,6 @@ module.exports = {
   // params question_id
 
   getQuestionsByProductId: (product_id, count) => {
-    console.log(`sending get req to api to get ${count} questions`)
     return axios.get(`${url}/qa/questions?product_id=${product_id}&count=${count}`, { headers })
   },
 
@@ -65,6 +64,16 @@ module.exports = {
     return axios(options)
   },
 
+  updateAnswer: (answerData, answer_id) => {
+    console.log('updating answer: ', answer_id)
+    const options = {
+      method: 'put',
+      url: `${url}/qa/answers/${answer_id}/helpful`,
+      data: answerData,
+      headers: headers
+    };
+    return axios(options)
+  },
 
   getQuestion: (question_id) => {
     return axios.get(`${url}/questions/?question_id=${question_id}`, { headers })
