@@ -10,15 +10,15 @@ import AnswersList from './AnswersList.jsx';
 
 
 describe('QAWrapper', () => {
-    test('renders QAWrapper component', () => {
-      render(<QAWrapper />)
-    });
+  test('renders QAWrapper component', () => {
+    render(<QAWrapper />);
   });
-  
+});
+
 
 describe('QAList', () => {
   test('renders QAList component', () => {
-    render(<QAList />)
+    render(<QAList />);
   });
 });
 

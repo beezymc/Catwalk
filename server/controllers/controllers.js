@@ -56,7 +56,7 @@ module.exports = {
     console.log("req.body for create question is: ", req.body);
     models.createQuestion(req.body)
       .then((response) => {
-        res.status(204).send(response.data);
+        res.status(201).send(response.data);
       })
       .catch((err) => {
         console.log("ERROR: Create question error: ", err);
@@ -67,7 +67,7 @@ module.exports = {
   createAnswer: (req, res) => {
     models.createAnswer(req.body)
       .then((response) => {
-        res.status(204).send(response.data);
+        res.status(201).send(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -76,9 +76,11 @@ module.exports = {
   },
 
   getQuestionsByProductId: (req, res) => {
-    const params = req.query.product_id;
-    models.getQuestionsByProductId(params)
+    const product_id = req.query.product_id;
+    const count = req.query.count;
+    models.getQuestionsByProductId(product_id, count)
       .then((response) => {
+        console.log("sending questions to client")
         res.status(200).send(response.data)
       })
       .catch((err) => {

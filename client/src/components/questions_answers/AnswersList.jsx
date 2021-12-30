@@ -8,24 +8,24 @@ const AnswersList = ({ answers }) => {
   const [twoAnswers, setTwoAnswers] = useState(sorted.slice(0, 2));
   var count = 2;
 
- //refactor
+  //refactor
 
   const handleClick = () => {
     count += 1;
-    setTwoAnswers(sorted.slice(0, count))
-  }
+    setTwoAnswers(sorted.slice(0, count));
+  };
 
   return (
 
-        <ul> {
-            twoAnswers.map(item => (
-                <AnswersListEntry answer={item} />
-            ))
-        }
-            <button onClick={handleClick}>Load More Answers</button>
-        </ul>
-    )
+    <ul> {
+      twoAnswers.map(item => (
+        <AnswersListEntry answer={item} />
+      ))
+    }
+    <button onClick={handleClick}>Load More Answers</button>
+    </ul>
+  );
 
-}
+};
 
 export default AnswersList;

@@ -40,8 +40,9 @@ module.exports = {
   // Questions/Answer requests
   // params question_id
 
-  getQuestionsByProductId: (product_id) => {
-    return axios.get(`${url}/qa/questions?product_id=${product_id}`, { headers })
+  getQuestionsByProductId: (product_id, count) => {
+    console.log(`sending get req to api to get ${count} questions`)
+    return axios.get(`${url}/qa/questions?product_id=${product_id}&count=${count}`, { headers })
   },
 
   createAnswer: (answerData, question_id) => {
@@ -55,7 +56,6 @@ module.exports = {
   },
 
   createQuestion: (questionData) => {
-    console.log("sending question data to api: ", questionData)
     const options = {
       method: 'post',
       url: `${url}/qa/questions`,

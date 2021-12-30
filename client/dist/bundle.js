@@ -2331,7 +2331,7 @@ var FormBar = function FormBar(_ref) {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", null, "More answered questions +")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: openModal
   }, "Add a question +"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_ModalQuestions_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     showModal: showModal,
@@ -2387,15 +2387,21 @@ var QAList = function QAList(_ref) {
       searchResults = _useState6[0],
       setSearchResults = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(4),
+      _useState8 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState7, 2),
+      questionsCount = _useState8[0],
+      setQuestionsCount = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    //ASK ROB ABOUT GET
     if (productId) {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/questions', {
         params: {
-          product_id: "".concat(productId)
+          product_id: "".concat(productId),
+          count: "".concat(questionsCount)
         }
       }) //go to axios github docs -> section Request Config
       .then(function (data) {
+        console.log('number of questions displayed: ', questionsCount);
         setQuestionData(data.data.results); //TODO: refactor
 
         setSearchResults(data.data.results);
@@ -2403,7 +2409,14 @@ var QAList = function QAList(_ref) {
         return console.log(err);
       });
     }
-  }, [productId]);
+  }, [productId, questionsCount]);
+
+  var handleClick = function handleClick() {
+    setQuestionsCount(function (prev) {
+      return prev + 2;
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: _qa_module_css__WEBPACK_IMPORTED_MODULE_5__["default"].wrapper
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_SearchBar_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -2416,7 +2429,9 @@ var QAList = function QAList(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_QAListEntry_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
       item: item
     }));
-  }))));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("button", {
+    onClick: handleClick
+  }, "More answered questions +")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAList);

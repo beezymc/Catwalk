@@ -5,12 +5,13 @@ import AnswersList from './AnswersList.jsx';
 import styles from './qa.module.css';
 
 const QAListEntry = ({ item }) => {
-    return (
-        <li>
-            <div className={styles.listEntry}><QuestionItem questionInfo={item} />
-            <AnswersList answers={item.answers} /></div>
-        </li>
+  return (
+    <li>
+      <div className={styles.listEntry}>
+        <QuestionItem questionInfo={item} />
+        <AnswersList answers={item.answers} /></div>
+    </li>
 
-    )
-}
+  );
+};
 export default QAListEntry;

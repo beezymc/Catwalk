@@ -9,11 +9,11 @@ const AnswersListEntry = ({ answer }) => {
   const handleClick = () => {
     setanswerHelpfullness(answerHelpfullness + 1);
     setUpvoted(true);
-  }
+  };
 
   const HandleReported = () => {
     setReported(true);
-  }
+  };
 
   return (
     <div >
@@ -30,8 +30,8 @@ const AnswersListEntry = ({ answer }) => {
         <span>{isReported ? <span>Reported</span> : <button onClick={HandleReported}>Report</button>}</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AnswersListEntry;
 
