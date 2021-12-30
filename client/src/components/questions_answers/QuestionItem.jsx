@@ -17,10 +17,10 @@ const QuestionItem = ({ questionInfo }) => {
   };
 
   return (
-    <div >
-      <p>Q: {questionInfo.question_body}</p>
+    <div className={styles.questionContainer}>
+      <div><b>Q: {questionInfo.question_body}</b></div>
       <div>
-        <span>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <button onClick={handleClick}>Yes({questionHelpfullness})</button>}</span>
+        <span>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
         <span> |  </span>
         <span>
           <button onClick={openModal}>Add Answer</button>

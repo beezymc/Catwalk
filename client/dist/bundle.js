@@ -2220,7 +2220,7 @@ var AnswersList = function AnswersList(_ref) {
 
 
   var handleClick = function handleClick() {
-    setTwoAnswers(sorted.slice(0, count));
+    setTwoAnswers(sorted.slice(0, 4));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("ul", null, " ", twoAnswers.map(function (item) {
@@ -2292,16 +2292,20 @@ var AnswersListEntry = function AnswersListEntry(_ref) {
     setReported(true);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, "A: ", answer.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "by ", answer.answerer_name, ",", new Date(answer.date).toLocaleDateString(undefined, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("b", null, "A:"), " ", answer.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: _qa_module_css__WEBPACK_IMPORTED_MODULE_2__["default"].answerInfo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "by ", answer.answerer_name, ",", new Date(answer.date).toLocaleDateString(undefined, {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " | "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", answerHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", {
+    className: _qa_module_css__WEBPACK_IMPORTED_MODULE_2__["default"].helpfulness
+  }, " Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", answerHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
     onClick: handleClick
   }, "Yes(", answerHelpfullness, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " | "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, isReported ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Reported") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: HandleReported
-  }, "Report"))));
+  }, "Report")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswersListEntry);
@@ -2699,7 +2703,9 @@ var QuestionItem = function QuestionItem(_ref) {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "Q: ", questionInfo.question_body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", questionHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: _qa_module_css__WEBPACK_IMPORTED_MODULE_3__["default"].questionContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("b", null, "Q: ", questionInfo.question_body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Helpful? ", isUpvoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "Yes(", questionHelpfullness, ")") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
     onClick: handleClick
   }, "Yes(", questionHelpfullness, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, " |  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
     onClick: openModal
@@ -2738,6 +2744,7 @@ var SearchBar = function SearchBar(_ref) {
       searchResults = _ref.searchResults;
 
   var handleChange = function handleChange(event) {
+    event.preventDefault();
     setSearchTerm(event.target.value);
   };
 
@@ -2748,12 +2755,17 @@ var SearchBar = function SearchBar(_ref) {
     }) : data;
     setSearchResults(filtered);
   }, [searchTerm]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _qa_module_css__WEBPACK_IMPORTED_MODULE_1__["default"].searchContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: _qa_module_css__WEBPACK_IMPORTED_MODULE_1__["default"].searchInput,
     type: "text",
     placeholder: "Have a question? search for answer...",
     value: searchTerm,
     onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Search")));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: _qa_module_css__WEBPACK_IMPORTED_MODULE_1__["default"].searchButton
+  }, "Search"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchBar);
@@ -3518,14 +3530,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n  .qa-module__modalmain___vAGwS {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .qa-module__modalContent___AVmv9 {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n\n  .qa-module__wrapper___VAakt {\n    display: grid;\n    max-width: 1000px; \n  }\n\n  .qa-module__list___XHEFr {\n    display: flex;\n  }\n\n  .qa-module__listEntry___m2ObR {\n    border: 1px solid gray;\n    /* display: grid; */\n    width: 900px;\n    justify-content: left;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n\n    display: block;\n    font-weight: bold;\n  }\n", "",{"version":3,"sources":["webpack://./client/src/components/questions_answers/qa.module.css"],"names":[],"mappings":";EACE;EACA,YAAY;EACZ,aAAa;EACb,aAAa;EACb,eAAe;EACf,MAAM;EACN,OAAO;EACP,gCAAgC;EAChC,eAAe;EACf;;EAEA;IACE,aAAa;IACb,sBAAsB;IACtB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;IACvB,eAAe;IACf,cAAc;IACd,mBAAmB;EACrB;;EAEA;IACE,aAAa;IACb,iBAAiB;EACnB;;EAEA;IACE,aAAa;EACf;;EAEA;IACE,sBAAsB;IACtB,mBAAmB;IACnB,YAAY;IACZ,qBAAqB;EACvB;;EAEA;IACE,qBAAqB;IACrB,SAAS;IACT,UAAU;EACZ;;EAEA;;IAEE,cAAc;IACd,iBAAiB;EACnB","sourcesContent":["\n  .modalmain {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .modalContent {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n\n  .wrapper {\n    display: grid;\n    max-width: 1000px; \n  }\n\n  .list {\n    display: flex;\n  }\n\n  .listEntry {\n    border: 1px solid gray;\n    /* display: grid; */\n    width: 900px;\n    justify-content: left;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n\n    display: block;\n    font-weight: bold;\n  }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/**************************MODAL****************/\n  .qa-module__modalmain___vAGwS {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .qa-module__modalContent___AVmv9 {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n\n  .qa-module__wrapper___VAakt {\n    display: grid;\n    max-width: 1000px;\n  }\n\n  /*********************SEARCH************/\n  .qa-module__searchContainer___Gb6pT {\n    display: grid;\n    grid-template-columns:1.5rem 4fr 1fr;\n    width:300px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n    overflow: hidden;\n  }\n\n  .qa-module__searchInput___JagnL {\n    border: 0;\n    padding: 0.5rem;\n    grid-column:2/4;\n    grid-row:1;\n    outline:none;\n  }\n\n  .qa-module__searchButton___R6xnu {\n    border: 0;\n    padding: 0.5rem;\n    border-radius: 0;\n    grid-column:4/5;\n    grid-row:1;\n  }\n\n  .qa-module__list___XHEFr {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .qa-module__listEntry___m2ObR {\n    border: 1px solid #ccc;\n    /* display: grid; */\n    width: 1000px;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n    font-weight: bold;\n  }\n\n  .qa-module__questionContainer___OWZEh {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    border: 1px solid #ccc;\n  }\n\n  .qa-module__answerInfo___GlSX6 {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between\n  }\n\n", "",{"version":3,"sources":["webpack://./client/src/components/questions_answers/qa.module.css"],"names":[],"mappings":"AAAA,gDAAgD;EAC9C;EACA,YAAY;EACZ,aAAa;EACb,aAAa;EACb,eAAe;EACf,MAAM;EACN,OAAO;EACP,gCAAgC;EAChC,eAAe;EACf;;EAEA;IACE,aAAa;IACb,sBAAsB;IACtB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;IACvB,eAAe;IACf,cAAc;IACd,mBAAmB;EACrB;;EAEA;IACE,aAAa;IACb,iBAAiB;EACnB;;EAEA,wCAAwC;EACxC;IACE,aAAa;IACb,oCAAoC;IACpC,WAAW;IACX,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;EAClB;;EAEA;IACE,SAAS;IACT,eAAe;IACf,eAAe;IACf,UAAU;IACV,YAAY;EACd;;EAEA;IACE,SAAS;IACT,eAAe;IACf,gBAAgB;IAChB,eAAe;IACf,UAAU;EACZ;;EAEA;IACE,aAAa;IACb,sBAAsB;IACtB,mBAAmB;EACrB;;EAEA;IACE,sBAAsB;IACtB,mBAAmB;IACnB,aAAa;EACf;;EAEA;IACE,qBAAqB;IACrB,SAAS;IACT,UAAU;EACZ;;EAEA;IACE,iBAAiB;EACnB;;EAEA;IACE,aAAa;IACb,mBAAmB;IACnB,8BAA8B;IAC9B,sBAAsB;EACxB;;EAEA;IACE,aAAa;IACb,mBAAmB;IACnB;EACF","sourcesContent":["/**************************MODAL****************/\n  .modalmain {\n  width: 100vw;\n  height: 100vh;\n  z-index: 2000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0,0,0,.7);\n  padding-top: 2%;\n  }\n\n  .modalContent {\n    display: flex;\n    flex-direction: column;\n    width: 95vw;\n    height: 90vh;\n    position: relative;\n    /* overflow: hidden; */\n    margin: 0 auto;\n    background-color: white;\n    max-height: 40%;\n    max-width: 40%;\n    border-radius: 10px;\n  }\n\n  .wrapper {\n    display: grid;\n    max-width: 1000px;\n  }\n\n  /*********************SEARCH************/\n  .searchContainer {\n    display: grid;\n    grid-template-columns:1.5rem 4fr 1fr;\n    width:300px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n    overflow: hidden;\n  }\n\n  .searchInput {\n    border: 0;\n    padding: 0.5rem;\n    grid-column:2/4;\n    grid-row:1;\n    outline:none;\n  }\n\n  .searchButton {\n    border: 0;\n    padding: 0.5rem;\n    border-radius: 0;\n    grid-column:4/5;\n    grid-row:1;\n  }\n\n  .list {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .listEntry {\n    border: 1px solid #ccc;\n    /* display: grid; */\n    width: 1000px;\n  }\n\n  ul {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  label {\n    font-weight: bold;\n  }\n\n  .questionContainer {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    border: 1px solid #ccc;\n  }\n\n  .answerInfo {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between\n  }\n\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"modalmain": "qa-module__modalmain___vAGwS",
 	"modalContent": "qa-module__modalContent___AVmv9",
 	"wrapper": "qa-module__wrapper___VAakt",
+	"searchContainer": "qa-module__searchContainer___Gb6pT",
+	"searchInput": "qa-module__searchInput___JagnL",
+	"searchButton": "qa-module__searchButton___R6xnu",
 	"list": "qa-module__list___XHEFr",
-	"listEntry": "qa-module__listEntry___m2ObR"
+	"listEntry": "qa-module__listEntry___m2ObR",
+	"questionContainer": "qa-module__questionContainer___OWZEh",
+	"answerInfo": "qa-module__answerInfo___GlSX6"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

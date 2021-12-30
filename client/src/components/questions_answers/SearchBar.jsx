@@ -4,6 +4,7 @@ import styles from './qa.module.css';
 
 const SearchBar = ({data, setSearchTerm, searchTerm, setSearchResults, searchResults}) => {
   const handleChange = event => {
+    event.preventDefault();
     setSearchTerm(event.target.value);
   };
 
@@ -14,13 +15,9 @@ const SearchBar = ({data, setSearchTerm, searchTerm, setSearchResults, searchRes
   }, [searchTerm]);
 
   return (
-    <div >
-      <form >
-        <label></label>
-        <input type="text" placeholder="Have a question? search for answer..." value={searchTerm} onChange={handleChange}/>
-        <button>Search</button>
-
-      </form>
+    <div className={styles.searchContainer}>
+      <input className={styles.searchInput}type="text" placeholder="Have a question? search for answer..." value={searchTerm} onChange={handleChange}/>
+      <button className={styles.searchButton}>Search</button>
     </div>
   );
 

@@ -8,7 +8,7 @@ const AnswersList = ({ answers }) => {
   const [twoAnswers, setTwoAnswers] = useState(sorted.slice(0, 2));
   //refactor
   const handleClick = () => {
-    setTwoAnswers(sorted.slice(0, count));
+    setTwoAnswers(sorted.slice(0, 4));
   };
 
   return (
