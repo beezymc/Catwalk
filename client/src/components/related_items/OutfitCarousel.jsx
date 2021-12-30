@@ -31,6 +31,8 @@ const OutfitCarousel = (props) => {
       updateOutfitItems([{
         key: props.currentProduct.id,
         currentProduct: props.currentProduct,
+        currentProductReviews: props.currentProductReviews,
+        currentProductStyles: props.currentProductStyles
       }, ...outfitItems]);
     }
   };
@@ -100,6 +102,8 @@ const OutfitCarousel = (props) => {
             return (<OutfitItem
               key={item.key}
               currentProduct={item.currentProduct}
+              currentProductStyles={item.currentProductStyles}
+              currentProductReviews={item.currentProductReviews}
               setHideRightArrow={setHideRightArrow}
               setHideLeftArrow={setHideLeftArrow}
               removeItem={removeItem}

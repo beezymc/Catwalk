@@ -20,7 +20,7 @@ const RelatedItemsWrapper = (props) => {
       <OutfitCarousel
         currentProduct={props.currentProduct}
         currentProductStyles={props.currentProductStyles}
-        currentProductStyles={props.currentProductReviews}
+        currentProductReviews={props.currentProductReviews}
       />
     </div>
   );
