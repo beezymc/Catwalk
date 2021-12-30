@@ -27,7 +27,7 @@ const ProductOverview = (props) => {
 
   useEffect(() => {
     axios.get('/api/styles', {
-      params: { "product_id": "63609" }
+      params: { "product_id": "63616" }
     })
       .then((response) => {
         console.log(response.data.results)
@@ -42,7 +42,7 @@ const ProductOverview = (props) => {
 
   useEffect(() => {
     axios.get('/api/products', {
-      params: { "product_id": "63609" }
+      params: { "product_id": "63616" }
     })
       .then((response) => {
         setProduct(response.data)
