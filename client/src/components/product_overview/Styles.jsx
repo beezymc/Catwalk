@@ -6,7 +6,7 @@ const Styles = (props) => {
     <div>
       <h4> Select Style/Color </h4>
       {props.styles.map(style =>
-        <Style style={style} key={style.style_id} setStyle={props.setStyle} setMainUrl={props.setMainUrl}/>
+        <Style style={style} key={style.style_id} setStyle={props.setStyle} setMainUrl={props.setMainUrl} setSalePrice={props.setSalePrice}/>
       )}
     </div>
   );

@@ -20,7 +20,7 @@ top: 150px;
   width: 400px;
   position: absolute;
   left: 550px;
-  top: 325px;
+  top: 375px;
 }
 
 .mainImageWrapper {
@@ -38,4 +38,10 @@ top: 150px;
   max-width: 400px;
   max-height: 400px;
 }
+
+.strikeThrough {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
 

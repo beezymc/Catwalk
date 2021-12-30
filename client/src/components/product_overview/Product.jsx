@@ -22,11 +22,12 @@ const ProductOverview = (props) => {
     ]
   });
   const [mainUrl, setMainUrl] = useState(currentStyle.photos[0].url);
+  const [salePrice, setSalePrice] = useState(null);
 
 
   useEffect(() => {
     axios.get('/api/styles', {
-      params: { "product_id": "63613" }
+      params: { "product_id": "63609" }
     })
       .then((response) => {
         console.log(response.data.results)
@@ -41,7 +42,7 @@ const ProductOverview = (props) => {
 
   useEffect(() => {
     axios.get('/api/products', {
-      params: { "product_id": "63613" }
+      params: { "product_id": "63609" }
     })
       .then((response) => {
         setProduct(response.data)
@@ -53,7 +54,8 @@ const ProductOverview = (props) => {
 
 
   //console.log(styles);
-  // console.log(product);
+  //console.log(product);
+  console.log(currentStyle);
   //console.log('main image url', mainUrl)
 
 
@@ -70,10 +72,10 @@ const ProductOverview = (props) => {
         <Gallery currentStyle={currentStyle} setMainUrl={setMainUrl}/>
       </div>
       <div className={css.descriptionWrapper}>
-        <Description product={product} />
+        <Description product={product} currentStyle={currentStyle}/>
       </div>
       <div className={css.stylesWrapper}>
-        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl}/>
+        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl} setSalePrice={setSalePrice}/>
       </div>
       <div className={css.cartWrapper}>
         <Cart />
