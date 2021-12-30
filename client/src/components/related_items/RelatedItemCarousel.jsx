@@ -5,7 +5,7 @@ import styles from './relateditems.module.css';
 import { useParams } from 'react-router-dom';
 
 const RelatedItemCarousel = (props) => {
-  const [hideRightArrow, setHideRightArrow] = useState(false);
+  const [hideRightArrow, setHideRightArrow] = useState(true);
   const [hideLeftArrow, setHideLeftArrow] = useState(true);
   const [error, setError] = useState(false);
   const [relatedItems, setRelatedItems] = useState([]);
@@ -73,6 +73,17 @@ const RelatedItemCarousel = (props) => {
         />
       );
     });
+  }
+
+  if (relatedItemDivs.length > 0) {
+    const div = document.getElementById('related-items-carousel');
+    const maxScrollLeft = div.scrollWidth - div.clientWidth;
+    if ((div.scrollWidth !== div.clientWidth) && hideRightArrow && (div.scrollLeft !== maxScrollLeft)) {
+      setHideRightArrow(false);
+    }
+    if ((div.scrollWidth === div.clientWidth) && !hideRightArrow && (div.scrollLeft === maxScrollLeft)) {
+      setHideRightArrow(true);
+    }
   }
 
   const scrollCarouselLeft = () => {

@@ -4,9 +4,20 @@ import OutfitItem from './OutfitItem.jsx';
 import styles from './relateditems.module.css';
 
 const OutfitCarousel = (props) => {
-  const [hideRightArrow, setHideRightArrow] = useState(false);
+  const [hideRightArrow, setHideRightArrow] = useState(true);
   const [hideLeftArrow, setHideLeftArrow] = useState(true);
   const [outfitItems, updateOutfitItems] = useState([]);
+
+  useEffect(() => {
+    const div = document.getElementById('outfit-carousel');
+    const maxScrollLeft = div.scrollWidth - div.clientWidth;
+    if ((div.scrollWidth !== div.clientWidth) && hideRightArrow && (div.scrollLeft !== maxScrollLeft)) {
+      setHideRightArrow(false);
+    }
+    if ((div.scrollWidth === div.clientWidth) && !hideRightArrow && (div.scrollLeft === maxScrollLeft)) {
+      setHideRightArrow(true);
+    }
+  }, [outfitItems]);
 
   const handleNewOutfitItem = () => {
     let noMatch = true;
