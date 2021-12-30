@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
+import styles from './qa.module.css';
 
 const ModalAnswers = ({showModal, setShowModal, question_id}) => {
     const [values, setValues] = useState({
@@ -45,8 +46,8 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
     }
     return (
         <>
-        {showModal ? <div className='modal-main'>
-            <form onSubmit={handleSubmit}>
+        {showModal ? <div className={styles.modalmain}>
+            <form onSubmit={handleSubmit} className={styles.modalContent}>
                 <label>Your Answer*</label>
                     <textarea maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></textarea>
                     <br />

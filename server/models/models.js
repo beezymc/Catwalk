@@ -15,12 +15,12 @@ module.exports = {
       return axios.get(`${url}/products`, { headers })
     }
     if (type === 'related') {
-      return axios.get(`${url}/products/${product_id}/related`, {headers});
+      return axios.get(`${url}/products/${product_id}/related`, { headers });
     }
     if (type === 'styles') {
-      return axios.get(`${url}/products/${product_id}/styles`, {headers});
+      return axios.get(`${url}/products/${product_id}/styles`, { headers });
     }
-    return axios.get(`${url}/products/${product_id}`, {headers})
+    return axios.get(`${url}/products/${product_id}`, { headers })
   },
 
   // cart requests
@@ -50,9 +50,21 @@ module.exports = {
       url: `${url}/qa/questions/${question_id}/answers`,
       data: answerData,
       headers: headers
-      };
+    };
     return axios(options)
   },
+
+  createQuestion: (questionData) => {
+    console.log("sending question data to api: ", questionData)
+    const options = {
+      method: 'post',
+      url: `${url}/qa/questions`,
+      data: questionData,
+      headers: headers
+    };
+    return axios(options)
+  },
+
 
   getQuestion: (question_id) => {
     return axios.get(`${url}/questions/?question_id=${question_id}`, { headers })
@@ -66,6 +78,7 @@ module.exports = {
   reportQuestion: (question_id) => {
     return axios.patch(`${url}/questions/?question_id=${question_id}/report`, { headers })
   },
+
 
   // review requests
   //params include page, product_id, sort (based on newest, helpful, relevant), count(display how many per page)

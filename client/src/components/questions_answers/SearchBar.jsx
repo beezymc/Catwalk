@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './qa.module.css';
 
 
 const SearchBar = ({data, setSearchTerm, searchTerm, setSearchResults, searchResults}) => {
@@ -13,7 +14,7 @@ const SearchBar = ({data, setSearchTerm, searchTerm, setSearchResults, searchRes
       }, [searchTerm]);
 
     return (
-        <div>
+        <div >
             <form >
                 <label></label>
                 <input type="text" placeholder="Have a question? search for answer..." value={searchTerm} onChange={handleChange}/>

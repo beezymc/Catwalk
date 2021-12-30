@@ -24,11 +24,7 @@ app.post('/api/interactions', controllers.addInteractions);
 // Question / Answer requests
 app.get('/api/questions', controllers.getQuestionsByProductId);
 app.post('/api/questions/:question_id/answers', controllers.createAnswer);
-// app.post('/api/questions/:question_id/answers', (req, res) => {
-//   // var question_id = req.params.question_id;
-//   controllers.createAnswer(question_id, req, res);
-//   // console.log('question_id:', question_id);
-// });
+app.post('/api/questions/', controllers.createQuestion);
 app.get('/api/questions', controllers.getQuestion);
 app.get('/api/answers', controllers.getAnswer);
 app.patch('/api/question/update', controllers.updateQuestion);

@@ -5,12 +5,12 @@ module.exports = {
   getProducts: (req, res) => {
     const { product_id, type } = req.query;
     models.getProducts(product_id, type)
-    .then((response) => {
-      res.send(response.data)
-    })
-    .catch((err) => {
-      res.status(404).send(err)
-    })
+      .then((response) => {
+        res.send(response.data)
+      })
+      .catch((err) => {
+        res.status(404).send(err)
+      })
   },
   // cart requests
   getCart: (req, res) => {
@@ -51,16 +51,28 @@ module.exports = {
       })
   },
   // questions/answers
+  createQuestion: (req, res) => {
+    const product_id = req.query.product_id;
+    console.log("req.body for create question is: ", req.body);
+    models.createQuestion(req.body)
+      .then((response) => {
+        res.status(204).send(response.data);
+      })
+      .catch((err) => {
+        console.log("ERROR: Create question error: ", err);
+        res.status(500).send(err);
+      })
+  },
+
   createAnswer: (req, res) => {
-    const question_id = req.params.question_id;
-    models.createAnswer(req.body, question_id)
-    .then((response) => {
-      res.status(204).send(response.data);
-    })
-    .catch((err) => {
-      console.log("ERROR: Create answer error: ", err);
-      res.status(500).send(err);
-    })
+    models.createAnswer(req.body)
+      .then((response) => {
+        res.status(204).send(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(err);
+      })
   },
 
   getQuestionsByProductId: (req, res) => {

@@ -1,0 +1,55 @@
+  
+  .modalmain {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.7);
+  padding-top: 2%;
+  }
+
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+    position: relative;
+    /* overflow: hidden; */
+    margin: 0 auto;
+    background-color: white;
+    max-height: 40%;
+    max-width: 40%;
+    border-radius: 10px;
+  }
+  
+  .wrapper {
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    max-width: 1000px;
+  }
+
+  .list {
+    display: flex;
+  }
+
+  .listEntry {
+    border: 1px solid gray;
+    /* display: grid; */
+    width: 900px;    
+    justify-content: left;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  label {
+
+    display: block;
+    font-weight: bold;
+  }
