@@ -19,6 +19,8 @@ const RelatedItemCarousel = (props) => {
           relatedStyle={props.relatedStyles[index]}
           relatedItemReview={props.relatedItemsReviews[index]}
           handleProductInit={props.handleProductInit}
+          setHideLeftArrow={setHideLeftArrow}
+          setHideRightArrow={setHideRightArrow}
         />
       );
     });

@@ -7,29 +7,60 @@ const CompareItem = (props) => {
   const relatedItemFeatures = props.relatedItem.features;
   let featureObj = {};
   for (let i = 0; i < currentProductFeatures.length; i++) {
-    featureObj[currentProductFeatures[i].feature] = { currentProduct: currentProductFeatures[i].value };
+    featureObj[currentProductFeatures[i].feature + ': ' + currentProductFeatures[i].value] = ['C'];
   }
   for (let i = 0; i < relatedItemFeatures.length; i++) {
-    if (featureObj[relatedItemFeatures[i].feature]) {
-      featureObj[relatedItemFeatures[i].feature]['relatedItem'] = relatedItemFeatures[i].value;
+    if (featureObj[relatedItemFeatures[i].feature + ': ' + relatedItemFeatures[i].value]) {
+      featureObj[relatedItemFeatures[i].feature + ': ' + relatedItemFeatures[i].value].push('R');
     } else {
-      featureObj[relatedItemFeatures[i].feature] = { relatedItem: relatedItemFeatures[i].value };
+      featureObj[relatedItemFeatures[i].feature + ': ' + relatedItemFeatures[i].value] = ['R'];
     }
   }
   for (let key in featureObj) {
-    popupTableRows.push(
-      <div className={styles.popupTableRows} key={key}>
-        <div className={styles.popupProductFeature}>
-          { featureObj[key].currentProduct ? '✔' : '\u00A0\u00A0\u00A0' }
+    if (featureObj[key].length === 2) {
+      popupTableRows.push(
+        <div className={styles.popupTableRows} key={key}>
+          <div>
+            '✔'
+          </div>
+          <div>
+            {key}
+          </div>
+          <div>
+            ✔
+          </div>
         </div>
-        <div className={styles.popupFeature}>
-          {key}
+      );
+    } else if (featureObj[key][0] === 'C') {
+      popupTableRows.push(
+        <div className={styles.popupTableRows} key={key}>
+          <div>
+            ✔
+          </div>
+          <div>
+            {key}
+          </div>
+          <div>
+            {'\u00A0\u00A0\u00A0'}
+          </div>
         </div>
-        <div className={styles.popupRelatedFeature}>
-          { featureObj[key].relatedItem ? '✔' : '\u00A0\u00A0\u00A0' }
+      );
+    } else {
+      popupTableRows.push(
+        <div className={styles.popupTableRows} key={key}>
+          <div className={styles.popupProductFeature}>
+            {'\u00A0\u00A0\u00A0'}
+          </div>
+          <div>
+            {key}
+          </div>
+          <div>
+            ✔
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+
   }
   return (
     <div className={styles.popupBox} onClick={() => { props.togglePopup(); }}>
@@ -48,7 +79,6 @@ const CompareItem = (props) => {
         </div>
       </div>
     </div>
-
   );
 };
 
