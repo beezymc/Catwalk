@@ -20,7 +20,7 @@ top: 150px;
   width: 400px;
   position: absolute;
   left: 550px;
-  top: 375px;
+  top: 575px;
 }
 
 .mainImageWrapper {
@@ -42,6 +42,30 @@ top: 150px;
 .strikeThrough {
   text-decoration: line-through;
   text-decoration-color: red;
+}
+
+.modalButton {
+  padding: '0rem', '0rem';
+  background-color: transparent;
+  border: 0;
+  border-radius: '0rem';
+  cursor: 'pointer';
+  margin-bottom: '0rem';
+  padding: 0px !important;
+  border-radius: 50%;
+  max-width: 100px;
+  max-height: 100px;
+  margin: 5px;
+}
+
+.buttonWrapper {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 0 21%;
+  margin: 5px;
+  height: 130px;
+  background-color: transparent;
 }
 
 

@@ -55,7 +55,7 @@ const ProductOverview = (props) => {
 
   //console.log(styles);
   //console.log(product);
-  console.log(currentStyle);
+  //console.log(currentStyle);
   //console.log('main image url', mainUrl)
 
 
@@ -75,7 +75,7 @@ const ProductOverview = (props) => {
         <Description product={product} currentStyle={currentStyle}/>
       </div>
       <div className={css.stylesWrapper}>
-        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl} setSalePrice={setSalePrice}/>
+        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl} setSalePrice={setSalePrice} currentStyle={currentStyle}/>
       </div>
       <div className={css.cartWrapper}>
         <Cart />

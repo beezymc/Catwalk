@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import css from './styles.module.css';
+import Thumbnail from './Thumbnail.jsx';
 
 const Style = (props) => {
   const onClick = () => {
@@ -7,8 +9,8 @@ const Style = (props) => {
     props.setSalePrice(props.style.sale_price);
   };
   return (
-    <div>
-      <button onClick={onClick}> {props.style.name} </button>
+    <div className={css.buttonWrapper}>
+      <button className={css.modalButton} onClick={onClick}> <Thumbnail src={props.style.photos} /> {props.style.name}</button>
     </div>
   );
 };
