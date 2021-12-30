@@ -1,3 +1,8 @@
+## Compiled files ##
+client/dist/
+
+config.js
+
 # Logs
 logs
 *.log
@@ -101,6 +106,3 @@ typings/
 
 # TernJS port file
 .tern-port
-
-## Compiled files ##
-client/dist/
