@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 const RelatedItem = (props) => {
+
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
     const relatedItem = props.relatedItem.data;
     const relatedStyle = props.relatedStyle.data.results[0];
@@ -36,12 +37,13 @@ const RelatedItem = (props) => {
       </div>
     );
   } else {
-    return (
+    return ( 
       <div>
         Loading.
       </div>
     );
   }
+
 };
 
 export default RelatedItem;

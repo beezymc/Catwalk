@@ -1,0 +1,41 @@
+.stylesWrapper {
+width: 400px;
+position: absolute;
+left: 550px;
+top: 150px;
+}
+
+.galleryWrapper {
+  width: 100px;
+}
+
+.descriptionWrapper {
+  width: 400px;
+  position: absolute;
+  left: 550px;
+  top: 8px;
+}
+
+.cartWrapper {
+  width: 400px;
+  position: absolute;
+  left: 550px;
+  top: 325px;
+}
+
+.mainImageWrapper {
+  width: 400px;
+  position: absolute;
+  left: 112px;
+  top: 8px;
+}
+
+.imgSize {
+  max-width: 100px;
+  max-height: 100px;
+}
+.imgSize2 {
+  max-width: 400px;
+  max-height: 400px;
+}
+

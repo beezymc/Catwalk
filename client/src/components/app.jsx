@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
+import ProductOverview from './product_overview/Product.jsx';
 import {
   useParams,
 } from 'react-router-dom';
@@ -12,13 +13,12 @@ const App = (props) => {
 
   return (
     <div>
-      <RelatedItemsWrapper
+      <ProductOverview />
+      {/* <RelatedItemsWrapper
         relatedItemsList={props.relatedItemsList}
         currentProduct={props.currentProduct}
         relatedItemsReviews={props.relatedItemsReviews}
-        relatedStyles={props.relatedStyles}
-        handleProductInit={props.handleProductInit}
-      />
+      /> */}
     </div>
   );
 };
