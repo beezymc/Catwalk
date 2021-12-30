@@ -4,11 +4,9 @@ import rootReducer from './../reducers/main.js';
 
 const initialState = {
   currentProduct: {},
-  relatedItemsList: [],
-  relatedItemsReviews: [],
-  relatedStyles: []
-  // questionsList: [],
-  // reviewsList: [],
+  currentProductStyles: {},
+  currentProductReviews: {},
+  error: ''
 };
 
 const store = createStore(

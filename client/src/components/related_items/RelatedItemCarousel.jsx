@@ -2,22 +2,71 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItem from './RelatedItem.jsx';
 import styles from './relateditems.module.css';
+import { useParams } from 'react-router-dom';
 
 const RelatedItemCarousel = (props) => {
   const [hideRightArrow, setHideRightArrow] = useState(false);
   const [hideLeftArrow, setHideLeftArrow] = useState(true);
+  const [error, setError] = useState(false);
+  const [relatedItems, setRelatedItems] = useState([]);
+  const [relatedReviews, setRelatedReviews] = useState([]);
+  const [relatedStyles, setRelatedStyles] = useState([]);
+
+  let { productId } = useParams();
+
+  useEffect(() => {
+    axios.get(`/api/products/?product_id=${productId}&type=related`)
+      .then((related) => {
+        let relatedItemsPromises = [];
+        let relatedReviewsPromises = [];
+        let relatedStylesPromises = [];
+        for (let i = 0; i < related.data.length; i++) {
+          relatedItemsPromises.push(axios.get(`/api/products/?product_id=${related.data[i]}`));
+          relatedReviewsPromises.push(axios.get(`/api/reviews/meta/?product_id=${related.data[i]}`));
+          relatedStylesPromises.push(axios.get(`/api/products/?product_id=${related.data[i]}&type=styles`));
+        }
+        Promise.all(relatedItemsPromises)
+          .then((relatedItems) => {
+            setRelatedItems(relatedItems);
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(true);
+          });
+        Promise.all(relatedReviewsPromises)
+          .then((relatedReviews) => {
+            setRelatedReviews(relatedReviews);
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(true);
+          });
+        Promise.all(relatedStylesPromises)
+          .then((relatedStyles) => {
+            setRelatedStyles(relatedStyles);
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(true);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+      });
+  }, [props.currentProduct]);
 
   let relatedItemDivs;
 
-  if (props.relatedItemsList && props.relatedStyles && props.relatedItemsReviews) {
-    relatedItemDivs = props.relatedItemsList.map((relatedItem, index) => {
+  if (relatedItems && relatedStyles && relatedReviews) {
+    relatedItemDivs = relatedItems.map((relatedItem, index) => {
       return (
         <RelatedItem
           key={index}
           relatedItem={relatedItem}
           currentProduct={props.currentProduct}
-          relatedStyle={props.relatedStyles[index]}
-          relatedItemReview={props.relatedItemsReviews[index]}
+          relatedStyle={relatedStyles[index]}
+          relatedItemReview={relatedReviews[index]}
           handleProductInit={props.handleProductInit}
           setHideLeftArrow={setHideLeftArrow}
           setHideRightArrow={setHideRightArrow}
@@ -57,7 +106,13 @@ const RelatedItemCarousel = (props) => {
       setHideLeftArrow(false);
     }
   };
-
+  if (error) {
+    return (
+      <div className={styles.carousel}>
+        404
+      </div>
+    );
+  }
   if (relatedItemDivs) {
     return (
       <div className={styles.carousel}>
