@@ -5,7 +5,6 @@ import StarRating from './StarRating.jsx';
 import CompareItem from './CompareItem.jsx';
 
 const RelatedItem = (props) => {
-
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {
@@ -83,6 +82,7 @@ const RelatedItem = (props) => {
       </div>
     );
   }
+
 };
 
 export default RelatedItem;
