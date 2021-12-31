@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
+import ProductOverview from './product_overview/Product.jsx';
 import {
   useParams,
 } from 'react-router-dom';
@@ -26,7 +27,9 @@ const App = (props) => {
     );
   }
   return (
+
     <div className={styles.app}>
+      <ProductOverview />
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}
         currentProduct={props.currentProduct}
