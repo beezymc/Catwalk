@@ -27,7 +27,6 @@ const App = (props) => {
     );
   }
   return (
-
     <div className={styles.app}>
       <ProductOverview />
       <RelatedItemsWrapper
