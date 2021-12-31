@@ -34,7 +34,7 @@ module.exports = {
       })
   },
   addCart: (req, res) => {
-    const params = req.body.sku_id;
+    const params = req.body;
     models.addCart(params)
       .then(() => {
         return models.getCart()

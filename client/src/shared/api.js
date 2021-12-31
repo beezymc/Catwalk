@@ -1,7 +1,15 @@
 import axios from 'axios';
 
-export const getProducts = (productId) => {
-  let param = {'product_id': productId};
-  return axios.get('/api/products', {params: param});
+export const addCart = (sku_id, count) => {
+  axios.post('/api/cart', {
+    sku_id: sku_id,
+    count: count
+  })
+    .then(() => {
+      console.log('added product to cart')
+    })
+    .catch((err) => {
+      console.log('Error occurred', err)
+    })
 };
 

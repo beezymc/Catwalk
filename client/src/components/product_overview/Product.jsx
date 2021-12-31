@@ -30,7 +30,7 @@ const ProductOverview = (props) => {
       params: { "product_id": "63616" }
     })
       .then((response) => {
-        console.log(response.data.results)
+        //console.log(response.data.results)
         setStyles(response.data.results)
         setStyle(response.data.results[0])
         setMainUrl(response.data.results[0].photos[0].url)
@@ -78,7 +78,7 @@ const ProductOverview = (props) => {
         <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl} setSalePrice={setSalePrice} currentStyle={currentStyle}/>
       </div>
       <div className={css.cartWrapper}>
-        <Cart />
+        <Cart currentStyle={currentStyle}/>
       </div>
     </div>
   );
