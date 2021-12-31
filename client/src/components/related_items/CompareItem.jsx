@@ -21,7 +21,7 @@ const CompareItem = (props) => {
       popupTableRows.push(
         <div className={styles.popupTableRows} key={key}>
           <div>
-            '✔'
+            ✔
           </div>
           <div>
             {key}
@@ -48,7 +48,7 @@ const CompareItem = (props) => {
     } else {
       popupTableRows.push(
         <div className={styles.popupTableRows} key={key}>
-          <div className={styles.popupProductFeature}>
+          <div>
             {'\u00A0\u00A0\u00A0'}
           </div>
           <div>

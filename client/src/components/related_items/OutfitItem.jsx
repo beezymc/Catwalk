@@ -25,7 +25,7 @@ const OutfitItem = (props) => {
       setRating((Math.round((numerator / denominator) * 4) / 4).toFixed(2));
     }
     setPhoto(currentProductStyles.photos[0].thumbnail_url);
-    setPrice(currentProductStyles.sale_price ? currentProductStyles.sale_price : currentProductStyles.original_price);
+    setPrice(currentProductStyles.sale_price ? [currentProductStyles.sale_price, currentProductStyles.original_price] : currentProductStyles.original_price);
   }, []);
 
   return (
@@ -37,16 +37,25 @@ const OutfitItem = (props) => {
         <div className={styles.imageContainer}>
           <img src={photo}></img>
         </div>
-        <div>
+        <div className={styles.category}>
           {category}
         </div>
-        <div>
+        <div className={styles.name}>
           {name}
         </div>
-        <div>
-          {price}
-        </div>
-        <div>
+        {price.length === 2 ?
+          <div className={styles.price}>
+            <div className={styles.salePrice}>
+              {price[0]}
+            </div>
+            <div className={styles.originalPrice}>
+              {price[1]}
+            </div>
+          </div>
+          : <div className={styles.price}>
+            {price}
+          </div>}
+        <div className={styles.reviewStars}>
           {rating ? <StarRating rating={rating} /> : ''}
         </div>
       </div>

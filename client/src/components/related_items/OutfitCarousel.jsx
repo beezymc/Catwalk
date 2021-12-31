@@ -22,7 +22,7 @@ const OutfitCarousel = (props) => {
   const handleNewOutfitItem = () => {
     let noMatch = true;
     for (let i = 0; i < outfitItems.length; i++) {
-      if (outfitItems[i].key === props.currentProduct.id + '') {
+      if (outfitItems[i].key === props.currentProduct.id) {
         noMatch = false;
         break;
       }
@@ -42,6 +42,11 @@ const OutfitCarousel = (props) => {
       console.log(item.key, id);
       return item.key !== id;
     }));
+    const div = document.getElementById('outfit-carousel');
+    if (div.scrollWidth === div.clientWidth) {
+      setHideLeftArrow(true);
+      setHideRightArrow(true);
+    }
   };
 
   const scrollCarouselLeft = () => {
@@ -83,19 +88,18 @@ const OutfitCarousel = (props) => {
           hideLeftArrow ? ''
             : <div className={styles.leftArrow} onClick={() => { scrollCarouselRight(); }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+              <div className={styles.leftTransparency}/>
             </div>
         }
         <div className={styles.outfitItems} id='outfit-carousel'>
-          <div>
-            <div className={styles.innerCard} onClick={() => {
-              handleNewOutfitItem();
-            }}>
-              <div className={styles.imageContainer}>
-                +
-              </div>
-              <div>
-                Add New Outfit
-              </div>
+          <div className={styles.innerCardAdd} onClick={() => {
+            handleNewOutfitItem();
+          }}>
+            <div className={styles.addOutfitText}>
+              Add New Outfit
+            </div>
+            <div className={styles.addOutfit}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
             </div>
           </div>
           {outfitItems.map((item) => {
