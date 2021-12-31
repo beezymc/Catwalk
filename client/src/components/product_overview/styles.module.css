@@ -7,6 +7,7 @@ top: 150px;
 
 .galleryWrapper {
   width: 100px;
+  height: 400px;
 }
 
 .descriptionWrapper {
@@ -20,7 +21,7 @@ top: 150px;
   width: 400px;
   position: absolute;
   left: 550px;
-  top: 325px;
+  top: 375px;
 }
 
 .mainImageWrapper {
@@ -31,11 +32,65 @@ top: 150px;
 }
 
 .imgSize {
-  max-width: 100px;
-  max-height: 100px;
+  width:  100px;
+  height: 100px;
+  object-fit: cover;
+  display: table-cell;
 }
 .imgSize2 {
-  max-width: 400px;
-  max-height: 400px;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
 }
+
+.strikeThrough {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
+.modalButton {
+  padding: '0rem', '0rem';
+  background-color: transparent;
+  border: 0;
+  border-radius: '0rem';
+  cursor: 'pointer';
+  margin-bottom: '0rem';
+  padding: 0px !important;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+  object-fit: cover;
+}
+
+.imagesWrapper {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.buttonWrapper {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: calc(25% - 11px);
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 100px;
+  background-color: transparent;
+
+}
+
+.styleSelectionWrapper {
+  overflow: auto;
+  height: 130px;
+  width: 350px;
+}
+
+.productTitle {
+  font-style: bold;
+  font-size: 30px;
+}
+
 

@@ -3,7 +3,7 @@ import React from 'react';
 const Cart = (props) => {
   return (
     <div>
-      Cart
+      <button type="submit"> Add to cart </button>
     </div>
   );
 };
