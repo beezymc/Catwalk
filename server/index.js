@@ -16,6 +16,7 @@ app.listen(Port, () => {
 
 // Product requests
 app.get('/api/products', controllers.getProducts);
+app.get('/api/styles', controllers.getStyles);
 // Cart requests
 app.get('/api/cart', controllers.getCart);
 app.post('/api/cart', controllers.addCart);

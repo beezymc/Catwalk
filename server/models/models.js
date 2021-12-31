@@ -22,6 +22,9 @@ module.exports = {
     }
     return axios.get(`${url}/products/${product_id}`, { headers })
   },
+  getStyles: (product_id) => {
+    return axios.get(`${url}/products/${product_id}/styles`, {headers})
+  },
 
   // cart requests
   getCart: () => {
