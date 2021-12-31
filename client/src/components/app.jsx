@@ -30,6 +30,7 @@ const App = (props) => {
 
     <div className={styles.app}>
       <ProductOverview />
+      <br></br>
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}
         currentProduct={props.currentProduct}
