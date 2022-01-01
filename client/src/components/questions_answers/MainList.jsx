@@ -31,14 +31,14 @@ const QAList = ({productId}) => {
 
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.list}>
       <div>
-        <><SearchBar data={questionsData} searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchResults={searchResults} setSearchResults={setSearchResults}/></>
+        <div className={styles.qaContainer}><SearchBar data={questionsData} searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchResults={searchResults} setSearchResults={setSearchResults}/></div>
       </div>
       <div>
         <ul>{
           searchResults.map((item) => (
-            <><QAListEntry item={item} /></>
+            <div className={styles.qaContainer}><QAListEntry item={item} /></div>
           ))
         }
         </ul>
