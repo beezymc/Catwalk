@@ -31,8 +31,8 @@ module.exports = {
     return axios.get(`${url}/cart`, { headers })
   },
   // params sku_id
-  addCart: (sku_id) => {
-    return axios.post(`${url}/cart`, { product_id: sku_id }, { headers })
+  addCart: (bodyObj) => {
+    return axios.post(`${url}/cart`, bodyObj, {headers})
   },
   // interaction requests
   // params element, widget, time

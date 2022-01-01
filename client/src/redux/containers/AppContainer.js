@@ -8,9 +8,9 @@ import handleProductInit from '../actions/initializeProduct.js';
 const mapStateToProps = (state) => {
   return {
     currentProduct: state.currentProduct,
-    relatedItemsList: state.relatedItemsList,
-    relatedItemsReviews: state.relatedItemsReviews,
-    relatedStyles: state.relatedStyles
+    currentProductStyles: state.currentProductStyles,
+    currentProductReviews: state.currentProductReviews,
+    error: state.error
   };
 };
 
