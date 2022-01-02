@@ -157,6 +157,7 @@ time, mark, audio, video {
   }
 
   form {
+  display: flex;
   border: 1px solid #555555;
   padding: 20px;
   width: 50%;
