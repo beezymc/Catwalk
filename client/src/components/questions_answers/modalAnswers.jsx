@@ -68,7 +68,10 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
                 <label name="file" value={values.file}>Add photos:</label>
                     <input className={styles.formInput} type="file" /></p>
                     <br />
+                <p>
                 <button className={styles.modalButton}>Submit an Answer</button>
+                </p>
+
 
             </form>
         </div> : null}

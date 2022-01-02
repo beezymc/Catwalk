@@ -50,18 +50,24 @@ const ModalQuestions = ({showModal, setShowModal, productId}) => {
         <>
             {showModal ? <div className={styles.modalmain}>
                 <form onSubmit={handleSubmit} className={styles.modalContent}>
-                    <label>Your Question*</label>
-                    <textarea maxLength="1000" name="answer" value={values.question} onChange={handleQuestionChange} required></textarea>
+                    <p>
+                    <label>Your Question*:</label>
+                    <input className={styles.formInput} maxLength="1000" name="answer" value={values.question} onChange={handleQuestionChange} required></input>
+                    </p>
                     <br />
-                    <label>Your Nickname*</label>
-                    <input type="text" placeholder='Example: jackson11!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required />
+                    <p>
+                    <label>Your Nickname*:</label>
+                    <input className={styles.formInput} type="text" placeholder='Example: jackson11!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required />
+                    </p>
                     <br />
-                    <label>Your Email*</label>
-                    <input type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required />
+                    <p>
+                    <label>Your Email*:</label>
+                    <input className={styles.formInput} type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required />
+                    </p>
                     <br />
-                    <br />
-                    <button>Submit Question</button>
-
+                    <p>
+                    <button className={styles.modalButton}>Submit Question</button>
+                    </p>
                 </form>
             </div> : null}
         </>

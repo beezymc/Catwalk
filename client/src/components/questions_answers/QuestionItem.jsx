@@ -21,8 +21,9 @@ const QuestionItem = ({ questionInfo }) => {
       <div><b>Q: {questionInfo.question_body}</b></div>
       <div>
         <span className={styles.link}>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
+        <span className={styles.link}>|</span>
         <span>
-          <button onClick={openModal} className={styles.borderBtn}>Add Answer</button>
+          <a onClick={openModal} className={styles.link}>Add Answer</a>
           <ModalAnswers showModal={showModal} setShowModal={setShowModal} question_id={questionInfo.question_id}/>
         </span>
       </div>

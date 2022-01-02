@@ -25,7 +25,7 @@ const AnswersListEntry = ({ answer }) => {
   };
 
   return (
-    <div >
+    <div className={styles.qaContainer}>
       <div><b>A:</b> {answer.body}</div>
       <div className={styles.answerInfo}>
         <div> <span className={styles.answerInfo}>by {answer.answerer_name},
@@ -35,7 +35,7 @@ const AnswersListEntry = ({ answer }) => {
         <div>
           <span className={styles.helpfulness}> Helpful? {isUpvoted ? <span>Yes({answerHelpfullness})</span> : <a onClick={handleClick}>Yes({answerHelpfullness})</a>}</span>
           <span> | </span>
-          <span>{isReported ? <span>Reported</span> : <button className={styles.link} onClick={HandleReported}>Report</button>}</span>
+          <span>{isReported ? <span>Reported</span> : <a className={styles.link} onClick={HandleReported}>Report</a>}</span>
         </div>
       </div>
     </div>
