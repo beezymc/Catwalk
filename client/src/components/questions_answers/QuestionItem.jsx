@@ -20,10 +20,9 @@ const QuestionItem = ({ questionInfo }) => {
     <div className={styles.questionContainer}>
       <div><b>Q: {questionInfo.question_body}</b></div>
       <div>
-        <span>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
-        <span> |  </span>
+        <span className={styles.link}>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
         <span>
-          <button onClick={openModal}>Add Answer</button>
+          <button onClick={openModal} className={styles.borderBtn}>Add Answer</button>
           <ModalAnswers showModal={showModal} setShowModal={setShowModal} question_id={questionInfo.question_id}/>
         </span>
       </div>

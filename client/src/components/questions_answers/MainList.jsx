@@ -44,7 +44,7 @@ const QAList = ({productId}) => {
         </ul>
       </div>
       <div>
-        <button onClick={handleClick}>More answered questions +</button>
+        <button className={styles.borderBtn} onClick={handleClick} >More answered questions +</button>
       </div>
     </div>
 

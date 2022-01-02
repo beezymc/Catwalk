@@ -28,14 +28,14 @@ const AnswersListEntry = ({ answer }) => {
     <div >
       <div><b>A:</b> {answer.body}</div>
       <div className={styles.answerInfo}>
-        <div> <span>by {answer.answerer_name},
+        <div> <span className={styles.answerInfo}>by {answer.answerer_name},
           {new Date(answer.date).toLocaleDateString(undefined, {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
           })}</span></div>
         <div>
           <span className={styles.helpfulness}> Helpful? {isUpvoted ? <span>Yes({answerHelpfullness})</span> : <a onClick={handleClick}>Yes({answerHelpfullness})</a>}</span>
           <span> | </span>
-          <span>{isReported ? <span>Reported</span> : <button onClick={HandleReported}>Report</button>}</span>
+          <span>{isReported ? <span>Reported</span> : <button className={styles.link} onClick={HandleReported}>Report</button>}</span>
         </div>
       </div>
     </div>

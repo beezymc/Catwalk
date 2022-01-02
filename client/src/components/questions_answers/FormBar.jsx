@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ModalQuestions from './ModalQuestions.jsx';
+import styles from './qa.module.css';
 
 const FormBar = ({ productId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +12,7 @@ const FormBar = ({ productId }) => {
   return (
     <div>
       <span>
-        <button onClick={openModal}>Add a question +</button>
+        <button className={styles.borderBtn} onClick={openModal}>Add a question +</button>
         <ModalQuestions showModal={showModal} setShowModal={setShowModal} productId={productId}/>
       </span>
     </div>

@@ -48,28 +48,36 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
         <>
         {showModal ? <div className={styles.modalmain}>
             <form onSubmit={handleSubmit} className={styles.modalContent}>
-                <label>Your Answer*</label>
-                    <textarea maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></textarea>
+                <p>
+                    <label>Your Answer*:</label>
+                    <input className={styles.formInput} maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></input>
+                </p>
+
                     <br />
-                <label>Your Nickname*</label>
-                    <input type="text" placeholder='Example: jack543!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required/>
+                <p>
+                <label>Your Nickname*:</label>
+                    <input className={styles.formInput} type="text" placeholder='Example: jack543!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required/>
+                    </p>
                     <br />
-                <label>Your Email*</label>
-                    <input type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required/>
+                    <p>
+                <label>Your Email*:</label>
+                    <input className={styles.formInput} type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required/>
+                    </p>
                     <br />
-                <label name="file" value={values.file}></label>
-                    <input type="file" />
+                    <p>
+                <label name="file" value={values.file}>Add photos:</label>
+                    <input className={styles.formInput} type="file" /></p>
                     <br />
-                <button>Submit an Answer</button>
+                <button className={styles.modalButton}>Submit an Answer</button>
 
             </form>
         </div> : null}
         </>
-        
+
     )
 }
 
-export default ModalAnswers; 
+export default ModalAnswers;
 
 
 
