@@ -18,7 +18,7 @@ const QuestionItem = ({ questionInfo }) => {
 
   return (
     <div className={styles.questionContainer}>
-      <div><b>Q: {questionInfo.question_body}</b></div>
+      <div className={styles.question}><b>Q: {questionInfo.question_body}</b></div>
       <div>
         <span className={styles.link}>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
         <span className={styles.link}>|</span>

@@ -25,18 +25,13 @@ const AnswersListEntry = ({ answer }) => {
   };
 
   return (
-    <div className={styles.qaContainer}>
-      <div><b>A:</b> {answer.body}</div>
+    <div >
+      <div className={styles.answer}> <span className={styles.question}>A:</span> {answer.body}</div>
       <div className={styles.answerInfo}>
-        <div> <span className={styles.answerInfo}>by {answer.answerer_name},
+        <span className={styles.answerInfo}>by {answer.answerer_name},
           {new Date(answer.date).toLocaleDateString(undefined, {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-          })}</span></div>
-        <div>
-          <span className={styles.helpfulness}> Helpful? {isUpvoted ? <span>Yes({answerHelpfullness})</span> : <a onClick={handleClick}>Yes({answerHelpfullness})</a>}</span>
-          <span> | </span>
-          <span>{isReported ? <span>Reported</span> : <a className={styles.link} onClick={HandleReported}>Report</a>}</span>
-        </div>
+          })} | Helpful? {isUpvoted ? <span>Yes({answerHelpfullness})</span> : <a onClick={handleClick}>Yes({answerHelpfullness})</a>} | {isReported ? <span>Reported</span> : <a className={styles.link} onClick={HandleReported}>Report</a>}</span>
       </div>
     </div>
   );

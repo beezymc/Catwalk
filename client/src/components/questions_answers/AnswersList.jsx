@@ -19,7 +19,7 @@ const AnswersList = ({ answers }) => {
         <AnswersListEntry answer={item} />
       ))
     }
-    <button className={styles.borderBtn} onClick={handleClick} >Load More Answers</button>
+    <a className={styles.answerLink} onClick={handleClick} >Load More Answers</a>
     </ul>
   );
 

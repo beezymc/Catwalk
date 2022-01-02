@@ -9,6 +9,8 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
         email: '',
         file: ''
     });
+    const [hideModal, setHideModal] = useState(false);
+
 
     const handleAnswerChange = (event) => {
         event.persist();
@@ -33,6 +35,10 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
             email: event.target.value,
         }));
     };
+
+    const handleModalChange = (event) => {
+        setShowModal(false);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -70,9 +76,8 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
                     <br />
                 <p>
                 <button className={styles.modalButton}>Submit an Answer</button>
+                <button className={styles.modalButton} onCLick={handleModalChange}>close</button>
                 </p>
-
-
             </form>
         </div> : null}
         </>
