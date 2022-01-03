@@ -12,18 +12,19 @@ const App = (props) => {
   let { productId } = useParams();
   useEffect(() => {
     props.handleProductInit(productId)
-      .then(() => {
-        if (props.error !== '') {
-          setError(true);
-          console.log(props.error);
-        }
-      });
   }, []);
+
+  if (props.error !== '' && error === false) {
+    setError(true);
+    console.log(props.error);
+  }
 
   if (error) {
     return (
-      <div className={styles.app}>
-        404
+      <div className={styles.errorContainer}>
+        <div className={styles.errorPage}>
+          <h1>Error 404</h1>
+        </div>
       </div>
     );
   }
