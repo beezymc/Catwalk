@@ -4,7 +4,7 @@ import {
  useLocation
 } from "react-router-dom";
 import QAList from './MainList.jsx';
-import FormBar from './FormBar.jsx';
+// import FormBar from './FormBar.jsx';
 import axios from 'axios';
 import styles from './qa.module.css';
 
@@ -25,7 +25,7 @@ const QAWrapper = () => {
     <div className={styles.qaContainer}>
       {/* <><SearchBar  /></> */}
       <div className={styles.qaItem}><QAList productId={id} /></div>
-      <div className={styles.qaItem}><FormBar className={styles.qaItem} productId={id} /></div>
+      {/* <div className={styles.qaItem}><FormBar className={styles.qaItem} productId={id} /></div> */}
     </div>
   )
 }

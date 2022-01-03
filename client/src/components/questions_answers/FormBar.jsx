@@ -9,12 +9,19 @@ const FormBar = ({ productId }) => {
     setShowModal(prev => !prev);
   };
 
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div>
-      <span>
-        <button className={styles.borderBtn} onClick={openModal}>Add a question +</button>
-        <ModalQuestions showModal={showModal} setShowModal={setShowModal} productId={productId}/>
-      </span>
+      <div>
+        <span>
+          <button className={styles.borderBtn} onClick={openModal}>Add a question +</button>
+          <ModalQuestions showModal={showModal} setShowModal={setShowModal} productId={productId} closeModal={closeModal}/>
+        </span>
+      </div>
     </div>
   );
 };

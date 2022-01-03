@@ -35,9 +35,6 @@ const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
         }));
     };
 
-    const handleModalChange = (event) => {
-        setShowModal(false);
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault();

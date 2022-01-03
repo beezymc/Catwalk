@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import QAListEntry from './QAListEntry.jsx';
 import SearchBar from './SearchBar.jsx';
+import FormBar from './FormBar.jsx';
 import styles from './qa.module.css';
 
 const QAList = ({productId}) => {
@@ -43,8 +44,9 @@ const QAList = ({productId}) => {
         }
         </ul>
       </div>
-      <div>
-        <a className={styles.borderBtn} onClick={handleClick}>More answered questions +</a>
+      <div className={styles.qaContainer}>
+        <div className={styles.qaItem}><button className={styles.borderBtn} onClick={handleClick}>More answered questions</button></div>
+        <div className={styles.qaItem}><FormBar className={styles.qaItem} productId={productId} /></div>
       </div>
     </div>
 

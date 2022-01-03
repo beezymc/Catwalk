@@ -17,7 +17,6 @@ const QuestionItem = ({ questionInfo }) => {
   };
 
   const closeModal = () => {
-    console.log('CLOSE MODAL')
     setShowModal(false);
   };
 
