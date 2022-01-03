@@ -31,7 +31,6 @@ const ProductOverview = (props) => {
       params: { "product_id": "63616" }
     })
       .then((response) => {
-        //console.log(response.data.results)
         setStyles(response.data.results)
         setStyle(response.data.results[0])
         setMainUrl(response.data.results[0].photos[0].url)
@@ -54,14 +53,7 @@ const ProductOverview = (props) => {
   }, []);
 
   const limitedPictureArray = currentStyle.photos.slice(0, 10);
-  console.log('limited image array', limitedPictureArray)
-  const currentPicture = limitedPictureArray[imageIndex].url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
-  //console.log(styles);
-  //console.log(product);
-  //console.log(currentStyle);
-  //console.log('main image url', mainUrl)
-  //console.log(imageIndex);
-
+  const currentPicture = limitedPictureArray[imageIndex].url || mainUrl;
 
 
 
@@ -79,7 +71,7 @@ const ProductOverview = (props) => {
         <Description product={product} currentStyle={currentStyle}/>
       </div>
       <div className={css.stylesWrapper}>
-        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl} setSalePrice={setSalePrice} currentStyle={currentStyle}/>
+        <Styles styles={styles} setStyle={setStyle} setImageIndex={setImageIndex} setSalePrice={setSalePrice} currentStyle={currentStyle}/>
       </div>
       <div className={css.cartWrapper}>
         <Cart currentStyle={currentStyle}/>
