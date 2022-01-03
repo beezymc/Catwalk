@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    'es6': true
+    'es7': true
   },
   parserOptions: {
     'sourceType': 'module',
