@@ -23,6 +23,7 @@ const ProductOverview = (props) => {
   });
   const [mainUrl, setMainUrl] = useState(currentStyle.photos[0].url);
   const [salePrice, setSalePrice] = useState(null);
+  const [imageIndex, setImageIndex] = useState(0);
 
 
   useEffect(() => {
@@ -52,13 +53,14 @@ const ProductOverview = (props) => {
       })
   }, []);
 
-
+  const limitedPictureArray = currentStyle.photos.slice(0, 10);
+  console.log('limited image array', limitedPictureArray)
+  const currentPicture = limitedPictureArray[imageIndex].url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
   //console.log(styles);
   //console.log(product);
   //console.log(currentStyle);
   //console.log('main image url', mainUrl)
-
-
+  //console.log(imageIndex);
 
 
 
@@ -66,11 +68,13 @@ const ProductOverview = (props) => {
   return (
     <div>
       <div className={css.mainImageWrapper}>
-        <img src={mainUrl} className={css.imgSize2}></img>
+        <img src={currentPicture} className={css.imgSize2}></img>
       </div>
       <div className={css.galleryWrapper}>
-        <Gallery currentStyle={currentStyle} setMainUrl={setMainUrl}/>
+        <Gallery limitedPictureArray={limitedPictureArray} setMainUrl={setMainUrl} setImageIndex={setImageIndex}/>
       </div>
+      <img src="https://img.icons8.com/ios/50/000000/chevron-left.png" onClick={() => {setImageIndex(imageIndex - 1)}} className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow}/>
+      <img src="https://img.icons8.com/ios/50/000000/chevron-right.png" onClick={() => {setImageIndex(imageIndex + 1)}} className={imageIndex === limitedPictureArray.length-1 ? css.hiddenArrow : css.rightArrow}/>
       <div className={css.descriptionWrapper}>
         <Description product={product} currentStyle={currentStyle}/>
       </div>
