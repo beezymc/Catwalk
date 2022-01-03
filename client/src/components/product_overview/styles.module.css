@@ -1,7 +1,7 @@
 .stylesWrapper {
 width: 400px;
 position: absolute;
-left: 550px;
+left: 600px;
 top: 150px;
 }
 
@@ -13,21 +13,21 @@ top: 150px;
 .descriptionWrapper {
   width: 400px;
   position: absolute;
-  left: 550px;
+  left: 600px;
   top: 8px;
 }
 
 .cartWrapper {
   width: 400px;
   position: absolute;
-  left: 550px;
+  left: 600px;
   top: 375px;
 }
 
 .mainImageWrapper {
   width: 400px;
   position: absolute;
-  left: 100px;
+  left: 135px;
 }
 
 .imgSize {
@@ -93,12 +93,14 @@ top: 150px;
 
 .rightArrow {
   position: absolute;
-  left: 320px;
+  left: 530px;
+  top: 150px;
 }
 
 .leftArrow {
   position: absolute;
-  left: 200px;
+  left: 92px;
+  top: 150px;
 }
 
 .hiddenArrow {

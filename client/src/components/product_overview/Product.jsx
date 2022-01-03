@@ -65,7 +65,6 @@ const ProductOverview = (props) => {
 
 
 
-
   return (
     <div>
       <div className={css.mainImageWrapper}>
@@ -74,8 +73,8 @@ const ProductOverview = (props) => {
       <div className={css.galleryWrapper}>
         <Gallery limitedPictureArray={limitedPictureArray} setMainUrl={setMainUrl} setImageIndex={setImageIndex}/>
       </div>
-      <img src="https://img.icons8.com/external-prettycons-solid-prettycons/60/000000/external-left-arrow-orientation-prettycons-solid-prettycons.png" onClick={() => {setImageIndex(imageIndex - 1)}} className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow}/>
-      <img src="https://img.icons8.com/external-prettycons-solid-prettycons/60/000000/external-right-arrow-orientation-prettycons-solid-prettycons.png" onClick={() => {setImageIndex(imageIndex + 1)}} className={imageIndex === limitedPictureArray.length-1 ? css.hiddenArrow : css.rightArrow}/>
+      <img src="https://img.icons8.com/ios/50/000000/chevron-left.png" onClick={() => {setImageIndex(imageIndex - 1)}} className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow}/>
+      <img src="https://img.icons8.com/ios/50/000000/chevron-right.png" onClick={() => {setImageIndex(imageIndex + 1)}} className={imageIndex === limitedPictureArray.length-1 ? css.hiddenArrow : css.rightArrow}/>
       <div className={css.descriptionWrapper}>
         <Description product={product} currentStyle={currentStyle}/>
       </div>
