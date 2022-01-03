@@ -44,9 +44,9 @@ const QAList = ({productId}) => {
         }
         </ul>
       </div>
-      <div className={styles.qaContainer}>
+      <div className={styles.qaContainerForm}>
         <div className={styles.qaItem}><button className={styles.borderBtn} onClick={handleClick}>More answered questions</button></div>
-        <div className={styles.qaItem}><FormBar className={styles.qaItem} productId={productId} /></div>
+        <div className={styles.qaItem}><FormBar productId={productId} /></div>
       </div>
     </div>
 

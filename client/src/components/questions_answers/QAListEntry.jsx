@@ -9,7 +9,7 @@ const QAListEntry = ({ item }) => {
     <li>
       <div className={styles.qaItem}>
         <QuestionItem questionInfo={item} /></div>
-        <div className={styles.qaItem}><AnswersList answers={item.answers} /></div>
+        <div className={styles.qaItem}><AnswersList answers={item.answers} question_id={item.question_id}/></div>
     </li>
 
   );
