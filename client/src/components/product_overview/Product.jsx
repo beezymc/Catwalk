@@ -21,7 +21,6 @@ const ProductOverview = (props) => {
       }
     ]
   });
-  const [mainUrl, setMainUrl] = useState(currentStyle.photos[0].url);
   const [salePrice, setSalePrice] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -31,10 +30,8 @@ const ProductOverview = (props) => {
       params: { "product_id": "63616" }
     })
       .then((response) => {
-        //console.log(response.data.results)
         setStyles(response.data.results)
         setStyle(response.data.results[0])
-        setMainUrl(response.data.results[0].photos[0].url)
       })
       .catch((err) => {
         console.log('err occurred', err)
@@ -54,14 +51,7 @@ const ProductOverview = (props) => {
   }, []);
 
   const limitedPictureArray = currentStyle.photos.slice(0, 10);
-  console.log('limited image array', limitedPictureArray)
   const currentPicture = limitedPictureArray[imageIndex].url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
-  //console.log(styles);
-  //console.log(product);
-  //console.log(currentStyle);
-  //console.log('main image url', mainUrl)
-  //console.log(imageIndex);
-
 
 
 
@@ -71,7 +61,7 @@ const ProductOverview = (props) => {
         <img src={currentPicture} className={css.imgSize2}></img>
       </div>
       <div className={css.galleryWrapper}>
-        <Gallery limitedPictureArray={limitedPictureArray} setMainUrl={setMainUrl} setImageIndex={setImageIndex}/>
+        <Gallery limitedPictureArray={limitedPictureArray} setImageIndex={setImageIndex}/>
       </div>
       <img src="https://img.icons8.com/ios/50/000000/chevron-left.png" onClick={() => {setImageIndex(imageIndex - 1)}} className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow}/>
       <img src="https://img.icons8.com/ios/50/000000/chevron-right.png" onClick={() => {setImageIndex(imageIndex + 1)}} className={imageIndex === limitedPictureArray.length-1 ? css.hiddenArrow : css.rightArrow}/>
@@ -79,7 +69,7 @@ const ProductOverview = (props) => {
         <Description product={product} currentStyle={currentStyle}/>
       </div>
       <div className={css.stylesWrapper}>
-        <Styles styles={styles} setStyle={setStyle} setMainUrl={setMainUrl} setSalePrice={setSalePrice} currentStyle={currentStyle}/>
+        <Styles styles={styles} setStyle={setStyle} setImageIndex={setImageIndex} setSalePrice={setSalePrice} currentStyle={currentStyle}/>
       </div>
       <div className={css.cartWrapper}>
         <Cart currentStyle={currentStyle}/>

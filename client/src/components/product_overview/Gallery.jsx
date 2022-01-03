@@ -4,11 +4,10 @@ import css from './styles.module.css';
 
 
 const Gallery = (props) => {
-  //console.log('in gallery', props.currentStyle)
   return (
     <div className={css.imagesWrapper}>
       {props.limitedPictureArray.map((photo, index) => {
-        return <Images photo={photo} key={index} index={index} setMainUrl={props.setMainUrl} setImageIndex={props.setImageIndex}/>;
+        return <Images photo={photo} key={index} index={index} setImageIndex={props.setImageIndex}/>;
       })}
     </div>
   );
