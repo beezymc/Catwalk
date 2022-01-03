@@ -16,12 +16,10 @@ const FormBar = ({ productId }) => {
 
   return (
     <div>
-      <div>
-        <span>
-          <button className={styles.borderBtn} onClick={openModal}>Add a question +</button>
-          <ModalQuestions showModal={showModal} setShowModal={setShowModal} productId={productId} closeModal={closeModal}/>
-        </span>
-      </div>
+      <span>
+        <button className={styles.borderBtn} onClick={openModal}>Add a question +</button>
+        <ModalQuestions showModal={showModal} setShowModal={setShowModal} productId={productId} closeModal={closeModal}/>
+      </span>
     </div>
   );
 };

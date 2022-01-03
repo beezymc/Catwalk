@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
+// import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
 import QAWrapper from './questions_answers/QAWrapper.jsx';
-import ProductOverview from './product_overview/Product.jsx';
+// import ProductOverview from './product_overview/Product.jsx';
 import {
   useParams,
 } from 'react-router-dom';
@@ -29,14 +29,14 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
-      <ProductOverview />
+      {/* <ProductOverview />
       <br></br>
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}
         currentProduct={props.currentProduct}
         currentProductReviews={props.currentProductReviews}
         handleProductInit={props.handleProductInit}
-      />
+      /> */}
       <QAWrapper />
     </div>
   );

@@ -81,9 +81,12 @@ module.exports = {
   getQuestion: (question_id) => {
     return axios.get(`${url}/questions/?question_id=${question_id}`, { headers })
   },
-  getAnswer: (question_id) => {
-    return axios.get(`${url}/questions/?question_id=${question_id}/answers`, { headers })
+  getAnswers: (question_id, count, page) => {
+    console.log('received get answers request, page:  ', page);
+    return axios.get(`${url}/qa/questions/${question_id}/answers?count=${count}&page=${page}`, { headers })
   },
+
+
   updateQuestion: (question_id) => {
     return axios.patch(`${url}/questions/?question_id=${question_id}/helpful`, { headers })
   },

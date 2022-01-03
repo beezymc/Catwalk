@@ -109,9 +109,12 @@ module.exports = {
         res.status(404).send(err);
       });
   },
-  getAnswer: (req, res) => {
-    const params = req.query.question_id;
-    models.getAnswer(params)
+  getAnswers: (req, res) => {
+    console.log('received get answers request');
+    const question_id = req.params.question_id;
+    const count = req.query.count;
+    const page = req.query.page;
+    models.getAnswers(question_id, count, page)
       .then((response) => {
         res.status(200).send(response.data);
       })

@@ -29,12 +29,12 @@ time, mark, audio, video {
   /* max-width: 1400px; */
   align-items: left;
 	padding: 10px;
-	background: #fff;
   border-radius: 5px;
 	/* margin: 45px auto; */
   box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
   font-size: 0.9rem;
   font-family: 'Poppins';
+  /* margin-left: 5%; */
 }
 
 .qaItem {
@@ -43,6 +43,13 @@ time, mark, audio, video {
 	margin: 2px;
 	/* background: #3db5da; */
 	border-radius: 3px;
+}
+
+.qaContainerForm {
+  display: flex;
+  flex-wrap: nonwrap;
+  overflow-x: auto;
+  align-items: center;
 }
 
   .modalmain {
@@ -115,7 +122,6 @@ time, mark, audio, video {
     height: 20px;
     width: 100%;
     padding: 5px 10px 5px 40px;
-    color: rgba(0, 0, 0, 0.05);
     border: 0px;
     background: url(https://i.imgur.com/lrQiTER.png) no-repeat 1%;
     background-size: 20px;
@@ -156,9 +162,10 @@ time, mark, audio, video {
 
   .answerLink {
     font-weight: bold;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    margin-top: 10px;
-    letter-spacing: 0.1em;
+    margin-top: 7px;
+
     border-bottom: solid 1px;
   }
 
@@ -225,6 +232,9 @@ time, mark, audio, video {
   }
 
   .borderBtn {
-     border: 1px gray solid;
-    padding: 10px 15px 10px 15px;
+    border: 1px gray solid;
+    padding: 15px;
+    margin: 0.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
   }
