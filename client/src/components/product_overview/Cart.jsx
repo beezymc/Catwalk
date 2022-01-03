@@ -28,7 +28,6 @@ const Cart = (props) => {
     let sizeIndex = sizeList.indexOf(event.target.value)
     setMaxQuantity(quantity[sizeIndex])
     setCurrentSku(skus[sizeIndex])
-    //console.log('quantity max', quantity[sizeIndex]);
     for (var i = 1; i <= quantity[sizeIndex]; i++) {
       if (i <= 15) {
         range.push(i)
@@ -43,25 +42,20 @@ const Cart = (props) => {
   const onClick = () => {
     addCart(currentSku, amount);
   }
-  // console.log(props.currentStyle.skus)
-  // console.log("size state", size)
-  // console.log('amount selected', amount)
-  // console.log('range', quantities)
-  console.log('currentsku', currentSku)
-  console.log('amount', amount)
+
   if (size > 0) {
     return (
       <div className={css.selectWrapper}>
         <h4>Select Size</h4>
         <select className={css.customSelect} onChange={onChange}>
           <option> Select a Size </option>
-          {sizeList.map((x, y) =>
-            <option value={x} key={y}>{x} Size</option>)
+          {sizeList.map((size, index) =>
+            <option value={size} key={index}>{size} Size</option>)
           }</select>
         <select className={css.customSelect} onChange={onChange2}>
           <option> Select a Quantity </option>
-          {quantities.map((x, y) =>
-            <option value={x} key={y}>{x}</option>)
+          {quantities.map((quantity, index) =>
+            <option value={quantity} key={index}>{quantity}</option>)
           }
         </select>
         <button onClick={onClick}> Add to cart </button>
@@ -73,8 +67,8 @@ const Cart = (props) => {
         <h4>Select Size</h4>
         <select className={css.customSelect} onChange={onChange}>
           <option> Select a Size </option>
-          {sizeList.map((x, y) =>
-            <option value={x} key={y}>{x} Size</option>)
+          {sizeList.map((size, index) =>
+            <option value={size} key={index}>{size} Size</option>)
           }</select>
       </div>
     );

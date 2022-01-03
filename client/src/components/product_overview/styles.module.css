@@ -27,8 +27,7 @@ top: 150px;
 .mainImageWrapper {
   width: 400px;
   position: absolute;
-  left: 112px;
-  top: 8px;
+  left: 100px;
 }
 
 .imgSize {
@@ -90,6 +89,20 @@ top: 150px;
 .productTitle {
   font-style: bold;
   font-size: 30px;
+}
+
+.rightArrow {
+  position: absolute;
+  left: 320px;
+}
+
+.leftArrow {
+  position: absolute;
+  left: 200px;
+}
+
+.hiddenArrow {
+  display: none;
 }
 
 /* .customSelect {
