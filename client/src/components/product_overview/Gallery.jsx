@@ -7,7 +7,7 @@ const Gallery = (props) => {
   return (
     <div className={css.imagesWrapper}>
       {props.limitedPictureArray.map((photo, index) => {
-        return <Images photo={photo} key={index} index={index} setMainUrl={props.setMainUrl} setImageIndex={props.setImageIndex}/>;
+        return <Images photo={photo} key={index} index={index} setImageIndex={props.setImageIndex}/>;
       })}
     </div>
   );

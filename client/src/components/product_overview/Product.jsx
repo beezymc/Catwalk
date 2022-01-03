@@ -21,7 +21,6 @@ const ProductOverview = (props) => {
       }
     ]
   });
-  const [mainUrl, setMainUrl] = useState(currentStyle.photos[0].url);
   const [salePrice, setSalePrice] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -33,7 +32,6 @@ const ProductOverview = (props) => {
       .then((response) => {
         setStyles(response.data.results)
         setStyle(response.data.results[0])
-        setMainUrl(response.data.results[0].photos[0].url)
       })
       .catch((err) => {
         console.log('err occurred', err)
@@ -63,7 +61,7 @@ const ProductOverview = (props) => {
         <img src={currentPicture} className={css.imgSize2}></img>
       </div>
       <div className={css.galleryWrapper}>
-        <Gallery limitedPictureArray={limitedPictureArray} setMainUrl={setMainUrl} setImageIndex={setImageIndex}/>
+        <Gallery limitedPictureArray={limitedPictureArray} setImageIndex={setImageIndex}/>
       </div>
       <img src="https://img.icons8.com/ios/50/000000/chevron-left.png" onClick={() => {setImageIndex(imageIndex - 1)}} className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow}/>
       <img src="https://img.icons8.com/ios/50/000000/chevron-right.png" onClick={() => {setImageIndex(imageIndex + 1)}} className={imageIndex === limitedPictureArray.length-1 ? css.hiddenArrow : css.rightArrow}/>
