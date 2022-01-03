@@ -51,7 +51,7 @@ const ProductOverview = (props) => {
   }, []);
 
   const limitedPictureArray = currentStyle.photos.slice(0, 10);
-  const currentPicture = limitedPictureArray[imageIndex].url || mainUrl;
+  const currentPicture = limitedPictureArray[imageIndex].url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
 
 
 
