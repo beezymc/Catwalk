@@ -87,6 +87,12 @@ describe('RelatedItemCarousel', () => {
   });
   test('if the carousel is overflowing and at neither edge, both arrows should be visible', () => {
   });
+  test('if the right arrow is visible and clicked, the carousel will shift right the card width', () => {
+
+  });
+  test('if the left arrow is visible and clicked, the carousel will shift left the card width', () => {
+
+  });
 });
 
 describe('CompareItem', () => {
@@ -167,6 +173,12 @@ describe('OutfitCarousel', () => {
   test('if the carousel is overflowing and at the right edge, the right arrow should be hidden and the left visible', () => {
   });
   test('if the carousel is overflowing and at neither edge, both arrows should be visible', () => {
+  });
+  test('if the right arrow is visible and clicked, the carousel will shift right the card width', () => {
+
+  });
+  test('if the left arrow is visible and clicked, the carousel will shift left the card width', () => {
+
   });
 });
 

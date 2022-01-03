@@ -30,15 +30,15 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
-      <ProductOverview />
-      <br></br>
+      {/* <ProductOverview />
+      <br></br> */}
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}
         currentProduct={props.currentProduct}
         currentProductReviews={props.currentProductReviews}
         handleProductInit={props.handleProductInit}
       />
-      <QAWrapper />
+      {/* <QAWrapper /> */}
     </div>
   );
 };

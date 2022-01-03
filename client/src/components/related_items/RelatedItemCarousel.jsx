@@ -11,6 +11,7 @@ const RelatedItemCarousel = (props) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedReviews, setRelatedReviews] = useState([]);
   const [relatedStyles, setRelatedStyles] = useState([]);
+  const [relatedItemDivs, setRelatedItemDivs] = useState([]);
 
   let { productId } = useParams();
 
@@ -26,24 +27,46 @@ const RelatedItemCarousel = (props) => {
           relatedStylesPromises.push(axios.get(`/api/products/?product_id=${related.data[i]}&type=styles`));
         }
         Promise.all(relatedItemsPromises)
-          .then((relatedItems) => {
-            setRelatedItems(relatedItems);
-          })
-          .catch((error) => {
-            console.log(error);
-            setError(true);
-          });
-        Promise.all(relatedReviewsPromises)
-          .then((relatedReviews) => {
-            setRelatedReviews(relatedReviews);
-          })
-          .catch((error) => {
-            console.log(error);
-            setError(true);
-          });
-        Promise.all(relatedStylesPromises)
-          .then((relatedStyles) => {
-            setRelatedStyles(relatedStyles);
+          .then((itemsResults) => {
+            setRelatedItems(itemsResults);
+            Promise.all(relatedReviewsPromises)
+            .then((reviewsResults) => {
+              setRelatedReviews(reviewsResults);
+              Promise.all(relatedStylesPromises)
+              .then((stylesResults) => {
+                setRelatedStyles(stylesResults);
+                const divArr = []
+                for (let i = 0; i < itemsResults.length; i++) {
+                  divArr.push({
+                    key: i,
+                    relatedItem: itemsResults[i],
+                    relatedStyle: stylesResults[i],
+                    relatedItemReview: reviewsResults[i]
+                  })
+                }
+                setRelatedItemDivs(divArr);
+                if (divArr.length > 0 &&
+                  document.getElementById('related-items-carousel').scrollLeft ===
+                  (document.getElementById('related-items-carousel').scrollWidth - document.getElementById('related-items-carousel').clientWidth) &&
+                  !hideRightArrow) {
+                  setHideRightArrow(true);
+                }
+                if (divArr.length > 0 &&
+                  document.getElementById('related-items-carousel').scrollLeft !==
+                  (document.getElementById('related-items-carousel').scrollWidth - document.getElementById('related-items-carousel').clientWidth)
+                  && hideRightArrow) {
+                  setHideRightArrow(false);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                setError(true);
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+              setError(true);
+            });
           })
           .catch((error) => {
             console.log(error);
@@ -56,67 +79,37 @@ const RelatedItemCarousel = (props) => {
       });
   }, [props.currentProduct]);
 
-  let relatedItemDivs = [];
-
-  if (relatedItems && relatedStyles && relatedReviews) {
-    relatedItemDivs = relatedItems.map((relatedItem, index) => {
-      return (
-        <RelatedItem
-          key={index}
-          relatedItem={relatedItem}
-          currentProduct={props.currentProduct}
-          relatedStyle={relatedStyles[index]}
-          relatedItemReview={relatedReviews[index]}
-          handleProductInit={props.handleProductInit}
-          setHideLeftArrow={setHideLeftArrow}
-          setHideRightArrow={setHideRightArrow}
-        />
-      );
-    });
-  }
-
-  if (relatedItemDivs.length > 0) {
-    const div = document.getElementById('related-items-carousel');
-    const maxScrollLeft = div.scrollWidth - div.clientWidth;
-    if ((div.scrollWidth !== div.clientWidth) && hideRightArrow && (div.scrollLeft !== maxScrollLeft)) {
+  const handleArrows = () => {
+    if (document.getElementById('related-items-carousel').scrollLeft ===
+    (document.getElementById('related-items-carousel').scrollWidth - document.getElementById('related-items-carousel').clientWidth) &&
+    !hideRightArrow) {
+      setHideRightArrow(true);
+    }
+    if (document.getElementById('related-items-carousel').scrollLeft !==
+    (document.getElementById('related-items-carousel').scrollWidth - document.getElementById('related-items-carousel').clientWidth)
+    && hideRightArrow) {
       setHideRightArrow(false);
     }
-    if ((div.scrollWidth === div.clientWidth) && !hideRightArrow && (div.scrollLeft === maxScrollLeft)) {
-      setHideRightArrow(true);
+    if (document.getElementById('related-items-carousel').scrollLeft === 0 && !hideLeftArrow) {
+      setHideLeftArrow(true);
+    }
+    if (document.getElementById('related-items-carousel').scrollLeft !== 0 && hideLeftArrow) {
+      setHideLeftArrow(false);
     }
   }
 
   const scrollCarouselLeft = () => {
     const div = document.getElementById('related-items-carousel');
     div.scrollLeft += 220;
-    const maxScrollLeft = div.scrollWidth - div.clientWidth;
-    if (div.scrollLeft === maxScrollLeft) {
-      setHideRightArrow(true);
-    } else {
-      setHideRightArrow(false);
-    }
-    if (div.scrollLeft === 0) {
-      setHideLeftArrow(true);
-    } else {
-      setHideLeftArrow(false);
-    }
+    handleArrows();
   };
 
   const scrollCarouselRight = () => {
     const div = document.getElementById('related-items-carousel');
     div.scrollLeft -= 220;
-    const maxScrollLeft = div.scrollWidth - div.clientWidth;
-    if (div.scrollLeft === maxScrollLeft) {
-      setHideRightArrow(true);
-    } else {
-      setHideRightArrow(false);
-    }
-    if (div.scrollLeft === 0) {
-      setHideLeftArrow(true);
-    } else {
-      setHideLeftArrow(false);
-    }
+    handleArrows();
   };
+
   if (error) {
     return (
       <div className={styles.carousel}>
@@ -140,8 +133,22 @@ const RelatedItemCarousel = (props) => {
               : <div className={styles.leftTransparency}/>
           }
           {
-            relatedItemDivs.length > 0 ? relatedItemDivs :
-            <div className={styles.noItems}>
+            relatedItemDivs.length > 0
+            ? relatedItemDivs.map((relatedItem) => {
+              return (
+                <RelatedItem
+                  key={relatedItem.key}
+                  relatedItem={relatedItem.relatedItem}
+                  currentProduct={props.currentProduct}
+                  relatedStyle={relatedItem.relatedStyle}
+                  relatedItemReview={relatedItem.relatedItemReview}
+                  handleProductInit={props.handleProductInit}
+                  setHideLeftArrow={setHideLeftArrow}
+                  setHideRightArrow={setHideRightArrow}
+                />
+              );
+            })
+            : <div className={styles.noItems}>
               No related products found.
             </div>
           }
