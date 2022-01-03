@@ -92,4 +92,33 @@ top: 150px;
   font-size: 30px;
 }
 
+/* .customSelect {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+} */
+
+/* .selectWrapper {
+  width: 100%;
+  min-width: 15px;
+  max-width: 150px;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  display: grid;
+} */
+
+
+
 

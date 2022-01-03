@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { addCart } from '../../shared/api.js';
+import css from './styles.module.css';
 
 const Cart = (props) => {
   const [size, setSize] = useState(0);
@@ -50,14 +51,14 @@ const Cart = (props) => {
   console.log('amount', amount)
   if (size > 0) {
     return (
-      <div>
+      <div className={css.selectWrapper}>
         <h4>Select Size</h4>
-        <select onChange={onChange}>
+        <select className={css.customSelect} onChange={onChange}>
           <option> Select a Size </option>
           {sizeList.map((x, y) =>
             <option value={x} key={y}>{x} Size</option>)
           }</select>
-        <select onChange={onChange2}>
+        <select className={css.customSelect} onChange={onChange2}>
           <option> Select a Quantity </option>
           {quantities.map((x, y) =>
             <option value={x} key={y}>{x}</option>)
@@ -68,14 +69,13 @@ const Cart = (props) => {
     );
   } else {
     return (
-      <div>
+      <div className={css.selectWrapper}>
         <h4>Select Size</h4>
-        <select onChange={onChange}>
+        <select className={css.customSelect} onChange={onChange}>
           <option> Select a Size </option>
           {sizeList.map((x, y) =>
             <option value={x} key={y}>{x} Size</option>)
           }</select>
-        <button onClick={onClick}> Add to cart </button>
       </div>
     );
   }
