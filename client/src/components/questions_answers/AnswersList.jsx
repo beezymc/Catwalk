@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AnswersListEntry from './AnswersListEntry.jsx';
+import styles from './qa.module.css';
 
 
 const AnswersList = ({ answers }) => {
@@ -18,7 +19,7 @@ const AnswersList = ({ answers }) => {
         <AnswersListEntry answer={item} />
       ))
     }
-    <button onClick={handleClick}>Load More Answers</button>
+    <a className={styles.answerLink} onClick={handleClick} >Load More Answers</a>
     </ul>
   );
 

@@ -7,9 +7,9 @@ import styles from './qa.module.css';
 const QAListEntry = ({ item }) => {
   return (
     <li>
-      <div className={styles.listEntry}>
-        <QuestionItem questionInfo={item} />
-        <AnswersList answers={item.answers} /></div>
+      <div className={styles.qaItem}>
+        <QuestionItem questionInfo={item} /></div>
+        <div className={styles.qaItem}><AnswersList answers={item.answers} /></div>
     </li>
 
   );
