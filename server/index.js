@@ -23,6 +23,10 @@ app.post('/api/cart', controllers.addCart);
 // Interaction request
 app.post('/api/interactions', controllers.addInteractions);
 // Question / Answer requests
+app.get('/api/questions', controllers.getQuestionsByProductId);
+app.post('/api/questions/:question_id/answers', controllers.createAnswer);
+app.post('/api/questions/', controllers.createQuestion);
+app.put('/api/answers/:answer_id/helpful', controllers.updateAnswer);
 app.get('/api/questions', controllers.getQuestion);
 app.get('/api/answers', controllers.getAnswer);
 app.patch('/api/question/update', controllers.updateQuestion);

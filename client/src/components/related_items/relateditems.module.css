@@ -70,10 +70,18 @@
 .leftTransparency {
   z-index: 1;
   position: absolute;
-  left: 0;
-  background-image: linear-gradient(to left, transparent, white);
-  height: 300px;
-  width: 500px;
+  background-image: linear-gradient(to left, transparent, #fafafa);
+  height: 350px;
+  width: 100px;
+}
+
+.rightTransparency {
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  background-image: linear-gradient(to right, transparent, #fafafa);
+  height: 350px;
+  width: 100px;
 }
 
 .leftArrow {

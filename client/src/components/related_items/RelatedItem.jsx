@@ -76,7 +76,7 @@ const RelatedItem = (props) => {
 
     );
   } else {
-    return ( 
+    return (
       <div>
         Loading.
       </div>

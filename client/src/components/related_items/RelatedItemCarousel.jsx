@@ -136,7 +136,15 @@ const RelatedItemCarousel = (props) => {
               </div>
           }
           <div className={styles.relatedItems} id='related-items-carousel'>
+            {
+              hideLeftArrow ? ''
+                : <div className={styles.leftTransparency}/>
+            }
             {relatedItemDivs}
+            {
+              hideRightArrow ? ''
+                : <div className={styles.rightTransparency}/>
+            }
           </div>
           {
             hideRightArrow ? ''

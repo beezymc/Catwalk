@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
+import QAWrapper from './questions_answers/QAWrapper.jsx';
 import ProductOverview from './product_overview/Product.jsx';
 import {
   useParams,
@@ -27,7 +28,6 @@ const App = (props) => {
     );
   }
   return (
-
     <div className={styles.app}>
       <ProductOverview />
       <br></br>
@@ -37,6 +37,7 @@ const App = (props) => {
         currentProductReviews={props.currentProductReviews}
         handleProductInit={props.handleProductInit}
       />
+      <QAWrapper />
     </div>
   );
 };

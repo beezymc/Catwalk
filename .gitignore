@@ -106,3 +106,7 @@ typings/
 client/dist/
 
 config.js
+
+client/dist/bundle.js
+client/dist/bundle.js.map
+

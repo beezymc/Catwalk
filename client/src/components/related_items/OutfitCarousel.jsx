@@ -88,10 +88,13 @@ const OutfitCarousel = (props) => {
           hideLeftArrow ? ''
             : <div className={styles.leftArrow} onClick={() => { scrollCarouselRight(); }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
-              <div className={styles.leftTransparency}/>
             </div>
         }
         <div className={styles.outfitItems} id='outfit-carousel'>
+          {
+            hideLeftArrow ? ''
+              : <div className={styles.leftTransparency}/>
+          }
           <div className={styles.innerCardAdd} onClick={() => {
             handleNewOutfitItem();
           }}>
@@ -113,6 +116,10 @@ const OutfitCarousel = (props) => {
               removeItem={removeItem}
             />);
           })}
+          {
+            hideRightArrow ? ''
+              : <div className={styles.rightTransparency}/>
+          }
         </div>
         {
           hideRightArrow ? ''

@@ -4,10 +4,11 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "jest -c jest.config.js --watch --env=jsdom",
+    "test": "jest",
     "test-once": "jest -c jest.config.js --watch=all --env=jsdom",
     "react-dev": "webpack --config ./webpack.config.js  -w",
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "jesting": "jest --showConfig"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "babel-loader": "^8.2.3",
     "eslint": "^8.5.0",
     "eslint-plugin-react": "^7.28.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.5",
     "react-test-renderer": "^17.0.2",
     "webpack": "^5.65.0",
