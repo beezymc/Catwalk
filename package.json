@@ -22,7 +22,7 @@
   "homepage": "https://github.com/Wistful-Willow/project_catwalk#readme",
   "devDependencies": {
     "@babel/core": "^7.16.5",
-    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/plugin-transform-runtime": "^7.16.7",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
     "@testing-library/jest-dom": "^5.16.1",

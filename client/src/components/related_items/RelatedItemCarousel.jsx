@@ -56,7 +56,7 @@ const RelatedItemCarousel = (props) => {
       });
   }, [props.currentProduct]);
 
-  let relatedItemDivs;
+  let relatedItemDivs = [];
 
   if (relatedItems && relatedStyles && relatedReviews) {
     relatedItemDivs = relatedItems.map((relatedItem, index) => {
@@ -120,45 +120,43 @@ const RelatedItemCarousel = (props) => {
   if (error) {
     return (
       <div className={styles.carousel}>
-        404
-      </div>
-    );
-  }
-  if (relatedItemDivs) {
-    return (
-      <div className={styles.carousel}>
-        Related Products
-        <div className={styles.relatedItemsCarousel}>
-          {
-            hideLeftArrow ? ''
-              : <div className={styles.leftArrow} onClick={() => { scrollCarouselRight(); }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
-              </div>
-          }
-          <div className={styles.relatedItems} id='related-items-carousel'>
-            {
-              hideLeftArrow ? ''
-                : <div className={styles.leftTransparency}/>
-            }
-            {relatedItemDivs}
-            {
-              hideRightArrow ? ''
-                : <div className={styles.rightTransparency}/>
-            }
-          </div>
-          {
-            hideRightArrow ? ''
-              : <div className={styles.rightArrow} onClick={() => { scrollCarouselLeft(); }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>
-              </div>
-          }
-        </div>
+        Error Retrieving Related Items. Please Try Again.
       </div>
     );
   }
   return (
     <div className={styles.carousel}>
-      Loading.
+      Related Products
+      <div className={styles.relatedItemsCarousel}>
+        {
+          hideLeftArrow ? ''
+            : <div className={styles.leftArrow} onClick={() => { scrollCarouselRight(); }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+            </div>
+        }
+        <div className={styles.relatedItems} id='related-items-carousel'>
+          {
+            hideLeftArrow ? ''
+              : <div className={styles.leftTransparency}/>
+          }
+          {
+            relatedItemDivs.length > 0 ? relatedItemDivs :
+            <div className={styles.noItems}>
+              No related products found.
+            </div>
+          }
+          {
+            hideRightArrow ? ''
+              : <div className={styles.rightTransparency}/>
+          }
+        </div>
+        {
+          hideRightArrow ? ''
+            : <div className={styles.rightArrow} onClick={() => { scrollCarouselLeft(); }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>
+            </div>
+        }
+      </div>
     </div>
   );
 };

@@ -211,3 +211,12 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+.noItems {
+  text-transform: none;
+  font-size: 25px;
+  color: lightslategray;
+  align-items: center;
+  margin: auto;
+  padding-top: 5px;
+};
