@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useState, Component } from "react";
 import styles from './qa.module.css';
 
-const ModalAnswers = ({showModal, setShowModal, question_id}) => {
+const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
     const [values, setValues] = useState({
         answer: '',
         nickname: '',
         email: '',
         file: ''
     });
+
 
     const handleAnswerChange = (event) => {
         event.persist();
@@ -34,6 +35,7 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
         }));
     };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post(`/api/questions/${question_id}/answers`, {
@@ -48,28 +50,41 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
         <>
         {showModal ? <div className={styles.modalmain}>
             <form onSubmit={handleSubmit} className={styles.modalContent}>
-                <label>Your Answer*</label>
-                    <textarea maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></textarea>
-                    <br />
-                <label>Your Nickname*</label>
-                    <input type="text" placeholder='Example: jack543!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required/>
-                    <br />
-                <label>Your Email*</label>
-                    <input type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required/>
-                    <br />
-                <label name="file" value={values.file}></label>
-                    <input type="file" />
-                    <br />
-                <button>Submit an Answer</button>
+                <p>
+                <button className={styles.closeButton} onClick={closeModal}>X</button>
+                </p>
+                <p>
+                    <label>Your Answer*:</label>
+                    <input className={styles.formInput} maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></input>
+                </p>
 
+                    <br />
+                <p>
+                <label>Your Nickname*:</label>
+                    <input className={styles.formInput} type="text" placeholder='Example: jack543!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required/>
+                    </p>
+                    <br />
+                    <p>
+                <label>Your Email*:</label>
+                    <input className={styles.formInput} type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required/>
+                    </p>
+                    <p className={styles.answerInfo}>For authentication reasons, you will not be emailed</p>
+                    <br />
+                    <p>
+                <label name="file" value={values.file}>Add photos:</label>
+                    <input className={styles.formInput} type="file" /></p>
+                    <br />
+                <p>
+                <button className={styles.modalButton}>Submit an Answer</button>
+                </p>
             </form>
         </div> : null}
         </>
-        
+
     )
 }
 
-export default ModalAnswers; 
+export default ModalAnswers;
 
 
 

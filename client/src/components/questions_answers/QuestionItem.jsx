@@ -16,15 +16,19 @@ const QuestionItem = ({ questionInfo }) => {
     setShowModal(prev => !prev);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className={styles.questionContainer}>
-      <div><b>Q: {questionInfo.question_body}</b></div>
+      <div className={styles.question}><b>Q: {questionInfo.question_body}</b></div>
       <div>
-        <span>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
-        <span> |  </span>
+        <span className={styles.link}>Helpful? {isUpvoted ? <span>Yes({questionHelpfullness})</span> : <a onClick={handleClick}>Yes({questionHelpfullness})</a>}</span>
+        <span className={styles.link}>|</span>
         <span>
-          <button onClick={openModal}>Add Answer</button>
-          <ModalAnswers showModal={showModal} setShowModal={setShowModal} question_id={questionInfo.question_id}/>
+          <a onClick={openModal} className={styles.link}>Add Answer</a>
+          <ModalAnswers showModal={showModal} setShowModal={setShowModal} question_id={questionInfo.question_id} closeModal={closeModal}/>
         </span>
       </div>
     </div>

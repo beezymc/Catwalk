@@ -15,10 +15,13 @@ const SearchBar = ({data, setSearchTerm, searchTerm, setSearchResults, searchRes
   }, [searchTerm]);
 
   return (
-    <div className={styles.searchContainer}>
-      <input className={styles.searchInput}type="text" placeholder="Have a question? search for answer..." value={searchTerm} onChange={handleChange}/>
-      <button className={styles.searchButton}>Search</button>
+    <div className={styles.qaItem}>
+      <div className={styles.searchContainer}>
+        <input className={styles.searchInput}type="text" placeholder="Have a question? search for answer..." value={searchTerm} onChange={handleChange}/>
+        <button className={styles.searchButton}>Search</button>
+      </div>
     </div>
+
   );
 
 };
