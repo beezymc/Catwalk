@@ -2,14 +2,13 @@ import axios from 'axios';
 import React, { useState, Component } from "react";
 import styles from './qa.module.css';
 
-const ModalAnswers = ({showModal, setShowModal, question_id}) => {
+const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
     const [values, setValues] = useState({
         answer: '',
         nickname: '',
         email: '',
         file: ''
     });
-    const [hideModal, setHideModal] = useState(false);
 
 
     const handleAnswerChange = (event) => {
@@ -55,6 +54,9 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
         {showModal ? <div className={styles.modalmain}>
             <form onSubmit={handleSubmit} className={styles.modalContent}>
                 <p>
+                <button className={styles.closeButton} onClick={closeModal}>X</button>
+                </p>
+                <p>
                     <label>Your Answer*:</label>
                     <input className={styles.formInput} maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></input>
                 </p>
@@ -69,6 +71,7 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
                 <label>Your Email*:</label>
                     <input className={styles.formInput} type="email" placeholder='Example: jack@email.com' maxLength="60" name="email" value={values.email} onChange={handleEmailChange} required/>
                     </p>
+                    <p className={styles.answerInfo}>For authentication reasons, you will not be emailed</p>
                     <br />
                     <p>
                 <label name="file" value={values.file}>Add photos:</label>
@@ -76,7 +79,6 @@ const ModalAnswers = ({showModal, setShowModal, question_id}) => {
                     <br />
                 <p>
                 <button className={styles.modalButton}>Submit an Answer</button>
-                <button className={styles.modalButton} onCLick={handleModalChange}>close</button>
                 </p>
             </form>
         </div> : null}

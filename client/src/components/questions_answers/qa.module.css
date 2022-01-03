@@ -25,7 +25,8 @@ time, mark, audio, video {
   flex-direction: column;
   flex-wrap: nonwrap;
   overflow-x: auto;
-  max-width: 1100px;
+  width: 90%;
+  /* max-width: 1400px; */
   align-items: left;
 	padding: 10px;
 	background: #fff;
@@ -195,6 +196,19 @@ time, mark, audio, video {
     flex: 1;
     padding: 10px 20px;
     box-sizing: border-box;
+  }
+
+  .closeButton {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+    background: #4d4d4d;
+    border: 0;
+    cursor: pointer;
+    margin-left: auto;
   }
 
   .modalButton {
