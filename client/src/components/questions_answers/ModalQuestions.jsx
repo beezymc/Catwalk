@@ -40,9 +40,9 @@ const ModalQuestions = ({showModal, setShowModal, productId, closeModal}) => {
             body: values.question,
             name: values.nickname,
             email: values.email,
-            product_id: Number(productId)
+            product_id: parseInt(productId)
         })
-        .then(() => console.log("sending from modal questions: ", product_id))
+        .then(() => console.log("sent from modal questions: ", product_id))
         .catch((err) => console.log(err));
     }
 

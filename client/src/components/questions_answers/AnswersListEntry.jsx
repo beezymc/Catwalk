@@ -10,9 +10,9 @@ const AnswersListEntry = ({ answer }) => {
   const handleClick = () => {
     setanswerHelpfullness(answerHelpfullness + 1);
     setUpvoted(true);
-    axios.put(`/api/answers/${answer.id}/helpful`, {helpfulness: answerHelpfullness})
+    axios.put(`/api/answers/${answer.answer_id}/helpful`, {helpfulness: answerHelpfullness})
       .then((response) => {
-        console.log('answer.id: ', answer.id);
+        console.log('answer.answer_id: ', answer.answer_id);
         console.log('answerHelpfullness ', answerHelpfullness.id);
       })
       .catch((err) => {

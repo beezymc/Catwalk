@@ -16,7 +16,6 @@ const QAList = ({productId}) => {
     if (productId) {
       axios.get('/api/questions', { params: { product_id: `${productId}`, count: `${questionsCount}`} }) //go to axios github docs -> section Request Config
         .then((data) => {
-          console.log('number of questions displayed: ', questionsCount);
           setQuestionData(data.data.results);
           //TODO: refactor
           setSearchResults(data.data.results);
