@@ -48,7 +48,7 @@ const ModalQuestions = ({showModal, setShowModal, productId, closeModal}) => {
 
     return (
         <>
-            {showModal ? <div className={styles.modalmain}>
+            {showModal ? <div className={styles.modalmain} onClick={closeModal}>
                 <form onSubmit={handleSubmit} className={styles.modalContent}>
                 <p>
                 <button className={styles.closeButton} onClick={closeModal}>X</button>
