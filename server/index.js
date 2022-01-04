@@ -29,7 +29,7 @@ app.post('/api/questions/', controllers.createQuestion);
 app.put('/api/answers/:answer_id/helpful', controllers.updateAnswer);
 app.get('/api/questions', controllers.getQuestion);
 app.get('/api/questions/:question_id/answers', controllers.getAnswers);
-app.patch('/api/question/update', controllers.updateQuestion);
+app.put('/api/questions/:question_id/helpful', controllers.updateQuestion);
 app.patch('/api/question/report', controllers.reportQuestion);
 // Review requests
 app.get('/api/reviews', controllers.getReviews);
