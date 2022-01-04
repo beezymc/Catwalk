@@ -30,14 +30,17 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
+      {/* pass in props.currentProductStyles, props.currentStyle, props.currentProduct, props.handleCurrentStyleClick and (maybe) props.currentProductReviews */}
       <ProductOverview />
       <br></br>
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}
+        currentStyle={props.currentStyle}
         currentProduct={props.currentProduct}
         currentProductReviews={props.currentProductReviews}
         handleProductInit={props.handleProductInit}
       />
+      {/* pass in props.currentProduct */}
       <QAWrapper />
     </div>
   );

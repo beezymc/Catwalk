@@ -10,7 +10,6 @@ const RelatedItem = (props) => {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
-
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
     const relatedItem = props.relatedItem.data;
     const relatedStyle = props.relatedStyle.data.results[0];

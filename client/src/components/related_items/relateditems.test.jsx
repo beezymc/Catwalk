@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import RelatedItemsWrapper from './RelatedItemsWrapper.jsx';
 import RelatedItemCarousel from './RelatedItemCarousel.jsx';
 import CompareItem from './CompareItem.jsx';
 import StarRating from './StarRating.jsx';
+import OutfitCarousel from './OutfitCarousel.jsx';
 import '@testing-library/jest-dom';
 import store from '../../redux/store/store.js';
 import { Provider } from 'react-redux';
@@ -13,6 +14,10 @@ const renderWithRouter = (ui, {route = '/'} = {}) => {
   window.history.pushState({}, 'Test page', route);
   return render(ui, {wrapper: BrowserRouter});
 };
+
+afterEach(() => {
+  jest.resetAllMocks();
+});
 
 describe('RelatedItemsWrapper', () => {
   const testProduct = {
@@ -39,8 +44,8 @@ describe('RelatedItemsWrapper', () => {
   });
   test('renders two carousels when the current product is present', () => {
     render(<RelatedItemsWrapper currentProduct={testProduct} />);
-    expect(screen.getByText('Your Outfits').toBeInTheDocument);
-    expect(screen.getByText('Related Products').toBeInTheDocument);
+    expect(screen.getByText('Your Outfits')).toBeInTheDocument();
+    expect(screen.getByText('Related Products')).toBeInTheDocument();
   });
 });
 
@@ -48,12 +53,12 @@ describe('RelatedItemCarousel', () => {
   test('renders error message when retrieving related product data resulted in error', async () => {
     const route = '/product/60600';
     renderWithRouter(<RelatedItemCarousel currentProduct={{}}/>, {route});
-    await expect(screen.findByText('Error Retrieving Related Items. Please Try Again.').toBeInTheDocument);
+    await expect(screen.findByText('Error Retrieving Related Items. Please Try Again.')).toBeInTheDocument();
   });
   test('renders no related products message when the item has no related products', async () => {
     const route = '/product/63618';
     renderWithRouter(<RelatedItemCarousel currentProduct={{}}/>, {route});
-    await expect(screen.findByText('No related products found.').toBeInTheDocument);
+    await expect(screen.findByText('No related products found.')).toBeInTheDocument();
   });
   // test('renders related products when the item has related products', async () => {
     // const testProduct = {
@@ -86,6 +91,12 @@ describe('RelatedItemCarousel', () => {
   test('if the carousel is overflowing and at the right edge, the right arrow should be hidden and the left visible', () => {
   });
   test('if the carousel is overflowing and at neither edge, both arrows should be visible', () => {
+  });
+  test('if the right arrow is visible and clicked, the carousel will shift right the card width', () => {
+
+  });
+  test('if the left arrow is visible and clicked, the carousel will shift left the card width', () => {
+
   });
 });
 
@@ -156,29 +167,100 @@ describe('StarRating', () => {
 });
 
 describe('OutfitCarousel', () => {
+  const testProduct = {
+    category: "Kicks",
+    default_price: "450.00",
+    id: 63616,
+    name: "YEasy 350",
+  }
+  const testProductReviews = {
+    ratings: {
+      1: '3',
+      3: '3',
+      4: '3',
+      5: '5'
+    }
+  }
+  const testProductStyles = {
+    results: [
+      {
+        original_price: "120.00",
+        photos: [
+          {
+            thumbnail_url: "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            url: "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+          }
+        ],
+        sale_price: null
+      }
+    ]
+  }
+  const setMockRefElement = (node) => {
+    const mockRef = {
+      get current() {
+        return node;
+      },
+      set current(_value) {},
+    };
+    jest.spyOn(React, 'useRef').mockReturnValue(mockRef);
+  };
+
   test('renders a new outfit item when the \'add outfit\' card is clicked', () => {
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    fireEvent.click(screen.getByText('Add New Outfit'));
+    expect(screen.getByText('Kicks')).toBeInTheDocument();
+  });
+  test('renders only one outfit if the \'add outfit\' card is clicked when one outfit with that id is already rendered', () => {
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    fireEvent.click(screen.getByText('Add New Outfit'));
+    fireEvent.click(screen.getByText('Add New Outfit'));
+    expect(screen.getAllByText('Kicks').length).toEqual(1);
   });
   test('removes a previously-added outfit item when the \'remove outfit\' symbol is clicked', () => {
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    fireEvent.click(screen.getByText('Add New Outfit'));
+    expect(screen.getByText('Kicks').toBeInTheDocument);
+    fireEvent.click(screen.getByText('X'));
+    expect(screen.queryByText('Kicks')).toEqual(null);
   });
   test('if the carousel isn\'t overflowing, arrows should be hidden', () => {
+    setMockRefElement({ clientWidth: 1500, scrollWidth: 1500 });
+    render(<OutfitCarousel />);
+    expect(screen.queryByTitle('Left Arrow')).not.toBeInTheDocument();
+    expect(screen.queryByTitle('Right Arrow')).not.toBeInTheDocument();
   });
   test('if the carousel is overflowing and at the left edge, the left arrow should be hidden and the right visible', () => {
+    setMockRefElement({ offsetWidth: 300, scrollWidth: 1500, scrollLeft: 0 });
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    fireEvent.click(screen.getByText('Add New Outfit'));
+    expect(screen.queryByTitle('Left Arrow')).not.toBeInTheDocument();
+    expect(screen.getByTitle('Right Arrow')).toBeInTheDocument();
   });
   test('if the carousel is overflowing and at the right edge, the right arrow should be hidden and the left visible', () => {
   });
   test('if the carousel is overflowing and at neither edge, both arrows should be visible', () => {
   });
+  test('if the right arrow is visible and clicked, the carousel will shift right the card width', () => {
+
+  });
+  test('if the left arrow is visible and clicked, the carousel will shift left the card width', () => {
+
+  });
 });
 
 describe('OutfitItem', () => {
-  test('renders all props passed in', () => {
+  test('renders original price only if no sale', () => {
+  });
+  test('renders sale and original price if on sale', () => {
   });
 });
 
 describe('RelatedItem', () => {
-  test('renders all props passed in', () => {
+  test('renders original price only if no sale', () => {
   });
-  test('when popup event is triggered, the compare window render', () => {
+  test('renders sale and original price if on sale', () => {
+  });
+  test('when popup event is triggered, the compare window renders', () => {
   });
   test('when popup event is triggered twice, the compare window no longer renders', () => {
   });
