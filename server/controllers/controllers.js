@@ -103,12 +103,13 @@ module.exports = {
     const answer_id = req.params.answer_id;
     models.updateAnswer(req.body, answer_id)
       .then((response) => {
-        res.status(201).send(response.data);
+        res.status(204).send(response.data);
       })
       .catch((err) => {
         res.status(404).send(err);
       });
   },
+
   getAnswers: (req, res) => {
     const question_id = req.params.question_id;
     const count = req.query.count;
@@ -122,7 +123,6 @@ module.exports = {
       });
   },
 
-
   getQuestion: (req, res) => {
     const params = req.query.question_id;
     models.getQuestion(params)
@@ -133,19 +133,18 @@ module.exports = {
         res.status(404).send(err);
       });
   },
+
   updateQuestion: (req, res) => {
-    const params = req.body.question_id;
-    models.updateQuestion(params)
-      .then(() => {
-        return models.getQuestion(params);
-      })
+    const question_id = req.params.question_id;
+    models.updateQuestion(req.body, question_id)
       .then((response) => {
-        res.send(response.data);
+        res.status(204).send(response.data);
       })
       .catch((err) => {
         res.status(404).send(err);
       });
   },
+  
   reportQuestion: (req, res) => {
     const params = req.body.question_id;
     models.reportQuestion(params)

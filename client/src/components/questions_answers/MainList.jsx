@@ -17,7 +17,6 @@ const QAList = ({productId}) => {
       axios.get('/api/questions', { params: { product_id: `${productId}`, count: `${questionsCount}`} }) //go to axios github docs -> section Request Config
         .then((data) => {
           setQuestionData(data.data.results);
-          //TODO: refactor
           setSearchResults(data.data.results);
         })
         .catch((err) => console.log(err));

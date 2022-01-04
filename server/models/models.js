@@ -77,6 +77,16 @@ module.exports = {
     return axios(options);
   },
 
+  updateQuestion: (answerData, question_id) => {
+    const options = {
+      method: 'put',
+      url: `${url}/qa/questions/${question_id}/helpful`,
+      data: answerData,
+      headers: headers
+    };
+    return axios(options);
+  },
+
   getQuestion: (question_id) => {
     return axios.get(`${url}/questions/?question_id=${question_id}`, { headers });
   },
@@ -84,10 +94,6 @@ module.exports = {
     return axios.get(`${url}/qa/questions/${question_id}/answers?count=${count}&page=${page}`, { headers });
   },
 
-
-  updateQuestion: (question_id) => {
-    return axios.patch(`${url}/questions/?question_id=${question_id}/helpful`, { headers });
-  },
   reportQuestion: (question_id) => {
     return axios.patch(`${url}/questions/?question_id=${question_id}/report`, { headers });
   },

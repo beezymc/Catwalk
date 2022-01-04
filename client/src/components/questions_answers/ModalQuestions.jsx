@@ -42,14 +42,17 @@ const ModalQuestions = ({showModal, setShowModal, productId, closeModal}) => {
             email: values.email,
             product_id: parseInt(productId)
         })
-        .then(() => console.log("sent from modal questions: ", product_id))
+        .then(() =>  closeModal())
         .catch((err) => console.log(err));
     }
 
     return (
         <>
-            {showModal ? <div className={styles.modalmain}>
-                <form onSubmit={handleSubmit} className={styles.modalContent}>
+            {showModal ? <div className={styles.modalmain} onClick={() => {closeModal()}}>
+                <form onSubmit={handleSubmit} className={styles.modalContent} onClick={e => {
+          // do not close modal if anything inside modal content is clicked
+          e.stopPropagation();
+        }}>
                 <p>
                 <button className={styles.closeButton} onClick={closeModal}>X</button>
                 </p>
