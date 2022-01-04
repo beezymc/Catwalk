@@ -11,10 +11,6 @@ const AnswersListEntry = ({ answer }) => {
     setanswerHelpfullness(answerHelpfullness + 1);
     setUpvoted(true);
     axios.put(`/api/answers/${answer.answer_id}/helpful`, {helpfulness: answerHelpfullness})
-      .then((response) => {
-        console.log('answer.answer_id: ', answer.answer_id);
-        console.log('answerHelpfullness ', answerHelpfullness.id);
-      })
       .catch((err) => {
         console.log(err);
       });
