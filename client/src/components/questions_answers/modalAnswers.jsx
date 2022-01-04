@@ -43,13 +43,16 @@ const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
             name: values.nickname,
             email: values.email
         })
-        .then(() => console.log("answer data sent"))
+        .then(() =>  closeModal())
         .catch((err) => console.log(err));
     }
     return (
         <>
-        {showModal ? <div className={styles.modalmain} onClick={closeModal}>
-            <form onSubmit={handleSubmit} className={styles.modalContent}>
+        {showModal ? <div className={styles.modalmain} onClick={() => {closeModal()}}>
+            <form onSubmit={handleSubmit} className={styles.modalContent} onClick={e => {
+          // do not close modal if anything inside modal content is clicked
+          e.stopPropagation();
+        }}>
                 <p>
                 <button className={styles.closeButton} onClick={closeModal}>X</button>
                 </p>

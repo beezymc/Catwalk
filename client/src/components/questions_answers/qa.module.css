@@ -34,7 +34,7 @@ time, mark, audio, video {
   box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
   font-size: 0.9rem;
   font-family: 'Poppins';
-  /* margin-left: 5%; */
+  margin-left: 3%;
 }
 
 .qaItem {
@@ -50,6 +50,7 @@ time, mark, audio, video {
   flex-wrap: nonwrap;
   overflow-x: auto;
   align-items: center;
+  margin-left: 3%;
 }
 
   .modalmain {
