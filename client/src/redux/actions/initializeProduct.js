@@ -1,6 +1,7 @@
 import changeCurrentProductReviews from './currentProductReviews.js';
 import changeCurrentProductStyles from './currentProductStyles.js';
 import changeProduct from './currentProduct.js';
+import changeStyle from './currentStyle.js';
 import setError from './currentError';
 import store from '../store/store.js';
 import axios from 'axios';
@@ -13,6 +14,7 @@ var handleProductInit = (productId) => {
         axios.get(`/api/products/?product_id=${productId}&type=styles`)
           .then((productStyles) => {
             store.dispatch(changeCurrentProductStyles(productStyles.data));
+            store.dispatch(changeStyle(productStyles.data.results[0]));
             axios.get(`/api/reviews/meta/?product_id=${productId}`)
               .then((productReviews) => {
                 store.dispatch(changeCurrentProductReviews(productReviews.data));

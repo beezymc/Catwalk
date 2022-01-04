@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import App from '../../components/app.jsx';
 // import the event handler action from Actions
 import handleProductInit from '../actions/initializeProduct.js';
+import changeStyle from '../actions/currentStyle.js';
 
 //place any props you need from the global state here (or remove if none).
 const mapStateToProps = (state) => {
@@ -10,14 +11,16 @@ const mapStateToProps = (state) => {
     currentProduct: state.currentProduct,
     currentProductStyles: state.currentProductStyles,
     currentProductReviews: state.currentProductReviews,
-    error: state.error
+    error: state.error,
+    currentStyle: state.currentStyle
   };
 };
 
 //place any events that fire that alter the global state here (or remove if none).
 const mapDispatchToProps = (dispatch) =>{
   return {
-    handleProductInit: (q) => dispatch(handleProductInit(q))
+    handleProductInit: (q) => dispatch(handleProductInit(q)),
+    handleCurrentStyleClick: (style) => dispatch(changeStyle(style))
   };
 };
 

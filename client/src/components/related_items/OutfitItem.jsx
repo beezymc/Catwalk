@@ -3,11 +3,11 @@ import styles from './relateditems.module.css';
 import StarRating from './StarRating.jsx';
 
 const OutfitItem = (props) => {
-  const [photo, setPhoto] = useState('test');
+  const [photo, setPhoto] = useState('');
   const [category, setCategory] = useState(props.currentProduct.category);
   const [rating, setRating] = useState(0);
   const [name, setName] = useState(props.currentProduct.name);
-  const [price, setPrice] = useState(100.00);
+  const [price, setPrice] = useState(0);
   const [id, setId] = useState(props.currentProduct.id);
 
   useEffect(() => {

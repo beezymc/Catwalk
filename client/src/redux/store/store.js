@@ -6,7 +6,8 @@ const initialState = {
   currentProduct: {},
   currentProductStyles: {},
   currentProductReviews: {},
-  error: ''
+  error: '',
+  currentStyle: {}
 };
 
 const store = createStore(

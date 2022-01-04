@@ -87,7 +87,10 @@ const OutfitCarousel = (props) => {
         {
           hideLeftArrow ? ''
             : <div className={styles.leftArrow} onClick={() => { scrollCarouselRight(); }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <title>Left Arrow</title>
+                <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+              </svg>
             </div>
         }
         <div className={styles.outfitItems} id='outfit-carousel'>
@@ -102,7 +105,9 @@ const OutfitCarousel = (props) => {
               Add New Outfit
             </div>
             <div className={styles.addOutfit}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+              </svg>
             </div>
           </div>
           {outfitItems.map((item) => {
@@ -124,7 +129,10 @@ const OutfitCarousel = (props) => {
         {
           hideRightArrow ? ''
             : <div className={styles.rightArrow} onClick={() => { scrollCarouselLeft(); }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <title>Right Arrow</title>
+                <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/>
+              </svg>
             </div>
         }
       </div>
