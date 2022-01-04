@@ -4,7 +4,7 @@ import styles from './qa.module.css';
 import axios from 'axios';
 
 
-const AnswersList = ({ answers, question_id }) => {
+const AnswersList = ({ question_id }) => {
   //var answersArr = Object.entries(answers).map(item => item[1]);
   //var sliced = answersArr.slice(0, 2);
   //var sorted = sliced.sort((a, b) => b['helpfulness'] - a['helpfulness']);
@@ -32,7 +32,6 @@ const AnswersList = ({ answers, question_id }) => {
         }
         var resultsAfterClick = shownAnswers.concat(results);
         var sorted = resultsAfterClick.sort((a, b) => b['helpfulness'] - a['helpfulness']);
-
         setShownAnswers(prev => sorted);
       })
       .catch((err) => console.log(err));
