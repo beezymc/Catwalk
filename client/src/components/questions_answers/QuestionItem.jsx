@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ModalAnswers from './modalAnswers.jsx';
 import styles from './qa.module.css';
+import axios from 'axios';
 
 const QuestionItem = ({ questionInfo }) => {
   const [questionHelpfullness, setquestionHelpfullness] = useState(questionInfo.question_helpfulness);
@@ -10,6 +11,10 @@ const QuestionItem = ({ questionInfo }) => {
   const handleClick = () => {
     setquestionHelpfullness(questionHelpfullness + 1);
     setUpvoted(true);
+    axios.put(`/api/questions/${questionInfo.question_id}/helpful`, {helpfulness: questionHelpfullness})
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const openModal = () => {
