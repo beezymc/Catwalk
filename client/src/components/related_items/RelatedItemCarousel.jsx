@@ -12,10 +12,10 @@ const RelatedItemCarousel = (props) => {
   const [relatedReviews, setRelatedReviews] = useState([]);
   const [relatedStyles, setRelatedStyles] = useState([]);
   const [relatedItemDivs, setRelatedItemDivs] = useState([]);
+  const [ticking, setTicking] = useState(false);
 
   let { productId } = useParams();
   const scrollRef = useRef(null);
-
   useEffect(() => {
     axios.get(`/api/products/?product_id=${productId}&type=related`)
       .then((related) => {
@@ -78,15 +78,22 @@ const RelatedItemCarousel = (props) => {
   }, [props.currentProduct]);
 
   useEffect(() => {
-    const el = scrollRef.current;
+    let el = scrollRef.current;
     if (el) {
       const onWheel = (e) => {
+        setTicking(false);
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            setTicking(false);
+          })
+          setTicking(true);
+        }
         if (e.deltaY === 0) {
           return;
         }
         e.preventDefault();
-        handleArrows();
         el.scrollTo({
+          //round deltaY to nearest 223 interval
           left: el.scrollLeft + e.deltaY,
           behavior: "smooth"
         });
@@ -98,10 +105,14 @@ const RelatedItemCarousel = (props) => {
     }
   }, []);
 
+  useEffect(() => {
+    if(!ticking) {
+      handleArrows();
+    }
+  }, [ticking]);
+
   const handleArrows = () => {
     const el = scrollRef.current;
-    console.log(el.scrollLeft);
-    console.log(el.scrollLeft - (el.scrollWidth - el.clientWidth));
     if (el.scrollLeft === (el.scrollWidth - el.clientWidth) && !hideRightArrow) {
       setHideRightArrow(true);
     }
@@ -114,17 +125,17 @@ const RelatedItemCarousel = (props) => {
     if (el.scrollLeft !== 0 && hideLeftArrow) {
       setHideLeftArrow(false);
     }
-  }
+  };
 
   const scrollCarouselLeft = () => {
     const el = scrollRef.current;
-    el.scrollLeft += 220;
+    el.scrollLeft += 223;
     handleArrows();
   };
 
   const scrollCarouselRight = () => {
     const el = scrollRef.current;
-    el.scrollLeft -= 220;
+    el.scrollLeft -= 223;
     handleArrows();
   };
 
@@ -145,11 +156,11 @@ const RelatedItemCarousel = (props) => {
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
             </div>
         }
+        {
+          hideLeftArrow ? ''
+            : <div className={styles.leftTransparency}/>
+        }
         <div className={styles.relatedItems} id='related-items-carousel' ref={scrollRef}>
-          {
-            hideLeftArrow ? ''
-              : <div className={styles.leftTransparency}/>
-          }
           {
             relatedItemDivs.length > 0
             ? relatedItemDivs.map((relatedItem) => {
@@ -161,8 +172,6 @@ const RelatedItemCarousel = (props) => {
                   relatedStyle={relatedItem.relatedStyle}
                   relatedItemReview={relatedItem.relatedItemReview}
                   handleProductInit={props.handleProductInit}
-                  setHideLeftArrow={setHideLeftArrow}
-                  setHideRightArrow={setHideRightArrow}
                 />
               );
             })
@@ -170,11 +179,11 @@ const RelatedItemCarousel = (props) => {
               No related products found.
             </div>
           }
-          {
-            hideRightArrow ? ''
-              : <div className={styles.rightTransparency}/>
-          }
         </div>
+        {
+          hideRightArrow ? ''
+            : <div className={styles.rightTransparency}/>
+        }
         {
           hideRightArrow ? ''
             : <div className={styles.rightArrow} onClick={() => { scrollCarouselLeft(); }}>

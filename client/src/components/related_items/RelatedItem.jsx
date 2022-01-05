@@ -12,6 +12,7 @@ const RelatedItem = (props) => {
   };
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
     const relatedItem = props.relatedItem.data;
+    console.log(relatedItem.id);
     const relatedStyle = props.relatedStyle.data.results[0];
     const relatedRatings = props.relatedItemReview.data.ratings;
     let rating = 0;
@@ -39,10 +40,6 @@ const RelatedItem = (props) => {
         </div>
         <div className={styles.innerCard} onClick={() => {
           props.handleProductInit(relatedItem.id);
-          const div = document.getElementById('related-items-carousel');
-          div.scrollLeft = 0;
-          props.setHideLeftArrow(true);
-          props.setHideRightArrow(false);
         }}>
           <Link to={`/product/${relatedItem.id}`}>
             <div className={styles.imageContainer}>

@@ -7,14 +7,15 @@ const OutfitCarousel = (props) => {
   const [hideRightArrow, setHideRightArrow] = useState(true);
   const [hideLeftArrow, setHideLeftArrow] = useState(true);
   const [outfitItems, updateOutfitItems] = useState([]);
-
+  const [ticking, setTicking] = useState(false);
+  const scrollRef = useRef(null);
   useEffect(() => {
-    const div = document.getElementById('outfit-carousel');
-    const maxScrollLeft = div.scrollWidth - div.clientWidth;
-    if ((div.scrollWidth !== div.clientWidth) && hideRightArrow && (div.scrollLeft !== maxScrollLeft)) {
+    const el = scrollRef.current;
+    const maxScrollLeft = el.scrollWidth - el.clientWidth;
+    if ((el.scrollWidth !== el.clientWidth) && hideRightArrow && (el.scrollLeft !== maxScrollLeft)) {
       setHideRightArrow(false);
     }
-    if ((div.scrollWidth === div.clientWidth) && !hideRightArrow && (div.scrollLeft === maxScrollLeft)) {
+    if ((el.scrollWidth === el.clientWidth) && !hideRightArrow && (el.scrollLeft === maxScrollLeft)) {
       setHideRightArrow(true);
     }
   }, [outfitItems]);
@@ -39,46 +40,75 @@ const OutfitCarousel = (props) => {
 
   const removeItem = (id) => {
     updateOutfitItems(outfitItems.filter((item) => {
-      console.log(item.key, id);
       return item.key !== id;
     }));
-    const div = document.getElementById('outfit-carousel');
-    if (div.scrollWidth === div.clientWidth) {
+    const el = scrollRef.current;
+    if (el.scrollWidth === el.clientWidth) {
       setHideLeftArrow(true);
       setHideRightArrow(true);
+    }
+  };
+
+  useEffect(() => {
+    let el = scrollRef.current;
+    if (el) {
+      const onWheel = (e) => {
+        setTicking(false);
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            setTicking(false);
+          })
+          setTicking(true);
+        }
+        if (e.deltaY === 0) {
+          return;
+        }
+        e.preventDefault();
+        el.scrollTo({
+          //round deltaY to nearest 223 interval
+          left: el.scrollLeft + e.deltaY,
+          behavior: "smooth"
+        });
+      };
+      el.addEventListener("wheel", onWheel);
+      return (() => {
+        el.removeEventListener("wheel", onWheel);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if(!ticking) {
+      handleArrows();
+    }
+  }, [ticking]);
+
+  const handleArrows = () => {
+    const el = scrollRef.current;
+    if (el.scrollLeft === (el.scrollWidth - el.clientWidth) && !hideRightArrow) {
+      setHideRightArrow(true);
+    }
+    if (el.scrollLeft !== (el.scrollWidth - el.clientWidth) && hideRightArrow) {
+      setHideRightArrow(false);
+    }
+    if (el.scrollLeft === 0 && !hideLeftArrow) {
+      setHideLeftArrow(true);
+    }
+    if (el.scrollLeft !== 0 && hideLeftArrow) {
+      setHideLeftArrow(false);
     }
   };
 
   const scrollCarouselLeft = () => {
-    const div = document.getElementById('outfit-carousel');
-    div.scrollLeft += 220;
-    const maxScrollLeft = div.scrollWidth - div.clientWidth;
-    if (div.scrollLeft === maxScrollLeft) {
-      setHideRightArrow(true);
-    } else {
-      setHideRightArrow(false);
-    }
-    if (div.scrollLeft === 0) {
-      setHideLeftArrow(true);
-    } else {
-      setHideLeftArrow(false);
-    }
+    const el = scrollRef.current;
+    el.scrollLeft += 220;
+    handleArrows();
   };
 
   const scrollCarouselRight = () => {
-    const div = document.getElementById('outfit-carousel');
-    div.scrollLeft -= 220;
-    const maxScrollLeft = div.scrollWidth - div.clientWidth;
-    if (div.scrollLeft === maxScrollLeft) {
-      setHideRightArrow(true);
-    } else {
-      setHideRightArrow(false);
-    }
-    if (div.scrollLeft === 0) {
-      setHideLeftArrow(true);
-    } else {
-      setHideLeftArrow(false);
-    }
+    const el = scrollRef.current;
+    el.scrollLeft -= 220;
+    handleArrows();
   };
   return (
     <div className={styles.carousel}>
@@ -93,11 +123,12 @@ const OutfitCarousel = (props) => {
               </svg>
             </div>
         }
-        <div className={styles.outfitItems} id='outfit-carousel'>
-          {
-            hideLeftArrow ? ''
-              : <div className={styles.leftTransparency}/>
-          }
+        {
+          hideLeftArrow ? ''
+            : <div className={styles.leftTransparency}/>
+        }
+        <div className={styles.outfitItems} id='outfit-carousel'  ref={scrollRef}>
+
           <div className={styles.innerCardAdd} onClick={() => {
             handleNewOutfitItem();
           }}>
@@ -121,11 +152,11 @@ const OutfitCarousel = (props) => {
               removeItem={removeItem}
             />);
           })}
-          {
-            hideRightArrow ? ''
-              : <div className={styles.rightTransparency}/>
-          }
         </div>
+        {
+          hideRightArrow ? ''
+            : <div className={styles.rightTransparency}/>
+        }
         {
           hideRightArrow ? ''
             : <div className={styles.rightArrow} onClick={() => { scrollCarouselLeft(); }}>
