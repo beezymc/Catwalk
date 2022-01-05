@@ -58,12 +58,12 @@ const ModalQuestions = ({showModal, setShowModal, productId, closeModal}) => {
                 </p>
                     <p>
                     <label>Your Question*:</label>
-                    <input className={styles.formInput} maxLength="1000" name="answer" value={values.question} onChange={handleQuestionChange} required></input>
+                    <input className={styles.formInput} placeholder="Ask your question" maxLength="1000" name="answer" value={values.question} onChange={handleQuestionChange} required></input>
                     </p>
                     <br />
                     <p>
                     <label>Your Nickname*:</label>
-                    <input className={styles.formInput} type="text" placeholder='Example: jackson11!' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required />
+                    <input className={styles.formInput} type="text" placeholder='Example: jackson11' maxLength="60" name="nickname" value={values.nickname} onChange={handleNicknameChange} required />
                     </p>
                     <br />
                     <p>

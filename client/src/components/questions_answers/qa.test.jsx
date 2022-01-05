@@ -2,11 +2,15 @@ import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import 'regenerator-runtime/runtime';
 import QAWrapper from './QAWrapper.jsx';
 import AnswersList from './AnswersList.jsx';
 import QAList from './MainList.jsx';
+import ModalQuestions from'./ModalQuestions.jsx';
+import modalAnswers from './modalAnswers';
+
 
 
 const server = setupServer(
@@ -75,19 +79,42 @@ const server = setupServer(
   }),
   rest.post('/api/questions/', (req, res, ctx) => {
     return res({});
+  }),
+
+  rest.post('/api/questions/553807/answers', (req, res, ctx) => {
+    return res({});
   })
 )
-
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 
-describe('QAList', () => {
+describe('QAWrapper', () => {
+
+  const testProduct = {
+    "id": 63611,
+    "campus": "hr-sfo",
+    "name": "Summer Shoes",
+    "slogan": "A risky call in the spring or fall",
+    "description": "Low-top panelled buffed leather and mesh sneakers. Sizing embroidered in black at round toe. Tonal lace-up closure. Pull-loop and rubberized style name at padded tongue. Padded collar. Pull-loop at heel collar. Logo embroidered in black at outer side. Tonal treaded rubber sole. Tonal stitching.",
+    "category": "Kicks",
+    "default_price": "59.00",
+    "created_at": "2021-12-21T17:19:40.556Z",
+    "updated_at": "2021-12-21T17:19:40.556Z",
+    "features": [
+      {
+        "feature": "Sole",
+        "value": "Rubber"
+      },
+    ]
+  }
+
   test('should render questions', async () => {
     const { debug } = render(
-      <QAList productId="63611" />
+      // <QAWrapper currentProduct="63611" />
+      <QAWrapper currentProduct={testProduct} />
     )
     //todo: add more verifications
     await waitFor(() => {
@@ -98,7 +125,6 @@ describe('QAList', () => {
   });
 
 });
-
 
 describe('AnswersList', () => {
   test('should render answers', async () => {
@@ -114,6 +140,56 @@ describe('AnswersList', () => {
       expect(screen.getByText('Yes(23)').toBeInTheDocument)
     });
   });
-
 });
 
+describe('ModalQuestions', () => {
+  test('test form submit', async () => {
+    const { getByPlaceholderText, getByText } = render(<ModalQuestions showModal='true' productId="63611" />);
+
+    const emailInput = getByPlaceholderText('Example: jack@email.com');
+    fireEvent.change(emailInput, { target: { value: "annasarafanova91@gmail.com" } });
+
+    const questionInput = getByPlaceholderText(/Ask your question/i);
+    fireEvent.change(questionInput, { target: { value: "Is it oversized" } });
+
+    const nameInput = getByPlaceholderText('Example: jackson11');
+    fireEvent.change(nameInput, { target: { value: "anna" } });
+
+    const submitButton = getByText(/Submit Question/i);
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(emailInput.toBeInTheDocument)
+      expect(questionInput.toBeInTheDocument)
+      expect(nameInput.toBeInTheDocument)
+      expect(submitButton.toBeInTheDocument)
+    });
+
+    });
+});
+
+describe('modalAnswers', () => {
+  test('Test form submit', async () => {
+    const { getByPlaceholderText, getByText } = render(<modalAnswers showModal='true' question_id="553807" />);
+
+    const emailInput = getByPlaceholderText(/Example: jack@email.com/i);
+    fireEvent.change(emailInput, { target: { value: "annasarafanova91@gmail.com" } });
+
+    const answerInput = getByPlaceholderText(/Your answer/i);
+    fireEvent.change(questionInput, { target: { value: "Is it oversized" } });
+
+    const nameInput = getByPlaceholderText('Example: jack543!');
+    fireEvent.change(nameInput, { target: { value: "anna" } });
+
+    const submitButton = getByText(/Submit Answer/i);
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(emailInput.toBeInTheDocument)
+      expect(answerInput.toBeInTheDocument)
+      expect(nameInput.toBeInTheDocument)
+      expect(submitButton.toBeInTheDocument)
+    });
+
+    });
+});

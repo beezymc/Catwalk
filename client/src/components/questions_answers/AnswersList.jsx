@@ -5,9 +5,6 @@ import axios from 'axios';
 
 
 const AnswersList = ({ question_id }) => {
-  //var answersArr = Object.entries(answers).map(item => item[1]);
-  //var sliced = answersArr.slice(0, 2);
-  //var sorted = sliced.sort((a, b) => b['helpfulness'] - a['helpfulness']);
   const [shownAnswers, setShownAnswers] = useState([]);
   const [page, setPage] = useState(0);
   const [showButton, setShowButton] = useState(true);

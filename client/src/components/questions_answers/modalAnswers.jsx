@@ -43,8 +43,7 @@ const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
             name: values.nickname,
             email: values.email
         })
-        .then(() => console.log("answer data sent"))
-        .then(() =>  closeModal)
+        .then(() =>  closeModal())
         .catch((err) => console.log(err));
     }
     return (
@@ -59,7 +58,7 @@ const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
                 </p>
                 <p>
                     <label>Your Answer*:</label>
-                    <input className={styles.formInput} maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></input>
+                    <input className={styles.formInput} placeholder="Your answer" maxLength="1000" name="answer" value={values.answer} onChange={handleAnswerChange} required></input>
                 </p>
                     <br />
                 <p>
