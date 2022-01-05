@@ -5,6 +5,17 @@ left: 600px;
 top: 210px;
 }
 
+.descriptionBreak {
+  margin-bottom: 16px;
+}
+
+/* .app-name-product-overview-description */
+
+.productOverviewDescription {
+  display: flex;
+  flex-direction: column;
+}
+
 .galleryWrapper {
   width: 100px;
   height: 400px;
@@ -21,7 +32,7 @@ top: 210px;
   width: 400px;
   position: absolute;
   left: 600px;
-  top: 375px;
+  top: 376px;
 }
 
 .mainImageWrapper {
@@ -45,6 +56,7 @@ top: 210px;
 .strikeThrough {
   text-decoration: line-through;
   text-decoration-color: red;
+  margin-right: 16px;
 }
 
 .modalButton {
@@ -80,6 +92,12 @@ top: 210px;
   margin-top: 10px;
   height: 120px;
   background-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.buttonWrapper:hover {
+  opacity: 0.5;
 }
 
 .styleSelectionWrapper {
@@ -91,6 +109,7 @@ top: 210px;
 .productTitle {
   font-style: bold;
   font-size: 30px;
+  margin-bottom: 16px;
 }
 
 .rightArrow {

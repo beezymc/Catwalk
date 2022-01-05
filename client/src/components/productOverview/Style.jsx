@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import css from './styles.module.css';
-import Thumbnail from './Thumbnail.jsx';
 
-const Style = (props) => {
+export const Style = (props) => {
   const onClick = () => {
     props.setStyle(props.style);
     props.setImageIndex(0);
@@ -11,12 +10,9 @@ const Style = (props) => {
   return (
     <div className={css.buttonWrapper}>
       <button className={css.modalButton} onClick={onClick}>
-        <Thumbnail src={props.style.photos} />
+        <img className={css.modalButton} src={props.style.photos[0].thumbnail_url}></img>
       </button>
       <span className={css.styleNames}> {props.style.name} </span>
     </div>
   );
 };
-
-
-export default Style;

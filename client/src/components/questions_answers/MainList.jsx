@@ -37,8 +37,8 @@ const QAList = ({productId}) => {
       </div>
       <div>
         <ul>{
-          searchResults.map((item) => (
-            <div className={styles.qaContainer}><QAListEntry item={item} /></div>
+          searchResults.map((item, index) => (
+            <div className={styles.qaContainer} key={`${index}-QAlistIndex`}><QAListEntry item={item} /></div>
           ))
         }
         </ul>
