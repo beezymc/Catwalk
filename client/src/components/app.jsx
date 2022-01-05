@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
 import QAWrapper from './questions_answers/QAWrapper.jsx';
-import ProductOverview from './productOverview/Product.jsx';
+import { ProductOverview } from './productOverview/Product.jsx';
 import {
   useParams,
 } from 'react-router-dom';

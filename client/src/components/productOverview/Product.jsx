@@ -6,7 +6,7 @@ import Description from './Description.jsx';
 import css from './styles.module.css';
 import { getProducts } from '../../shared/api.js';
 
-const ProductOverview = ({ currentVariation, productVariations, setVariation, currentProduct }) => {
+export const ProductOverview = ({ currentVariation, productVariations, setVariation, currentProduct }) => {
   const [salePrice, setSalePrice] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -53,9 +53,4 @@ const ProductOverview = ({ currentVariation, productVariations, setVariation, cu
       </div>
     </div>
   );
-
 };
-
-export default ProductOverview;
-
-
