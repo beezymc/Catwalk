@@ -11,7 +11,7 @@ const OutfitItem = (props) => {
   const [id, setId] = useState(props.currentProduct.id);
 
   useEffect(() => {
-    const currentProductStyles = props.currentProductStyles.results[0];
+    const currentProductStyles = props.currentProductStyles[0];
     const currentProductRatings = props.currentProductReviews.ratings;
     let denominator = 0;
     let numerator = 0;
