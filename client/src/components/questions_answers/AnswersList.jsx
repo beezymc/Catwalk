@@ -44,8 +44,8 @@ const AnswersList = ({ question_id }) => {
   return (
 
     <ul> {
-      shownAnswers.map(item => (
-        <AnswersListEntry answer={item} />
+      shownAnswers.map((item, index) => (
+        <AnswersListEntry answer={item} key={`${index}-answerListKey`} />
       ))
     }
     {showButton ? <a className={styles.answerLink} onClick={handleClick} >Load More Answers</a> : null}

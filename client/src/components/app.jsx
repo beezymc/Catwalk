@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
 import QAWrapper from './questions_answers/QAWrapper.jsx';
-import ProductOverview from './product_overview/Product.jsx';
+import { ProductOverview } from './productOverview/Product.jsx';
 import {
   useParams,
 } from 'react-router-dom';
@@ -30,8 +30,12 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
-      {/* pass in props.currentProductStyles, props.currentStyle, props.currentProduct, props.handleCurrentStyleClick and (maybe) props.currentProductReviews */}
-      <ProductOverview />
+      <ProductOverview
+      productVariations={props.currentProductStyles}
+      currentVariation={props.currentStyle}
+      currentProduct={props.currentProduct}
+      setVariation={props.handleCurrentStyleClick}
+      />
       <br></br>
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}

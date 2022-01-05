@@ -1,33 +1,46 @@
 .stylesWrapper {
 width: 400px;
 position: absolute;
-left: 600px;
-top: 150px;
+left: 750px;
+top: 210px;
+}
+
+.descriptionBreak {
+  margin-bottom: 16px;
+}
+
+/* .app-name-product-overview-description */
+
+.productOverviewDescription {
+  display: flex;
+  flex-direction: column;
 }
 
 .galleryWrapper {
+  position: relative;
   width: 100px;
   height: 400px;
+  left: 100px;
 }
 
 .descriptionWrapper {
   width: 400px;
   position: absolute;
-  left: 600px;
+  left: 750px;
   top: 8px;
 }
 
 .cartWrapper {
   width: 400px;
   position: absolute;
-  left: 600px;
-  top: 375px;
+  left: 750px;
+  top: 376px;
 }
 
 .mainImageWrapper {
   width: 400px;
   position: absolute;
-  left: 135px;
+  left: 236px;
 }
 
 .imgSize {
@@ -45,21 +58,24 @@ top: 150px;
 .strikeThrough {
   text-decoration: line-through;
   text-decoration-color: red;
+  margin-right: 16px;
 }
 
 .modalButton {
-  padding: '0rem', '0rem';
+  padding: 0px;
   background-color: transparent;
   border: 0;
   border-radius: '0rem';
   cursor: 'pointer';
   margin-bottom: '0rem';
-  padding: 0px !important;
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  margin: 5px;
+  margin: 0px;
   object-fit: cover;
+}
+.styleNames {
+  font-size: 11px;
 }
 
 .imagesWrapper {
@@ -76,8 +92,14 @@ top: 150px;
   width: calc(25% - 11px);
   margin-left: 10px;
   margin-top: 10px;
-  height: 100px;
+  height: 120px;
   background-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.buttonWrapper:hover {
+  opacity: 0.5;
 }
 
 .styleSelectionWrapper {
@@ -89,17 +111,18 @@ top: 150px;
 .productTitle {
   font-style: bold;
   font-size: 30px;
+  margin-bottom: 16px;
 }
 
 .rightArrow {
   position: absolute;
-  left: 530px;
+  left: 630px;
   top: 150px;
 }
 
 .leftArrow {
   position: absolute;
-  left: 92px;
+  left: 192px;
   top: 150px;
 }
 
@@ -107,33 +130,13 @@ top: 150px;
   display: none;
 }
 
-/* .customSelect {
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  outline: none;
-} */
-
-/* .selectWrapper {
-  width: 100%;
-  min-width: 15px;
-  max-width: 150px;
-  border: 1px solid var(--select-border);
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
-  font-size: 1rem;
-  cursor: pointer;
-  line-height: 1.1;
-  display: grid;
-} */
-
-
-
-
+.cartButton {
+  max-width: 20%;
+  font-family: 'Montserrat', sans-serif;
+  height: 25px;
+  border-radius: 10px;
+  border-right: 1px solid #516885;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+}

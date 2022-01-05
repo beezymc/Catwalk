@@ -13,7 +13,7 @@ var handleProductInit = (productId) => {
         store.dispatch(changeProduct(product.data));
         axios.get(`/api/products/?product_id=${productId}&type=styles`)
           .then((productStyles) => {
-            store.dispatch(changeCurrentProductStyles(productStyles.data));
+            store.dispatch(changeCurrentProductStyles(productStyles.data.results));
             store.dispatch(changeStyle(productStyles.data.results[0]));
             axios.get(`/api/reviews/meta/?product_id=${productId}`)
               .then((productReviews) => {
