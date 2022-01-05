@@ -40,10 +40,11 @@ const Cart = (props) => {
   }
 
   const onClick = () => {
-    addCart(currentSku, amount);
+    for (var i = 0; i <= amount; i++) {
+      addCart(currentSku);
+    }
   }
-
-  if (size > 0) {
+  if (size != 0) {
     return (
       <div className={css.selectWrapper}>
         <h4>Select Size</h4>
@@ -58,7 +59,7 @@ const Cart = (props) => {
             <option value={quantity} key={index}>{quantity}</option>)
           }
         </select>
-        <button onClick={onClick}> Add to cart </button>
+        <button className={css.cartButton} onClick={onClick}> Add to cart </button>
       </div>
     );
   } else {

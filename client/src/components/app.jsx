@@ -30,8 +30,12 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
-      {/* pass in props.currentProductStyles, props.currentStyle, props.currentProduct, props.handleCurrentStyleClick and (maybe) props.currentProductReviews */}
-      <ProductOverview />
+      <ProductOverview
+      Styles={props.currentProductStyles}
+      currentStyle={props.currentStyle}
+      currentProduct={props.currentProduct}
+      setStyle={props.handleCurrentStyleClick}
+      />
       <br></br>
       <RelatedItemsWrapper
         currentProductStyles={props.currentProductStyles}

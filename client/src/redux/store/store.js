@@ -4,10 +4,17 @@ import rootReducer from './../reducers/main.js';
 
 const initialState = {
   currentProduct: {},
-  currentProductStyles: {},
+  currentProductStyles: [],
   currentProductReviews: {},
   error: '',
-  currentStyle: {}
+  currentStyle: {
+    photos: [
+      {
+        url: 'https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg',
+        thumbnail_url: 'https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg'
+      }
+    ]
+  }
 };
 
 const store = createStore(

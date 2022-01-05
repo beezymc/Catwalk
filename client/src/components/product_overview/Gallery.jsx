@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Images from './Images.jsx';
 import css from './styles.module.css';
 
@@ -7,7 +7,7 @@ const Gallery = (props) => {
   return (
     <div className={css.imagesWrapper}>
       {props.limitedPictureArray.map((photo, index) => {
-        return <Images photo={photo} key={index} index={index} setImageIndex={props.setImageIndex}/>;
+        return <Images photo={photo} key={index} index={index} setImageIndex={props.setImageIndex} />;
       })}
     </div>
   );

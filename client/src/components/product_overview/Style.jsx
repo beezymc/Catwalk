@@ -12,8 +12,8 @@ const Style = (props) => {
     <div className={css.buttonWrapper}>
       <button className={css.modalButton} onClick={onClick}>
         <Thumbnail src={props.style.photos} />
-        {props.style.name}
       </button>
+      <span className={css.styleNames}> {props.style.name} </span>
     </div>
   );
 };
