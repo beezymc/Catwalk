@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Cart } from './Cart.jsx';
-import Gallery from './Gallery.jsx';
-import Description from './Description.jsx';
+import { Gallery } from './Gallery.jsx';
+import { Description } from './Description.jsx';
 import css from './styles.module.css';
 import { getProducts } from '../../shared/api.js';
 

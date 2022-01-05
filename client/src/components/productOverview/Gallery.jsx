@@ -3,15 +3,16 @@ import Images from './Images.jsx';
 import css from './styles.module.css';
 
 
-const Gallery = (props) => {
+export const Gallery = ({ limitedPictureArray, setImageIndex }) => {
   return (
     <div className={css.imagesWrapper}>
-      {props.limitedPictureArray.map((photo, index) => {
-        return <Images photo={photo} key={index} index={index} setImageIndex={props.setImageIndex} />;
-      })}
+      {limitedPictureArray.map((photo, index) => (
+        <div key={`${index}-thumbnailPictureIndex`}>
+          <img onClick={() => setImageIndex(index)} src={photo.thumbnail_url} className={css.imgSize}></img>
+        </div>
+      ))}
     </div>
   );
 };
 
 
-export default Gallery;

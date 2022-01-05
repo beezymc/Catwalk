@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './styles.module.css';
 
-const Description = ({ product, currentVariation }) => {
+export const Description = ({ product, currentVariation }) => {
   if (currentVariation.sale_price !== null) {
     return (
       <div className={css.productOverviewDescription}>
@@ -26,4 +26,3 @@ const Description = ({ product, currentVariation }) => {
   );
 };
 
-export default Description;
