@@ -25,4 +25,3 @@ export const Description = ({ product, currentVariation }) => {
     </div>
   );
 };
-

@@ -1,7 +1,7 @@
 .stylesWrapper {
 width: 400px;
 position: absolute;
-left: 600px;
+left: 750px;
 top: 210px;
 }
 
@@ -17,28 +17,30 @@ top: 210px;
 }
 
 .galleryWrapper {
+  position: relative;
   width: 100px;
   height: 400px;
+  left: 100px;
 }
 
 .descriptionWrapper {
   width: 400px;
   position: absolute;
-  left: 600px;
+  left: 750px;
   top: 8px;
 }
 
 .cartWrapper {
   width: 400px;
   position: absolute;
-  left: 600px;
+  left: 750px;
   top: 376px;
 }
 
 .mainImageWrapper {
   width: 400px;
   position: absolute;
-  left: 135px;
+  left: 236px;
 }
 
 .imgSize {
@@ -114,13 +116,13 @@ top: 210px;
 
 .rightArrow {
   position: absolute;
-  left: 530px;
+  left: 630px;
   top: 150px;
 }
 
 .leftArrow {
   position: absolute;
-  left: 92px;
+  left: 192px;
   top: 150px;
 }
 
@@ -138,7 +140,3 @@ top: 210px;
   margin-right: 10px;
   margin-top: 10px;
 }
-
-
-
-
