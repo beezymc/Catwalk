@@ -9,7 +9,7 @@ import QAWrapper from './QAWrapper.jsx';
 import AnswersList from './AnswersList.jsx';
 import QAList from './MainList.jsx';
 import ModalQuestions from'./ModalQuestions.jsx';
-import modalAnswers from './modalAnswers';
+import ModalAnswers from './modalAnswers';
 
 
 
@@ -170,18 +170,18 @@ describe('ModalQuestions', () => {
 
 describe('modalAnswers', () => {
   test('Test form submit', async () => {
-    const { getByPlaceholderText, getByText } = render(<modalAnswers showModal='true' question_id="553807" />);
+    const { getByPlaceholderText, getByText } = render(<ModalAnswers showModal='true' question_id="553807" />);
 
-    const emailInput = getByPlaceholderText(/Example: jack@email.com/i);
+    const emailInput = getByPlaceholderText('Example: jack@email.com');
     fireEvent.change(emailInput, { target: { value: "annasarafanova91@gmail.com" } });
 
     const answerInput = getByPlaceholderText(/Your answer/i);
-    fireEvent.change(questionInput, { target: { value: "Is it oversized" } });
+    fireEvent.change(answerInput, { target: { value: "it is oversized" } });
 
     const nameInput = getByPlaceholderText('Example: jack543!');
     fireEvent.change(nameInput, { target: { value: "anna" } });
 
-    const submitButton = getByText(/Submit Answer/i);
+    const submitButton = getByText(/Submit an Answer/i);
     fireEvent.click(submitButton);
 
     await waitFor(() => {

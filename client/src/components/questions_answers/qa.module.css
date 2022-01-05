@@ -69,7 +69,7 @@ time, mark, audio, video {
     position: relative;
     margin: 0 auto;
     background-color: white;
-    max-height: 40%;
+    max-height: 50%;
     max-width: 40%;
     border-radius: 10px;
   }
