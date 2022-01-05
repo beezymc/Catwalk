@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Images from './Images.jsx';
 import css from './styles.module.css';
 
 

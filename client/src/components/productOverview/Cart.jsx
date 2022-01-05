@@ -8,7 +8,7 @@ export const Cart = (props) => {
   const [maxQuantity, setMaxQuantity] = useState(0);
   const [amount, setAmount] = useState(0);
   const [quantities, setQuantities] = useState([]);
-  const [currentSku, setCurrentSku] = useState(0)
+  const [currentSku, setCurrentSku] = useState(0);
 
   const { quantity, sizeList, skus } = getSkuData(props.currentVariation);
 
