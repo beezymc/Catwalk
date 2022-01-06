@@ -3,8 +3,8 @@ const config = require('../../config.js');
 
 //'User-Agent': 'request', maybe use this header
 
-const headers = { Authorization: `${config}` };
-const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
+const headers = { Authorization: `${config.token}` };
+const url = config.API_path;
 
 module.exports = {
   // product requests
