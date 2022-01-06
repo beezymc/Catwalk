@@ -42,7 +42,15 @@ const ModalQuestions = ({showModal, setShowModal, productId, closeModal}) => {
             email: values.email,
             product_id: parseInt(productId)
         })
-        .then(() =>  closeModal())
+        .then(() =>  {
+            closeModal();
+            setValues((values) => ({
+                ...values,
+                question: '',
+                nickname: '',
+                email: '',
+            }));
+        })
         .catch((err) => console.log(err));
     }
 

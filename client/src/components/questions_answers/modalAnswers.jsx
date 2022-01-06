@@ -43,7 +43,16 @@ const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
             name: values.nickname,
             email: values.email
         })
-        .then(() =>  closeModal())
+        .then(() => {
+            closeModal();
+            setValues((values) => ({
+                ...values,
+                answer: '',
+                nickname: '',
+                email: '',
+                file: ''
+            }));
+        })
         .catch((err) => console.log(err));
     }
     return (
