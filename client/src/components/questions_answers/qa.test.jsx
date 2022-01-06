@@ -1,184 +1,195 @@
-// import React from 'react';
-// import {rest} from 'msw';
-// import {setupServer} from 'msw/node';
-// import {render, fireEvent, waitFor, screen} from '@testing-library/react';
-// import '@testing-library/jest-dom';
-// import QAWrapper from './QAWrapper.jsx';
-// import QAList from './MainList.jsx';
-// import 'regenerator-runtime/runtime';
-
-
-// const server = setupServer(
-//   rest.get('/greeting', (req, res, ctx) => {
-//     return res(ctx.json({greeting: 'hello there'}));
-//   }),
-//   rest.get('/api/questions', (req, res, ctx) => {
-//     return res(ctx.json({
-//       'product_id': '63609',
-//       'results': [
-//         {
-//           'question_id': 563233,
-//           'question_body': 'Hello I spilled milk on this product and I can\'t believe it doesn\'t clean itself',
-//           'question_date': '2022-01-03T00:00:00.000Z',
-//           'asker_name': 'Eric L',
-//           'question_helpfulness': 18,
-//           'reported': false,
-//           'answers': {
-//             '5269280': {
-//               'id': 5269280,
-//               'body': 'nevermind I gave it to my cat he loves it',
-//               'date': '2022-01-03T00:00:00.000Z',
-//               'answerer_name': 'Eric L',
-//               'helpfulness': 7,
-//               'photos': []
-//             },
-//             '5269287': {
-//               'id': 5269287,
-//               'body': 'hello does anyone know of carpet cleaning services in my area?',
-//               'date': '2022-01-03T00:00:00.000Z',
-//               'answerer_name': 'Eric L',
-//               'helpfulness': 4,
-//               'photos': [
-//                 'Not a valid url'
-//               ]
-//             }
-//           }
-//         }
-//       ]
-//     })
-//     );
-//   }
-//   )
-// );
-
-
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());
-
-
-// // describe('QAWrapper', () => {
-// //   test('renders QAWrapper component', () => {
-// //     render(<QAWrapper />);
-// //   });
-// // });
-
-
-// describe('QAList', () => {
-//   test('renders QAList component', () => {
-//     render(<QAList />);
-//   });
-
-//   //main list needs an id on props
-//   test('renders 1 question when provided 1 question', () => {
-//     render(<QAList productId={63609} />);
-//   });
-// });
+import React from 'react';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
+import 'regenerator-runtime/runtime';
+import QAWrapper from './QAWrapper.jsx';
+import AnswersList from './AnswersList.jsx';
+import QAList from './MainList.jsx';
+import ModalQuestions from'./ModalQuestions.jsx';
+import ModalAnswers from './modalAnswers';
 
 
 
-
-
-
-
-// import React from 'react';
-// import { render, screen } from '@testing-library/react';
-// import '@testing-library/jest-dom';
-// // import QAWrapper from './QAWrapper.jsx';
-// // import QAList from './MainList.jsx';
-// import {rest} from 'msw';
-// import {setupServer} from 'msw/node';
-// import 'regenerator-runtime/runtime'
-
-// // declare which API requests to mock
-// const server = setupServer(
-//   // capture "GET /greeting" requests
-//   rest.get('/api/questions', (req, res, ctx) => {
-//     // respond using a mocked JSON body
-//     return res(ctx.json({greeting: 'hello there'}))
-//   }),
-// )
-
-// // establish API mocking before all tests
-// beforeAll(() => server.listen())
-// // reset any request handlers that are declared as a part of our tests
-// // (i.e. for testing one-time error scenarios)
-// afterEach(() => server.resetHandlers())
-// // clean up once the tests are done
-// afterAll(() => server.close())
-
-
-// test('handlers server error', async () => {
-//   server.use(
-//     // override the initial "GET /greeting" request handler
-//     // to return a 500 Server Error
-//     rest.get('/greeting', (req, res, ctx) => {
-//       return res(ctx.status(200))
-//     }),
-//   )
-
-//   // ...
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-// //describe
-// //test if up to 4 initial questions are rendered
-
-// // describe('QAListEntry', () => {
-// //   test('renders QAListEntry component', () => {
-// //     render(<QAListEntry />)
-// //   });
-// // });
-
-
-// __tests__/fetch.test.js
-
-
-
-
-// WORKING EXAMPLE
-/*
 const server = setupServer(
-  rest.get('/greeting', (req, res, ctx) => {
-    return res(ctx.json({greeting: 'hello there'}))
+  rest.get('/api/questions', (req, res, ctx) => {
+    return res(ctx.json({
+      "product_id": "63611",
+      "results": [
+        {
+          "question_id": 553807,
+          "question_body": "Where does this product ship from?",
+          "question_date": "2017-11-04T00:00:00.000Z",
+          "asker_name": "toofast",
+          "question_helpfulness": 23,
+          "reported": false,
+          "answers": {
+            "5181622": {
+              "id": 5181622,
+              "body": "Mine was delivered from Oklahoma",
+              "date": "2017-11-04T00:00:00.000Z",
+              "answerer_name": "toofast",
+              "helpfulness": 27,
+              "photos": []
+            },
+            "5181633": {
+              "id": 5181633,
+              "body": "It ships from the facility in Tulsa",
+              "date": "2017-11-04T00:00:00.000Z",
+              "answerer_name": "toofast",
+              "helpfulness": 23,
+              "photos": []
+            }
+          }
+        }
+      ]
+    })
+    );
   }),
+  rest.get('/api/questions/553807/answers', (req, res, ctx) => {
+    const count = req.url.searchParams.get('count')
+    const page = req.url.searchParams.get('page')
+
+    return res(ctx.json({
+      "question": "553807",
+      "page": "1",
+      "count": "2",
+      "results": [
+        {
+          "answer_id": 5181622,
+          "body": "Mine was delivered from Oklahoma",
+          "date": "2017-11-04T00:00:00.000Z",
+          "answerer_name": "toofast",
+          "helpfulness": 27,
+          "photos": []
+        },
+        {
+          "answer_id": 5181633,
+          "body": "It ships from the facility in Tulsa",
+          "date": "2017-11-04T00:00:00.000Z",
+          "answerer_name": "toofast",
+          "helpfulness": 23,
+          "photos": []
+        }
+      ]
+    })
+    );
+  }),
+  rest.post('/api/questions/', (req, res, ctx) => {
+    return res({});
+  }),
+
+  rest.post('/api/questions/553807/answers', (req, res, ctx) => {
+    return res({});
+  })
 )
-test('loads and displays greeting', async () => {
-  render(<Fetch url="/greeting" />)
 
-  fireEvent.click(screen.getByText('Load Greeting'))
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
-  await waitFor(() => screen.getByRole('heading'))
 
-  expect(screen.getByRole('heading')).toHaveTextContent('hello there')
-  expect(screen.getByRole('button')).toBeDisabled()
-})
+describe('QAWrapper', () => {
 
-test('handles server error', async () => {
-  server.use(
-    rest.get('/greeting', (req, res, ctx) => {
-      return res(ctx.status(500))
-    }),
-  )
+  const testProduct = {
+    "id": 63611,
+    "campus": "hr-sfo",
+    "name": "Summer Shoes",
+    "slogan": "A risky call in the spring or fall",
+    "description": "Low-top panelled buffed leather and mesh sneakers. Sizing embroidered in black at round toe. Tonal lace-up closure. Pull-loop and rubberized style name at padded tongue. Padded collar. Pull-loop at heel collar. Logo embroidered in black at outer side. Tonal treaded rubber sole. Tonal stitching.",
+    "category": "Kicks",
+    "default_price": "59.00",
+    "created_at": "2021-12-21T17:19:40.556Z",
+    "updated_at": "2021-12-21T17:19:40.556Z",
+    "features": [
+      {
+        "feature": "Sole",
+        "value": "Rubber"
+      },
+    ]
+  }
 
-  render(<Fetch url="/greeting" />)
+  test('should render questions', async () => {
+    const { debug } = render(
+      // <QAWrapper currentProduct="63611" />
+      <QAWrapper currentProduct={testProduct} />
+    )
+    //todo: add more verifications
+    await waitFor(() => {
+      expect(screen.getByText('Q: Where does this product ship from?').toBeInTheDocument)
+      expect(screen.getByText('Helpful?').toBeInTheDocument)
+      expect(screen.getByText('Yes(23)').toBeInTheDocument)
+    });
+  });
 
-  fireEvent.click(screen.getByText('Load Greeting'))
+});
 
-  await waitFor(() => screen.getByRole('alert'))
+describe('AnswersList', () => {
+  test('should render answers', async () => {
+    const { debug } = render(
+      <AnswersList question_id="553807" />
+    )
+    //todo: add more verifications
+    await waitFor(() => {
+      //string should 100% match otherwise use regexp /string/
+      expect(screen.getByText('Mine was delivered from Oklahoma').toBeInTheDocument)
+      expect(screen.getByText('Yes(27)').toBeInTheDocument)
+      expect(screen.getByText('It ships from the facility in Tulsa').toBeInTheDocument)
+      expect(screen.getByText('Yes(23)').toBeInTheDocument)
+    });
+  });
+});
 
-  expect(screen.getByRole('alert')).toHaveTextContent('Oops, failed to fetch!')
-  expect(screen.getByRole('button')).not.toBeDisabled()
-})
-*/
+describe('ModalQuestions', () => {
+  test('test form submit', async () => {
+    const { getByPlaceholderText, getByText } = render(<ModalQuestions showModal='true' productId="63611" />);
 
+    const emailInput = getByPlaceholderText('Example: jack@email.com');
+    fireEvent.change(emailInput, { target: { value: "annasarafanova91@gmail.com" } });
+
+    const questionInput = getByPlaceholderText(/Ask your question/i);
+    fireEvent.change(questionInput, { target: { value: "Is it oversized" } });
+
+    const nameInput = getByPlaceholderText('Example: jackson11');
+    fireEvent.change(nameInput, { target: { value: "anna" } });
+
+    const submitButton = getByText(/Submit Question/i);
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(emailInput.toBeInTheDocument)
+      expect(questionInput.toBeInTheDocument)
+      expect(nameInput.toBeInTheDocument)
+      expect(submitButton.toBeInTheDocument)
+    });
+
+    });
+});
+
+describe('modalAnswers', () => {
+  test('Test form submit', async () => {
+    const { getByPlaceholderText, getByText } = render(<ModalAnswers showModal='true' question_id="553807" />);
+
+    const emailInput = getByPlaceholderText('Example: jack@email.com');
+    fireEvent.change(emailInput, { target: { value: "annasarafanova91@gmail.com" } });
+
+    const answerInput = getByPlaceholderText(/Your answer/i);
+    fireEvent.change(answerInput, { target: { value: "it is oversized" } });
+
+    const nameInput = getByPlaceholderText('Example: jack543!');
+    fireEvent.change(nameInput, { target: { value: "anna" } });
+
+    const submitButton = getByText(/Submit an Answer/i);
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(emailInput.toBeInTheDocument)
+      expect(answerInput.toBeInTheDocument)
+      expect(nameInput.toBeInTheDocument)
+      expect(submitButton.toBeInTheDocument)
+    });
+
+    });
+});

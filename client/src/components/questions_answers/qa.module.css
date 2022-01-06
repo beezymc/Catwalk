@@ -26,7 +26,6 @@ time, mark, audio, video {
   flex-wrap: nonwrap;
   overflow-x: auto;
   width: 90%;
-  /* max-width: 1400px; */
   align-items: left;
 	padding: 10px;
   border-radius: 5px;
@@ -38,10 +37,8 @@ time, mark, audio, video {
 }
 
 .qaItem {
-  /* color: #fff; */
 	padding: 2px;
 	margin: 2px;
-	/* background: #3db5da; */
 	border-radius: 3px;
 }
 
@@ -70,22 +67,12 @@ time, mark, audio, video {
     width: 100vw;
     height: 100vh;
     position: relative;
-    /* overflow: hidden; */
     margin: 0 auto;
     background-color: white;
-    max-height: 40%;
+    max-height: 50%;
     max-width: 40%;
     border-radius: 10px;
   }
-
-/* .borderBtn {
-  text-decoration: none;
-    color: gray;
-    padding: 2px 10px;
-    border: 1px gray solid;
-    padding: 10px 15px 10px 15px;
-} */
-
   .link {
     text-decoration: none;
     color: gray;
@@ -106,12 +93,6 @@ time, mark, audio, video {
 
   /*********************SEARCH************/
   .searchContainer {
-    /* display: grid;
-    grid-template-columns:1.5rem 4fr 1fr;
-    width:300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden; */
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;

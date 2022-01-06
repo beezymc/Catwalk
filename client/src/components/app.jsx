@@ -45,7 +45,7 @@ const App = (props) => {
         handleProductInit={props.handleProductInit}
       />
       {/* pass in props.currentProduct */}
-      <QAWrapper />
+      <QAWrapper currentProduct={props.currentProduct} />
     </div>
   );
 };
