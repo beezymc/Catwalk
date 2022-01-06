@@ -29,13 +29,13 @@ export const Cart = (props) => {
   if (size !== 0) {
     return (
       <div className={css.selectWrapper}>
-        <h4>Select Size</h4>
-        <select className={css.customSelect} onChange={handleSizeChange}>
+        <select className={css.dropdown} onChange={handleSizeChange}>
           <option> Select a Size </option>
           {sizeList.map((size, index) =>
             <option value={size} key={index}>{size} Size</option>)
           }</select>
-        <select className={css.customSelect} onChange={(event) => setAmount(event.target.value)}>
+          <br />
+        <select className={css.dropdown} onChange={(event) => setAmount(event.target.value)}>
           <option> Select a Quantity </option>
           {quantities.map((quantity, index) =>
             <option value={quantity} key={index}>{quantity}</option>)
@@ -52,8 +52,7 @@ export const Cart = (props) => {
 
   return (
     <div className={css.selectWrapper}>
-      <h4>Select Size</h4>
-      <select className={css.customSelect} onChange={handleSizeChange}>
+      <select className={css.dropdown} onChange={handleSizeChange}>
         <option> Select a Size </option>
         {sizeList.map((size, index) =>
           <option value={size} key={index}>{size} Size</option>)
