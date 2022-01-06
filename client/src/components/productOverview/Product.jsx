@@ -12,7 +12,12 @@ export const ProductOverview = ({ currentVariation, productVariations, setVariat
 
   // need to setImageIndex to 0 onClick of related item picture
   const limitedPictureArray = currentVariation.photos.slice(0, 10);
-  const currentPicture = limitedPictureArray[imageIndex].url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
+  let currentPicture = 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
+  if (limitedPictureArray[imageIndex]) {
+    currentPicture = limitedPictureArray[imageIndex].url
+  } else {
+    currentPicture = limitedPictureArray[0].url
+  }
 
   return (
     <div>
