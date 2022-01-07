@@ -37,6 +37,8 @@ app.get('/api/reviews/meta', controllers.getMeta);
 app.post('/api/reviews', controllers.addReview);
 app.patch('/api/reviews/update', controllers.updateReview);
 app.patch('/api/reviews/report', controllers.reportReview);
+// Custom request for relateditems
+app.get('/api/related', controllers.getRelatedItemsData);
 
 
 

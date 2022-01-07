@@ -11,7 +11,7 @@ var handleProductInit = (productId) => {
     return axios.get(`/api/products/?product_id=${productId}`)
       .then((product) => {
         store.dispatch(changeProduct(product.data));
-        axios.get(`/api/products/?product_id=${productId}&type=styles`)
+        axios.get(`/api/styles/?product_id=${productId}`)
           .then((productStyles) => {
             store.dispatch(changeCurrentProductStyles(productStyles.data.results));
             store.dispatch(changeStyle(productStyles.data.results[0]));

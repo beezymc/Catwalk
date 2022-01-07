@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import styles from './relateditems.module.css';
 import StarRating from './StarRating.jsx';
 import CompareItem from './CompareItem.jsx';
+import { getAverageRating } from './utils.js';
 
 const RelatedItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,22 +13,10 @@ const RelatedItem = (props) => {
   };
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
     const relatedItem = props.relatedItem.data;
-    console.log(relatedItem.id);
     const relatedStyle = props.relatedStyle.data.results[0];
     const relatedRatings = props.relatedItemReview.data.ratings;
-    let rating = 0;
-    let denominator = 0;
-    let numerator = 0;
-    for (let key in relatedRatings) {
-      let intKey = parseInt(key);
-      let intVal = parseInt(relatedRatings[key]);
-      numerator += intVal * intKey;
-      denominator += intVal;
-    }
-    if (numerator) {
-      rating = (Math.round((numerator / denominator) * 4) / 4).toFixed(2);
-    }
-    const photo = relatedStyle.photos[0].thumbnail_url;
+    const rating = getAverageRating(relatedRatings);
+    const photo = relatedStyle.photos[0].thumbnail_url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
     const category = relatedItem.category;
     const name = relatedItem.name;
     return (
