@@ -11,11 +11,20 @@ const QAList = ({productId}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [questionsCount, setQuestionsCount] = useState(4);
+  const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
     if (productId) {
       axios.get('/api/questions', { params: { product_id: `${productId}`, count: `${questionsCount}`} }) //go to axios github docs -> section Request Config
         .then((data) => {
+          var results = data.data.results;
+
+          if (results.length < questionsCount) {
+            setShowButton(false);
+          }
+          if (results.length === 0) {
+            return;
+          }
           setQuestionData(data.data.results);
           setSearchResults(data.data.results);
         })
@@ -43,7 +52,7 @@ const QAList = ({productId}) => {
         </ul>
       </div>
       <div className={styles.qaContainerForm}>
-        <div className={styles.qaItem}><button className={styles.borderBtn} onClick={handleClick}>More answered questions</button></div>
+       {showButton ? <div className={styles.qaItem}><button className={styles.borderBtn} onClick={handleClick}>More answered questions</button></div> :null}
         <div className={styles.qaItem}><FormBar productId={productId} /></div>
       </div>
     </div>

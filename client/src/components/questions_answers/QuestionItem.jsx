@@ -33,7 +33,7 @@ const QuestionItem = ({ questionInfo }) => {
         <span className={styles.link}>|</span>
         <span>
           <a onClick={openModal} className={styles.link}>Add Answer</a>
-          <ModalAnswers showModal={showModal} setShowModal={setShowModal} question_id={questionInfo.question_id} closeModal={closeModal}/>
+          <ModalAnswers showModal={showModal} setShowModal={setShowModal}  closeTimeoutMS={2000} question_id={questionInfo.question_id} closeModal={closeModal}/>
         </span>
       </div>
     </div>
