@@ -28,13 +28,14 @@ export const Cart = (props) => {
 
   if (size !== 0) {
     return (
-      <div className={css.selectWrapper}>
+      <div>
+        <div className={css.selectWrapper}>
         <select className={css.dropdown} onChange={handleSizeChange}>
           <option> Select a Size </option>
           {sizeList.map((size, index) =>
             <option value={size} key={index}>{size} Size</option>)
           }</select>
-          <br />
+          </div>
         <select className={css.dropdown} onChange={(event) => setAmount(event.target.value)}>
           <option> Select a Quantity </option>
           {quantities.map((quantity, index) =>

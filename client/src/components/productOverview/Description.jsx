@@ -11,7 +11,7 @@ export const Description = ({ product, currentVariation }) => {
           <span className={css.strikeThrough}>${product.default_price}</span>
           <span>${currentVariation.sale_price}</span>
         </div>
-        <span className={css.descriptionBreak}>{product.description} </span>
+        <span className={css.productDescription}>{product.description} </span>
       </div>
     );
   }
@@ -21,7 +21,7 @@ export const Description = ({ product, currentVariation }) => {
       <span className={css.descriptionBreak}> {product.category} </span>
       <span className={css.productTitle}> {product.name} </span>
       <span className={css.descriptionBreak}> ${product.default_price} </span>
-      <span className={css.descriptionBreak}> {product.description} </span>
+      <span className={css.productDescription}> {product.description} </span>
     </div>
   );
 };
