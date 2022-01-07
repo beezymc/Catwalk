@@ -3,6 +3,7 @@ import axios from 'axios';
 import RelatedItem from './RelatedItem.jsx';
 import styles from './relateditems.module.css';
 import { useParams } from 'react-router-dom';
+import { scrollAccelerator } from './utils.js';
 
 const RelatedItemCarousel = (props) => {
   const [hideRightArrow, setHideRightArrow] = useState(true);
@@ -25,7 +26,7 @@ const RelatedItemCarousel = (props) => {
         for (let i = 0; i < related.data.length; i++) {
           relatedItemsPromises.push(axios.get(`/api/products/?product_id=${related.data[i]}`));
           relatedReviewsPromises.push(axios.get(`/api/reviews/meta/?product_id=${related.data[i]}`));
-          relatedStylesPromises.push(axios.get(`/api/products/?product_id=${related.data[i]}&type=styles`));
+          relatedStylesPromises.push(axios.get(`/api/styles/?product_id=${related.data[i]}`));
         }
         Promise.all(relatedItemsPromises)
           .then((itemsResults) => {
@@ -77,6 +78,17 @@ const RelatedItemCarousel = (props) => {
       });
   }, [props.currentProduct]);
 
+  // useEffect(() => {
+  //   axios.get(`/api/related/?product_id=${productId}&type=related`)
+  //     .then((related) => {
+  //       console.log(related.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setError(true);
+  //     });
+  // }, [props.currentProduct]);
+
   useEffect(() => {
     let el = scrollRef.current;
     if (el) {
@@ -92,9 +104,9 @@ const RelatedItemCarousel = (props) => {
           return;
         }
         e.preventDefault();
+        const newDeltaY = scrollAccelerator(e.deltaY);
         el.scrollTo({
-          //round deltaY to nearest 223 interval
-          left: el.scrollLeft + e.deltaY,
+          left: el.scrollLeft + newDeltaY,
           behavior: "smooth"
         });
       };
@@ -113,36 +125,44 @@ const RelatedItemCarousel = (props) => {
 
   const handleArrows = () => {
     const el = scrollRef.current;
-    if (el.scrollLeft === (el.scrollWidth - el.clientWidth) && !hideRightArrow) {
-      setHideRightArrow(true);
-    }
-    if (el.scrollLeft !== (el.scrollWidth - el.clientWidth) && hideRightArrow) {
-      setHideRightArrow(false);
-    }
-    if (el.scrollLeft === 0 && !hideLeftArrow) {
-      setHideLeftArrow(true);
-    }
-    if (el.scrollLeft !== 0 && hideLeftArrow) {
-      setHideLeftArrow(false);
+    if (el) {
+      if (el.scrollLeft === (el.scrollWidth - el.clientWidth) && !hideRightArrow) {
+        setHideRightArrow(true);
+      }
+      if (el.scrollLeft !== (el.scrollWidth - el.clientWidth) && hideRightArrow) {
+        setHideRightArrow(false);
+      }
+      if (el.scrollLeft === 0 && !hideLeftArrow) {
+        setHideLeftArrow(true);
+      }
+      if (el.scrollLeft !== 0 && hideLeftArrow) {
+        setHideLeftArrow(false);
+      }
     }
   };
 
   const scrollCarouselLeft = () => {
     const el = scrollRef.current;
-    el.scrollLeft += 223;
+    el.scrollLeft += 222;
     handleArrows();
   };
 
   const scrollCarouselRight = () => {
     const el = scrollRef.current;
-    el.scrollLeft -= 223;
+    el.scrollLeft -= 222;
     handleArrows();
   };
 
   if (error) {
     return (
       <div className={styles.carousel}>
-        Error Retrieving Related Items. Please Try Again.
+        <div className={styles.relatedItemsCarousel}>
+          <div className={styles.relatedItems} id='related-items-carousel' ref={scrollRef}>
+            <div className={styles.noItems}>
+              Error retrieving related items. Please try again later.
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

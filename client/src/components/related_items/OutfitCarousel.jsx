@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import OutfitItem from './OutfitItem.jsx';
 import styles from './relateditems.module.css';
+import { scrollAccelerator } from './utils.js';
 
 const OutfitCarousel = (props) => {
   const [hideRightArrow, setHideRightArrow] = useState(true);
@@ -9,6 +9,7 @@ const OutfitCarousel = (props) => {
   const [outfitItems, updateOutfitItems] = useState([]);
   const [ticking, setTicking] = useState(false);
   const scrollRef = useRef(null);
+
   useEffect(() => {
     const el = scrollRef.current;
     const maxScrollLeft = el.scrollWidth - el.clientWidth;
@@ -23,17 +24,18 @@ const OutfitCarousel = (props) => {
   const handleNewOutfitItem = () => {
     let noMatch = true;
     for (let i = 0; i < outfitItems.length; i++) {
-      if (outfitItems[i].key === props.currentProduct.id) {
+      if (outfitItems[i].key === props.currentStyle.style_id) {
         noMatch = false;
         break;
       }
     }
     if (noMatch) {
       updateOutfitItems([{
-        key: props.currentProduct.id,
+        key: props.currentStyle.style_id,
         currentProduct: props.currentProduct,
         currentProductReviews: props.currentProductReviews,
-        currentProductStyles: props.currentProductStyles
+        currentProductStyles: props.currentProductStyles,
+        currentStyle: props.currentStyle
       }, ...outfitItems]);
     }
   };
@@ -64,9 +66,9 @@ const OutfitCarousel = (props) => {
           return;
         }
         e.preventDefault();
+        const newDeltaY = scrollAccelerator(e.deltaY);
         el.scrollTo({
-          //round deltaY to nearest 223 interval
-          left: el.scrollLeft + e.deltaY,
+          left: el.scrollLeft + newDeltaY,
           behavior: "smooth"
         });
       };
@@ -101,13 +103,13 @@ const OutfitCarousel = (props) => {
 
   const scrollCarouselLeft = () => {
     const el = scrollRef.current;
-    el.scrollLeft += 220;
+    el.scrollLeft += 222;
     handleArrows();
   };
 
   const scrollCarouselRight = () => {
     const el = scrollRef.current;
-    el.scrollLeft -= 220;
+    el.scrollLeft -= 222;
     handleArrows();
   };
   return (
@@ -147,8 +149,7 @@ const OutfitCarousel = (props) => {
               currentProduct={item.currentProduct}
               currentProductStyles={item.currentProductStyles}
               currentProductReviews={item.currentProductReviews}
-              setHideRightArrow={setHideRightArrow}
-              setHideLeftArrow={setHideLeftArrow}
+              currentStyle={item.currentStyle}
               removeItem={removeItem}
             />);
           })}

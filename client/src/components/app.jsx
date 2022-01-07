@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
+import React, { useEffect, useState, Suspense } from 'react';
+// import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
+const RelatedItemsWrapper = React.lazy(() => import('./related_items/RelatedItemsWrapper.jsx'));
 import QAWrapper from './questions_answers/QAWrapper.jsx';
 import { ProductOverview } from './productOverview/Product.jsx';
-import {
-  useParams,
-} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './app.module.css';
 
 const App = (props) => {
@@ -37,14 +36,19 @@ const App = (props) => {
       setVariation={props.handleCurrentStyleClick}
       />
       <br></br>
-      <RelatedItemsWrapper
-        currentProductStyles={props.currentProductStyles}
-        currentStyle={props.currentStyle}
-        currentProduct={props.currentProduct}
-        currentProductReviews={props.currentProductReviews}
-        handleProductInit={props.handleProductInit}
-      />
-      {/* pass in props.currentProduct */}
+      <Suspense fallback={
+        <div className={styles.relatedItemsWrapper}>
+          <img src='https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg'></img>
+        </div>
+      }>
+        <RelatedItemsWrapper
+          currentProductStyles={props.currentProductStyles}
+          currentStyle={props.currentStyle}
+          currentProduct={props.currentProduct}
+          currentProductReviews={props.currentProductReviews}
+          handleProductInit={props.handleProductInit}
+        />
+      </Suspense>
       <QAWrapper currentProduct={props.currentProduct} />
     </div>
   );

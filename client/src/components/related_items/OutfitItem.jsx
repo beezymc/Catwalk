@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './relateditems.module.css';
 import StarRating from './StarRating.jsx';
+import { getAverageRating } from './utils.js';
 
 const OutfitItem = (props) => {
   const [photo, setPhoto] = useState('');
@@ -8,24 +9,13 @@ const OutfitItem = (props) => {
   const [rating, setRating] = useState(0);
   const [name, setName] = useState(props.currentProduct.name);
   const [price, setPrice] = useState(0);
-  const [id, setId] = useState(props.currentProduct.id);
+  const [id, setId] = useState(props.currentStyle.style_id);
 
   useEffect(() => {
-    const currentProductStyles = props.currentProductStyles[0];
     const currentProductRatings = props.currentProductReviews.ratings;
-    let denominator = 0;
-    let numerator = 0;
-    for (let key in currentProductRatings) {
-      let intKey = parseInt(key);
-      let intVal = parseInt(currentProductRatings[key]);
-      numerator += intVal * intKey;
-      denominator += intVal;
-    }
-    if (numerator) {
-      setRating((Math.round((numerator / denominator) * 4) / 4).toFixed(2));
-    }
-    setPhoto(currentProductStyles.photos[0].thumbnail_url);
-    setPrice(currentProductStyles.sale_price ? [currentProductStyles.sale_price, currentProductStyles.original_price] : currentProductStyles.original_price);
+    setRating(getAverageRating(currentProductRatings));
+    setPhoto(props.currentStyle.photos[0].thumbnail_url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1');
+    setPrice(props.currentStyle.sale_price ? [props.currentStyle.sale_price, props.currentStyle.original_price] : props.currentStyle.original_price);
   }, []);
 
   return (

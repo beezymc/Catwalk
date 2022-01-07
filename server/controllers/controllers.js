@@ -144,7 +144,7 @@ module.exports = {
         res.status(404).send(err);
       });
   },
-  
+
   reportQuestion: (req, res) => {
     const params = req.body.question_id;
     models.reportQuestion(params)
@@ -210,6 +210,51 @@ module.exports = {
         res.status(204).send('No Content');
       })
       .catch((err) => {
+        res.status(404).send(err);
+      });
+  },
+  getRelatedItemsData: (req, res) => {
+    const { product_id, type } = req.query;
+    const relatedItemsData = {};
+    models.getProducts(product_id, type)
+      .then((relateditems) => {
+        const relatedItemsPromises = [];
+        const relatedReviewsPromises = [];
+        const relatedStylesPromises = [];
+        for (let i = 0; i < relateditems.data.length; i++) {
+          relatedItemsPromises.push(models.getProducts(relateditems.data[i]));
+          relatedReviewsPromises.push(models.getMeta(relateditems.data[i]));
+          relatedStylesPromises.push(models.getStyles(relateditems.data[i]));
+        }
+        Promise.all(relatedItemsPromises)
+          .then((itemsResults) => {
+            relatedItemsData['itemsResults'] = itemsResults;
+            Promise.all(relatedReviewsPromises)
+              .then((reviewsResults) => {
+                relatedItemsData['reviewsResults'] = reviewsResults;
+                Promise.all(relatedStylesPromises)
+                  .then((stylesResults) => {
+                    relatedItemsData['stylesResults'] = stylesResults;
+                    console.log(relatedItemsData);
+                    res.send(relatedItemsData);
+                  })
+                  .catch((err) => {
+                    console.log("catch 1")
+                    res.status(404).send(err);
+                  });
+              })
+              .catch((err) => {
+                console.log("catch 2")
+                res.status(404).send(err);
+              });
+          })
+          .catch((err) => {
+            console.log("catch 3")
+            res.status(404).send(err);
+          });
+      })
+      .catch((err) => {
+        console.log("catch 4")
         res.status(404).send(err);
       });
   }

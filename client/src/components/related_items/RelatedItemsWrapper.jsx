@@ -21,6 +21,7 @@ const RelatedItemsWrapper = (props) => {
           currentProduct={props.currentProduct}
           currentProductStyles={props.currentProductStyles}
           currentProductReviews={props.currentProductReviews}
+          currentStyle={props.currentStyle}
         />
       </div>
     );
