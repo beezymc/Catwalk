@@ -4,8 +4,12 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
-  plugins: [new CompressionPlugin()],
+  mode: 'production',
+  plugins: [
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+    }),
+  ],
   entry: `${SRC_DIR}/index.jsx`,
   output: {
     filename: 'bundle.js',

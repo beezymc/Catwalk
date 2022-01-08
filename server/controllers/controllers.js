@@ -6,7 +6,6 @@ module.exports = {
     const { product_id, type } = req.query;
     models.getProducts(product_id, type)
       .then((response) => {
-        //console.log(response.data);
         res.send(response.data);
       })
       .catch((err) => {
@@ -64,13 +63,11 @@ module.exports = {
   // questions/answers
   createQuestion: (req, res) => {
     const product_id = req.query.product_id;
-    console.log('req.body for create question is: ', req.body);
     models.createQuestion(req.body)
       .then((response) => {
         res.status(201).send(response.data);
       })
       .catch((err) => {
-        console.log('ERROR: Create question error: ', err);
         res.status(500).send(err);
       });
   },
@@ -82,7 +79,6 @@ module.exports = {
         res.status(201).send(response.data);
       })
       .catch((err) => {
-        console.log(err);
         res.status(500).send(err);
       });
   },
@@ -235,26 +231,21 @@ module.exports = {
                 Promise.all(relatedStylesPromises)
                   .then((stylesResults) => {
                     relatedItemsData['stylesResults'] = stylesResults;
-                    console.log(relatedItemsData);
                     res.send(relatedItemsData);
                   })
                   .catch((err) => {
-                    console.log("catch 1")
                     res.status(404).send(err);
                   });
               })
               .catch((err) => {
-                console.log("catch 2")
                 res.status(404).send(err);
               });
           })
           .catch((err) => {
-            console.log("catch 3")
             res.status(404).send(err);
           });
       })
       .catch((err) => {
-        console.log("catch 4")
         res.status(404).send(err);
       });
   }
