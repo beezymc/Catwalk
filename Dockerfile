@@ -19,6 +19,6 @@ RUN npm install
 EXPOSE 3000
 
 # How do you start your app?
-CMD ["npm", "run", "react-dev"]
+CMD ["npm", "run", "react-prod"]
 CMD [ "npm", "start" ]
 # CMD ["/bin/bash"]
