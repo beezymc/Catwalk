@@ -3,6 +3,9 @@
   background-color: #fafafa;
 }
 
+.mainProductWrapper {
+  height: 100vh;
+}
 .relatedItemsWrapper {
   display: flex;
   flex-direction: column;

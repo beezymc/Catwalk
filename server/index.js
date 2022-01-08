@@ -1,3 +1,4 @@
+var compression = require('compression');
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -8,6 +9,7 @@ const controllers = require('./controllers/controllers.js');
 app.use(express.static(__dirname + '/../client/dist'));
 app.use('/product/:product_id', express.static(__dirname + '/../client/dist'));
 app.use(express.json());
+app.use(compression());
 
 
 app.listen(Port, () => {
