@@ -6,6 +6,7 @@ const AnswersListEntry = ({ answer }) => {
   const [answerHelpfullness, setanswerHelpfullness] = useState(answer.helpfulness);
   const [isUpvoted, setUpvoted] = useState(false);
   const [isReported, setReported] = useState(false);
+  const photos = answer.photos;
 
   const handleClick = () => {
     setanswerHelpfullness(answerHelpfullness + 1);
@@ -23,6 +24,7 @@ const AnswersListEntry = ({ answer }) => {
   return (
     <div >
       <div className={styles.answer}> <span className={styles.question}>A:</span> {answer.body}</div>
+      <div>{photos && photos.length > 0 ? photos.map(item => <img src={item.url} width="100" height="100" />) : null}</div>
       <div className={styles.answerInfo}>
         <span className={styles.answerInfo}>by {answer.answerer_name},
           {new Date(answer.date).toLocaleDateString(undefined, {
