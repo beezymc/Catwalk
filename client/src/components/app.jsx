@@ -29,12 +29,14 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
+      <div className={styles.mainProductWrapper}>
       <ProductOverview
       productVariations={props.currentProductStyles}
       currentVariation={props.currentStyle}
       currentProduct={props.currentProduct}
       setVariation={props.handleCurrentStyleClick}
       />
+      </div>
       <br></br>
       <Suspense fallback={
         <div className={styles.relatedItemsWrapper}>

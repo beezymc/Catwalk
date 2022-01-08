@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+
 .stylesWrapper {
 width: 400px;
 position: absolute;
@@ -28,7 +29,7 @@ top: 216px;
 .galleryWrapper {
   position: relative;
   width: 100px;
-  height: 400px;
+  height: 600px;
   left: 100px;
 }
 
@@ -59,9 +60,14 @@ top: 216px;
   object-fit: cover;
   display: table-cell;
 }
+
+.imgSize:hover {
+  transform: translateY(-5%);
+}
+
 .imgSize2 {
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 600px;
   object-fit: cover;
 }
 
@@ -127,14 +133,14 @@ top: 216px;
 
 .rightArrow {
   position: absolute;
-  left: 630px;
-  top: 150px;
+  left: 680px;
+  top: 200px;
 }
 
 .leftArrow {
   position: absolute;
   left: 192px;
-  top: 150px;
+  top: 200px;
 }
 
 .hiddenArrow {
