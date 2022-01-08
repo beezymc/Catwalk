@@ -83,8 +83,6 @@
   background-image: linear-gradient(to left, transparent, #fafafa);
   height: 350px;
   width: 100px;
-  opacity: 1;
-  transition: all 100ms linear 100ms;
 }
 
 .leftTransparencyHidden {
@@ -93,8 +91,8 @@
   background-image: linear-gradient(to left, transparent, #fafafa);
   height: 350px;
   width: 100px;
-  opacity: 0;
-  transition: all 100ms linear 100ms;
+  transform: translateX(-100%);
+  transition: transform ease-out 300ms;
 }
 
 .rightTransparency {
@@ -104,8 +102,6 @@
   background-image: linear-gradient(to right, transparent, #fafafa);
   height: 350px;
   width: 100px;
-  opacity: 1;
-  transition: all 100ms linear 100ms;
 }
 
 .rightTransparencyHidden {
@@ -115,8 +111,27 @@
   background-image: linear-gradient(to right, transparent, #fafafa);
   height: 350px;
   width: 100px;
-  opacity: 0;
-  transition: all 100ms linear 100ms;
+  transform: translateX(100%);
+  transition: transform ease-out 100ms;
+}
+
+@media screen and (min-device-width: 0px) and (max-device-width: 800px) {
+  .leftTransparency {
+    display: none;
+  }
+  .leftTransparencyHidden {
+    display: none;
+  }
+  .rightTransparency {
+    display: none;
+  }
+  .rightTransparencyHidden {
+    display: none;
+  }
+  .wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
 
 .cornerSymbol {

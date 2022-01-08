@@ -7,7 +7,6 @@ import { getAverageRating } from './utils.js';
 
 const RelatedItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
@@ -63,11 +62,10 @@ const RelatedItem = (props) => {
   } else {
     return (
       <div>
-        Loading.
+        <img src='https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg'></img>
       </div>
     );
   }
-
 };
 
 export default RelatedItem;
