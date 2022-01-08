@@ -125,12 +125,8 @@ const OutfitCarousel = (props) => {
               </svg>
             </div>
         }
-        {
-          hideLeftArrow ? ''
-            : <div className={styles.leftTransparency}/>
-        }
+        <div className={`${hideLeftArrow ? styles.leftTransparencyHidden : styles.leftTransparency }`}/>
         <div className={styles.outfitItems} id='outfit-carousel'  ref={scrollRef}>
-
           <div className={styles.innerCardAdd} onClick={() => {
             handleNewOutfitItem();
           }}>
@@ -154,10 +150,7 @@ const OutfitCarousel = (props) => {
             />);
           })}
         </div>
-        {
-          hideRightArrow ? ''
-            : <div className={styles.rightTransparency}/>
-        }
+        <div className={`${hideRightArrow ? styles.rightTransparencyHidden : styles.rightTransparency }`}/>
         {
           hideRightArrow ? ''
             : <div className={styles.rightArrow} onClick={() => { scrollCarouselLeft(); }}>

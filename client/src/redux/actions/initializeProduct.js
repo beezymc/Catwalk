@@ -8,24 +8,12 @@ import axios from 'axios';
 
 var handleProductInit = (productId) => {
   return (dispatch) => {
-    return axios.get(`/api/products/?product_id=${productId}`)
+    return axios.get(`/api/product/init/?product_id=${productId}`)
       .then((product) => {
-        store.dispatch(changeProduct(product.data));
-        axios.get(`/api/styles/?product_id=${productId}`)
-          .then((productStyles) => {
-            store.dispatch(changeCurrentProductStyles(productStyles.data.results));
-            store.dispatch(changeStyle(productStyles.data.results[0]));
-            axios.get(`/api/reviews/meta/?product_id=${productId}`)
-              .then((productReviews) => {
-                store.dispatch(changeCurrentProductReviews(productReviews.data));
-              })
-              .catch((error) => {
-                store.dispatch(setError(error));
-              });
-          })
-          .catch((error) => {
-            store.dispatch(setError(error));
-          });
+        store.dispatch(changeProduct(product.data.productData));
+        store.dispatch(changeCurrentProductStyles(product.data.stylesData));
+        store.dispatch(changeStyle(product.data.stylesData[0]));
+        store.dispatch(changeCurrentProductReviews(product.data.reviewsData));
       })
       .catch((error) => {
         store.dispatch(setError(error));

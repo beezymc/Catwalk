@@ -17,50 +17,19 @@ const CompareItem = (props) => {
     }
   }
   for (let key in featureObj) {
-    if (featureObj[key].length === 2) {
-      popupTableRows.push(
-        <div className={styles.popupTableRows} key={key}>
-          <div>
-            ✔
-          </div>
-          <div>
-            {key}
-          </div>
-          <div>
-            ✔
-          </div>
-        </div>
-      );
-    } else if (featureObj[key][0] === 'C') {
-      popupTableRows.push(
-        <div className={styles.popupTableRows} key={key}>
-          <div>
-            ✔
-          </div>
-          <div>
-            {key}
-          </div>
-          <div>
-            {'\u00A0\u00A0\u00A0'}
-          </div>
-        </div>
-      );
-    } else {
-      popupTableRows.push(
-        <div className={styles.popupTableRows} key={key}>
-          <div>
-            {'\u00A0\u00A0\u00A0'}
-          </div>
-          <div>
-            {key}
-          </div>
-          <div>
-            ✔
-          </div>
-        </div>
-      );
-    }
-
+    popupTableRows.push(
+      <div className={styles.popupTableRows} key={key}>
+      <div>
+        {featureObj[key][0] === 'C' ? '✔' : '\u00A0\u00A0\u00A0'}
+      </div>
+      <div>
+        {key}
+      </div>
+      <div>
+        {featureObj[key][featureObj[key].length - 1] === 'R' ? '✔' : '\u00A0\u00A0\u00A0'}
+      </div>
+    </div>
+    );
   }
   return (
     <div className={styles.popupBox} onClick={() => { props.togglePopup(); }}>

@@ -8,6 +8,7 @@ const OutfitItem = (props) => {
   const [category, setCategory] = useState(props.currentProduct.category);
   const [rating, setRating] = useState(0);
   const [name, setName] = useState(props.currentProduct.name);
+  const [styleName, setStyleName] = useState(props.currentStyle.name);
   const [price, setPrice] = useState(0);
   const [id, setId] = useState(props.currentStyle.style_id);
 
@@ -31,7 +32,7 @@ const OutfitItem = (props) => {
           {category}
         </div>
         <div className={styles.name}>
-          {name}
+          {`${name + ': ' + styleName}`}
         </div>
         {price.length === 2 ?
           <div className={styles.price}>

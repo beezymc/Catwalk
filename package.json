@@ -7,6 +7,7 @@
     "test": "jest",
     "test-once": "jest -c jest.config.js --watch=all --env=jsdom",
     "react-dev": "webpack --config ./webpack.config.js  -w",
+    "react-prod": "NODE_ENV=production webpack --config ./webpack.config.js",
     "start": "nodemon server/index.js",
     "jesting": "jest --showConfig"
   },

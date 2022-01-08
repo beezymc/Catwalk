@@ -39,6 +39,7 @@ app.patch('/api/reviews/update', controllers.updateReview);
 app.patch('/api/reviews/report', controllers.reportReview);
 // Custom request for relateditems
 app.get('/api/related', controllers.getRelatedItemsData);
+app.get('/api/product/init', controllers.getInitialState);
 
 
 
