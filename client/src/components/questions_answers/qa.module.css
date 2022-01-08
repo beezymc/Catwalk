@@ -59,8 +59,6 @@ time, mark, audio, video {
   left: 0;
   background-color: rgba(0,0,0,.7);
   padding-top: 2%;
-  transform: translateX(-100px);
-  transition: all 500ms ease-in-out;
   }
 
   .modalContent {
@@ -75,11 +73,26 @@ time, mark, audio, video {
     max-width: 40%;
     border-radius: 10px;
   }
+
+  .modalPhoto {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 50vh;
+    position: relative;
+    margin: 0 auto;
+    background-color: white;
+    max-height: 40%;
+    max-width: 40%;
+    border-radius: 10px;
+  }
+
   .link {
     text-decoration: none;
     color: gray;
     padding: 2px 10px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .answerInfo{
@@ -91,8 +104,13 @@ time, mark, audio, video {
   display: flex;
   margin-bottom: 10px;
   margin-left: 5px;
+  cursor: pointer;
 }
 
+.answerImg {
+  margin: 1vh;
+  cursor: pointer;
+}
   /*********************SEARCH************/
   .searchContainer {
     display: flex;
@@ -120,6 +138,7 @@ time, mark, audio, video {
     background-color: #4d4d4d;
     color: white;
     padding: 0px;
+    cursor: pointer;
   }
 
   ul {
@@ -149,7 +168,7 @@ time, mark, audio, video {
     font-size: 0.8rem;
     text-transform: uppercase;
     margin-top: 7px;
-
+    cursor: pointer;
     border-bottom: solid 1px;
   }
 
@@ -221,4 +240,6 @@ time, mark, audio, video {
     margin: 0.3rem;
     font-weight: bold;
     text-transform: uppercase;
+    cursor: pointer;
   }
+
