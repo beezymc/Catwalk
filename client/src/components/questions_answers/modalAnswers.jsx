@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState, Component } from "react";
-import ReactCSSTransitionGroup from 'react-transition-group';
 import styles from './qa.module.css';
 
 const ModalAnswers = ({showModal, setShowModal, question_id, closeModal}) => {
