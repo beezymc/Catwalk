@@ -7,14 +7,13 @@ import { getAverageRating } from './utils.js';
 
 const RelatedItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
   if (props.relatedItem && props.relatedStyle && props.relatedItemReview && props.currentProduct) {
-    const relatedItem = props.relatedItem.data;
-    const relatedStyle = props.relatedStyle.data.results[0];
-    const relatedRatings = props.relatedItemReview.data.ratings;
+    const relatedItem = props.relatedItem;
+    const relatedStyle = props.relatedStyle.results[0];
+    const relatedRatings = props.relatedItemReview.ratings;
     const rating = getAverageRating(relatedRatings);
     const photo = relatedStyle.photos[0].thumbnail_url || 'https://i1.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?resize=600%2C600&ssl=1';
     const category = relatedItem.category;
@@ -63,11 +62,10 @@ const RelatedItem = (props) => {
   } else {
     return (
       <div>
-        Loading.
+        <img src='https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg'></img>
       </div>
     );
   }
-
 };
 
 export default RelatedItem;

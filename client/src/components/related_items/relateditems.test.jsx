@@ -11,6 +11,26 @@ import '@testing-library/jest-dom';
 import { MemoryRouter, BrowserRouter, Routes, Route, Router, Link, ReactRouter } from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 
+const MemoryRouterWithInitialRoutes = ({ children, initialRoutes }) => {
+  return (
+    <MemoryRouter initialEntries={initialRoutes}>
+      {children}
+    </MemoryRouter>
+  );
+};
+
+const customRender = (ui, options) => {
+  const initialRoutes = options && options.initialRoutes ? options.initialRoutes : ["/"];
+  return render(ui, {
+    wrapper: (args) =>
+    MemoryRouterWithInitialRoutes({
+      ...args,
+      initialRoutes,
+    }),
+    ...options,
+    });
+}
+
 afterEach(() => {
   jest.resetAllMocks();
 });
@@ -69,8 +89,8 @@ describe('RelatedItemCarousel', () => {
         <RelatedItemCarousel currentProduct={{}}/>
       </MemoryRouter>
     );
-    await waitFor(() => screen.getByText('Error Retrieving Related Items. Please Try Again.'));
-    expect(screen.getByText('Error Retrieving Related Items. Please Try Again.')).toBeInTheDocument();
+    await waitFor(() => screen.getByText('Error retrieving related items. Please try again later.'));
+    expect(screen.getByText('Error retrieving related items. Please try again later.')).toBeInTheDocument();
   });
   test('renders no related products message when the item has no related products', async () => {
     render(
@@ -204,6 +224,17 @@ describe('OutfitCarousel', () => {
       }
     ]
   }
+  const testProductStyle = {
+    original_price: "120.00",
+    photos: [
+      {
+        thumbnail_url: "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+        url: "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+      }
+    ],
+    sale_price: null,
+    style_id: 391656
+  }
   const setMockRefElement = (node) => {
     const mockRef = {
       get current() {
@@ -215,18 +246,18 @@ describe('OutfitCarousel', () => {
   };
 
   test('renders a new outfit item when the \'add outfit\' card is clicked', () => {
-    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} currentStyle={testProductStyle} />);
     fireEvent.click(screen.getByText('Add New Outfit'));
     expect(screen.getByText('Kicks')).toBeInTheDocument();
   });
   test('renders only one outfit if the \'add outfit\' card is clicked when one outfit with that id is already rendered', () => {
-    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} currentStyle={testProductStyle}/>);
     fireEvent.click(screen.getByText('Add New Outfit'));
     fireEvent.click(screen.getByText('Add New Outfit'));
     expect(screen.getAllByText('Kicks').length).toEqual(1);
   });
   test('removes a previously-added outfit item when the \'remove outfit\' symbol is clicked', () => {
-    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} />);
+    render(<OutfitCarousel currentProduct={testProduct} currentProductStyles={testProductStyles} currentProductReviews={testProductReviews} currentStyle={testProductStyle} />);
     fireEvent.click(screen.getByText('Add New Outfit'));
     expect(screen.getByText('Kicks').toBeInTheDocument);
     fireEvent.click(screen.getByText('X'));
@@ -300,20 +331,18 @@ describe('RelatedItem', () => {
     name: "Blues Suede Shoes"
   }
   const testRelatedStyle = {
-    data: {
-      results: [
-        {
-          original_price: "140.00",
-          sale_price: null,
-          photos: [
-            {
-              thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
-              url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
-            }
-          ]
-        }
-      ]
-    }
+    results: [
+      {
+        original_price: "140.00",
+        sale_price: null,
+        photos: [
+          {
+            thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+          }
+        ]
+      }
+    ]
   }
   const testRelatedItemReview = {
     data: {
@@ -326,10 +355,8 @@ describe('RelatedItem', () => {
     }
   }
   test('renders original price only if no sale', async () => {
-    // const history = createMemoryHistory();
-    // history.push('/product/63615');
-    // render(
-    //   <Router location={history.location} navigator={history} history={history}>
+    // customRender(
+    //   <Route path={'/product/63615'}>
     //     <RelatedItem
     //       key={63609}
     //       currentProduct={testCurrentProduct}
@@ -338,7 +365,7 @@ describe('RelatedItem', () => {
     //       relatedItemReview={testRelatedItemReview}
     //       handleProductInit={() => {}}
     //     />
-    //   </Router>
+    //   </Route>, { initialRoutes: ['/product/63615']}
     // );
     // await waitFor(() => screen.getByText('140.00'));
     // expect(screen.getByText('140.00')).toBeInTheDocument();
