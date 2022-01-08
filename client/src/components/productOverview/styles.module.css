@@ -183,6 +183,49 @@ top: 216px;
   font-size: 200px;
 } */
 
+@media screen and (min-width: 0px) and (max-width: 800px) {
+  .imagesWrapper {
+    display: none;
+  }
+  .mainImageWrapper {
+    position: absolute;
+    left: 60px;
+  }
+  .imgSize2 {
+    width: 300px;
+    height: 270px;
+  }
+    .rightArrow {
+      left: 350px;
+      top: 90px;
+    }
 
+    .leftArrow {
+      left: 18px;
+      top: 90px;
+    }
+    .hiddenArrow {
+      display: none;
+    }
+    .descriptionWrapper {
+      width: 400px;
+      position: absolute;
+      left: 36px;
+      top: 40%;
+      font-family: 'Poppins';
+    }
+    .stylesWrapper {
+      width: 400px;
+      position: absolute;
+      left: 36px;
+      top: 68%;
+      }
+      .cartWrapper {
+        width: 400px;
+        position: absolute;
+        left: 36px;
+        top: 90%;
+      }
+ }
 
 
