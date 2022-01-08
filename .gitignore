@@ -103,8 +103,6 @@ typings/
 .tern-port
 
 ## Compiled files ##
-client/dist/
-
 config.js
 
 client/dist/bundle.js
