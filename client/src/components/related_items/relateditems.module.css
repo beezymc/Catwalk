@@ -66,8 +66,15 @@
   position: relative;
   top: 40%;
   right: 2%;
-  width: 12px;
-  height: 12px;
+  margin-right: -24px;
+}
+
+.leftArrow {
+  z-index: 2;
+  position: relative;
+  top: 40%;
+  left: 2%;
+  margin-left: -24px;
 }
 
 .leftTransparency {
@@ -76,6 +83,18 @@
   background-image: linear-gradient(to left, transparent, #fafafa);
   height: 350px;
   width: 100px;
+  opacity: 1;
+  transition: all 100ms linear 100ms;
+}
+
+.leftTransparencyHidden {
+  z-index: 1;
+  position: absolute;
+  background-image: linear-gradient(to left, transparent, #fafafa);
+  height: 350px;
+  width: 100px;
+  opacity: 0;
+  transition: all 100ms linear 100ms;
 }
 
 .rightTransparency {
@@ -85,15 +104,19 @@
   background-image: linear-gradient(to right, transparent, #fafafa);
   height: 350px;
   width: 100px;
+  opacity: 1;
+  transition: all 100ms linear 100ms;
 }
 
-.leftArrow {
-  z-index: 2;
-  position: relative;
-  top: 40%;
-  left: 2%;
-  width: 12px;
-  height: 12px;
+.rightTransparencyHidden {
+  z-index: 1;
+  position: absolute;
+  right: 20%;
+  background-image: linear-gradient(to right, transparent, #fafafa);
+  height: 350px;
+  width: 100px;
+  opacity: 0;
+  transition: all 100ms linear 100ms;
 }
 
 .cornerSymbol {

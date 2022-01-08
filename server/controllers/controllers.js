@@ -228,34 +228,67 @@ module.exports = {
         }
         Promise.all(relatedItemsPromises)
           .then((itemsResults) => {
-            relatedItemsData['itemsResults'] = itemsResults;
+            let itemsResultsData = [];
+            for (let item of itemsResults) {
+              itemsResultsData.push(item.data);
+            }
+            relatedItemsData['itemsResults'] = itemsResultsData;
             Promise.all(relatedReviewsPromises)
               .then((reviewsResults) => {
-                relatedItemsData['reviewsResults'] = reviewsResults;
+                let reviewsResultsData = [];
+                for (let item of reviewsResults) {
+                    reviewsResultsData.push(item.data);
+                }
+                relatedItemsData['reviewsResults'] = reviewsResultsData;
                 Promise.all(relatedStylesPromises)
                   .then((stylesResults) => {
-                    relatedItemsData['stylesResults'] = stylesResults;
-                    console.log(relatedItemsData);
+                    let stylesResultsData = [];
+                    for (let item of stylesResults) {
+                        stylesResultsData.push(item.data);
+                    }
+                    relatedItemsData['stylesResults'] = stylesResultsData;
                     res.send(relatedItemsData);
                   })
                   .catch((err) => {
-                    console.log("catch 1")
                     res.status(404).send(err);
                   });
               })
               .catch((err) => {
-                console.log("catch 2")
                 res.status(404).send(err);
               });
           })
           .catch((err) => {
-            console.log("catch 3")
             res.status(404).send(err);
           });
       })
       .catch((err) => {
-        console.log("catch 4")
         res.status(404).send(err);
+      });
+  },
+  getInitialState: (req, res) => {
+    const { product_id } = req.query;
+    const initialStateData = {};
+    models.getProducts(product_id)
+      .then((product) => {
+        initialStateData['productData'] = product.data;
+        models.getStyles(product_id)
+          .then((productStyles) => {
+            initialStateData['stylesData'] = productStyles.data.results;
+            models.getMeta(product_id)
+              .then((productReviews) => {
+                initialStateData['reviewsData'] = productReviews.data;
+                res.send(initialStateData);
+              })
+              .catch((err) => {
+                res.status(404).send(err);
+              });
+          })
+          .catch((err) => {
+            res.status(404).send(err);
+          });
+      })
+      .catch((error) => {
+        store.dispatch(setError(error));
       });
   }
 };
