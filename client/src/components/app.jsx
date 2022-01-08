@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 // import RelatedItemsWrapper from './related_items/RelatedItemsWrapper.jsx';
 const RelatedItemsWrapper = React.lazy(() => import('./related_items/RelatedItemsWrapper.jsx'));
-import QAWrapper from './questions_answers/QAWrapper.jsx';
+const QAWrapper = React.lazy(() => import ('./questions_answers/QAWrapper.jsx'));
 import { ProductOverview } from './productOverview/Product.jsx';
 import { useParams } from 'react-router-dom';
 import styles from './app.module.css';
@@ -49,7 +49,14 @@ const App = (props) => {
           handleProductInit={props.handleProductInit}
         />
       </Suspense>
+      <Suspense fallback={
+        <div>
+          <img src='https://images.wondershare.com/mockitt/ux-beginner/loading-time-tips.jpeg'></img>
+        </div>
+      }>
       <QAWrapper currentProduct={props.currentProduct} />
+      </Suspense>
+
     </div>
   );
 };
