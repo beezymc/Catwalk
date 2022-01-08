@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import {
   BrowserRouter as Router,
  useLocation
 } from "react-router-dom";
-import QAList from './MainList.jsx';
+const QAList = React.lazy(() => import ('./MainList.jsx'));
 import axios from 'axios';
 import styles from './qa.module.css';
 
 
 const QAWrapper = ({currentProduct}) => {
   const [id, setId] = useState();
-
-  //Use location hook to get  an ID from the URL
-    // let location = useLocation();
-    // let matchResult = location.pathname.match("\/product\/([0-9]+).+");
-    // let productId = matchResult[1];
 
   useEffect(() => {
     if (currentProduct.id !== undefined) {
@@ -23,11 +18,13 @@ const QAWrapper = ({currentProduct}) => {
   }, [currentProduct.id]);
 
   return (
+    <Suspense fallback={
     <div className={styles.qaContainer}>
-      <div className={styles.qaItem}><QAList productId={id} /></div>
-    </div>
+      LOADING...
+    </div>}>
+    <div className={styles.qaItem}><QAList productId={id} /></div>
+    </Suspense>
   )
 }
 
 export default QAWrapper;
-

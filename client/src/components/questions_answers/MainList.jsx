@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import QAListEntry from './QAListEntry.jsx';
 import SearchBar from './SearchBar.jsx';
 import FormBar from './FormBar.jsx';
