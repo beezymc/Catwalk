@@ -4,7 +4,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   plugins: [
     new CompressionPlugin({
       test: /\.js(\?.*)?$/i,
