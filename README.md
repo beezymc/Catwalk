@@ -22,4 +22,4 @@ NOTE: External API requires a key to connect; this project will not function wit
 ## Current Deployment
 
 ## Team:
-Developed by David Rajec, Eric Baldwin, and Anna Sarafanova
+Developed by David Rajec (Related Items), Eric Baldwin (Product Overview), and Anna Sarafanova (Questions and Answers)
