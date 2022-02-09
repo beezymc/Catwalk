@@ -10,11 +10,11 @@ Catwalk allows users to view a product, see related products, and write question
 NOTE: External API requires a key to connect; this project will not function without that access.
 1. Fork and clone this repository
 2. Install dependencies using 'npm install'
-3. Include a github token, the path to the API, and the Port number within the config.js file where indicated.
+3. Include a github token, the path to the API, and the Port number within the config.js file where indicated
 4. Open two terminals
 5. Within one terminal, run 'npm run start' to start the server
 6. Within the other, run 'npm run react-dev' to start the client
-7. Navigate to your favored localhost port (as noted in the config).
+7. Navigate to your favored localhost port (as noted in the config)
 
 ## Installation: Production
 NOTE: External API requires a key to connect; this project will not function without that access.
