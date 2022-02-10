@@ -20,41 +20,41 @@ export const ProductOverview = ({ currentVariation, productVariations, setVariat
   }
 
   return (
-    <div>
-      <div className={css.mainImageWrapper}>
-        <img src={currentPicture} className={css.imgSize2}></img>
-      </div>
+    <div className={css.mainProductView}>
       <div className={css.galleryWrapper}>
         <Gallery limitedPictureArray={limitedPictureArray} setImageIndex={setImageIndex} />
       </div>
-      <img
-        src="https://img.icons8.com/ios/50/000000/chevron-left.png"
-        onClick={() => { setImageIndex(imageIndex - 1) }}
-        className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow} />
-      <img
+      <div className={css.mainImageWrapper}>
+        <img
+          src="https://img.icons8.com/ios/50/000000/chevron-left.png"
+          onClick={() => { setImageIndex(imageIndex - 1) }}
+          className={imageIndex === 0 ? css.hiddenArrow : css.leftArrow} />
+        <img src={currentPicture} className={css.imgSize2}></img>
+        <img
         src="https://img.icons8.com/ios/50/000000/chevron-right.png"
         onClick={() => { setImageIndex(imageIndex + 1) }}
         className={imageIndex === limitedPictureArray.length - 1 ? css.hiddenArrow : css.rightArrow} />
+      </div>
       <div className={css.descriptionWrapper}>
         <Description product={currentProduct} currentVariation={currentVariation} />
-      </div>
-      <div className={css.stylesWrapper}>
-        <h4>Select Style/Color</h4>
-        <div className={css.styleSelectionWrapper}>
-          {productVariations && productVariations.map((variation, index) => (
-            <div className={css.buttonWrapper} key={`${index}-variation-key`} onClick={() => {
-              setVariation(variation);
-              setImageIndex(0);
-              setSalePrice(variation.sale_price);
-            }}>
-              <img className={css.modalButton} src={variation.photos[0].thumbnail_url} />
-              <span className={css.styleNames}> {variation.name}</span>
-            </div>
-          ))}
+        <div className={css.stylesWrapper}>
+          <h4>Select Style/Color</h4>
+          <div className={css.styleSelectionWrapper}>
+            {productVariations && productVariations.map((variation, index) => (
+              <div className={css.buttonWrapper} key={`${index}-variation-key`} onClick={() => {
+                setVariation(variation);
+                setImageIndex(0);
+                setSalePrice(variation.sale_price);
+              }}>
+                <img className={css.modalButton} src={variation.photos[0].thumbnail_url} />
+                <span className={css.styleNames}> {variation.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className={css.cartWrapper}>
-        <Cart currentVariation={currentVariation} />
+        <div className={css.cartWrapper}>
+          <Cart currentVariation={currentVariation} />
+        </div>
       </div>
     </div>
   );
