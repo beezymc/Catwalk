@@ -29,6 +29,7 @@ const App = (props) => {
   }
   return (
     <div className={styles.app}>
+      <div className={styles.navbar}>Catwalk</div>
       <div className={styles.mainProductWrapper}>
       <ProductOverview
       productVariations={props.currentProductStyles}
