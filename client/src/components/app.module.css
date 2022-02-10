@@ -3,9 +3,18 @@
   background-color: #fafafa;
 }
 
-.mainProductWrapper {
-  height: 100vh;
+.navbar {
+  width: 100vw;
+  height: 7vh;
+  padding-top: 30px;
+  background-color: black;
+  color: #fafafa;
+  text-align: center;
+  vertical-align: center;
+  line-height: 1;
+  font-size: 30px;
 }
+
 .relatedItemsWrapper {
   display: flex;
   flex-direction: column;
