@@ -45,6 +45,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 2.5%;
+  width: 50%;
 }
 
 .imgSize2 {
@@ -115,10 +116,12 @@
 
 .buttonWrapper {
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   flex-wrap: wrap;
   width: calc(25% - 11px);
-  margin-left: 10px;
+  margin: auto;
   margin-top: 10px;
   height: 120px;
   background-color: transparent;
@@ -131,7 +134,6 @@
 }
 
 .modalButton {
-  padding: 0px;
   background-color: transparent;
   border: 0;
   border-radius: '0rem';
@@ -140,14 +142,15 @@
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  margin: 0px;
   object-fit: cover;
+  margin-left: 5%;
 }
 .styleNames {
   font-size: 14px;
   font-family: 'Poppins';
-  margin-left: 15px;
+  margin-left: 5px;
 }
+
 .cartWrapper {
   width: 100%;
   display: flex;
