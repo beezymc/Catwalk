@@ -47,7 +47,7 @@ export const ProductOverview = ({ currentVariation, productVariations, setVariat
                 setSalePrice(variation.sale_price);
               }}>
                 <img className={css.modalButton} src={variation.photos[0].thumbnail_url} />
-                <span className={css.styleNames}> {variation.name}</span>
+                <div className={css.styleNames}> {variation.name}</div>
               </div>
             ))}
           </div>
